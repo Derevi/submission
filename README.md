@@ -21,13 +21,20 @@ When you merge a branch it will merge on your local project files first and effe
 As an example if I want to merge one of my feature branches to master I would do the following:
 
 ``git checkout master
+
 ``git merge feature/something    #this deletes the feature branch
+
 ``git push origin master      #this pushes all the changes to origin the remote repo on github
 
+
 Notice that the branch will still appear on github and you have to delete that as well using command:
+
 ``git push origin --delete feature/something
+
 ***Be sure to issue "--delete" or its alias "-d" as that only deletes a branch if it has already been fully merged upstream***
+
 ***If you instead use option "-D" which is an alias for "--delete --force" it deletes the branch "irrespective of its merged status." 
+***
 
 # Before you merge
 note before you merge and delete your branch make sure to have fully tested it with master
