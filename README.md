@@ -22,7 +22,7 @@ As an example if I want to merge one of my feature branches to master I would do
 
 ``git checkout master``
 
-``git merge feature/something    ..... this deletes the feature branch``
+``git merge feature/something``    
 
 ``git push origin master      ...... this pushes all the changes to origin the remote repo on github``
 
@@ -34,6 +34,10 @@ Notice that the branch will still appear on github and you have to delete that a
 ***Be sure to issue "--delete" or its alias "-d" as that only deletes a branch if it has already been fully merged upstream***
 
 ***If you instead use option "-D" which is an alias for "--delete --force" it deletes the branch "irrespective of its merged status." 
+
+to delete your branch locally use commmand:
+
+``git branch -d feature/something``
 
 
 # Before you merge
