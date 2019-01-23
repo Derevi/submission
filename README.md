@@ -1,5 +1,13 @@
 # General FAQ for group project goes here for now..
 
+# Note About JavaFX
+
+For this project we will beusing FXML to create our gui. Luckily there is a graphical based tool that can generate the front end for us
+automatically. The link to the download is below:
+https://gluonhq.com/products/scene-builder/
+I believe this is a standalone app I havent used it my self.
+You should be able to create the front end and then the program will spit out an FXML document which we can the copy paste to our project
+
 # Website for maven dep
 
 https://mvnrepository.com/
