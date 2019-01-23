@@ -8,6 +8,7 @@
     <artifactId>talkbox-eecs2311-t11</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Change the source to your JDK version, i believe it can be 9 or higher -->
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -37,8 +38,21 @@
         </dependency>
 
 
+        <!-- put fully qualified name for Main class in between configurations tag -->
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.6.0</version>
+                <configuration>
+                    <mainClass>SampleGui</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     
 </project>
