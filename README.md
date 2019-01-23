@@ -1,5 +1,11 @@
 # General FAQ for group project goes here for now..
 
+# IMPORTANT UPDATE: JAVAFX
+
+You CANNOT run the project regularly the reason for this is because JVM needs to compile the project and it DOES NOT KNOW where the jar files are for the JAVAFX library
+Use maven to execute it because it will load the proper jars
+I have created custom plugin that will compile and run with maven jars
+
 # Naming Conventions for Branches
 feature/name      Feature I'm adding or expanding
 
@@ -42,3 +48,4 @@ to delete your branch locally use commmand:
 
 # Before you merge
 note before you merge and delete your branch make sure to have fully tested it with master
+
