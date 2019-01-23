@@ -1,5 +1,9 @@
 # General FAQ for group project goes here for now..
 
+# Website for maven dep
+
+https://mvnrepository.com/
+
 # IMPORTANT UPDATE: JAVAFX
 
 You CANNOT run the project regularly the reason for this is because JVM needs to compile the project and it DOES NOT KNOW where the jar files are for the JAVAFX library
