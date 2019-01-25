@@ -7,10 +7,16 @@ automatically. The link to the download is below:
 https://gluonhq.com/products/scene-builder/
 I believe this is a standalone app I havent used it my self.
 You should be able to create the front end and then the program will spit out an FXML document which we can the copy paste to our project
+
 ************************THERE ARE ISSUES RUNNING FXML WITH MAVEN DEPENDENCIES I HAVE TO FIX THE MAVEN PLUGINS I WILL DO THAT LATER***
+
 for now use the SDK download from here https://gluonhq.com/products/javafx/
+
 use the guide here: https://openjfx.io/openjfx-docs/
-you want to add the lib
+
+you want to add the lib to your IDE first..
+
+
 and when you run make sure you set the VM options!! JVM needs to know where the libraries are or else it can run anything
 for mac/linux use:
 ``--module-path /path/to/javafx-sdk-11.0.1/lib --add-modules=javafx.controls,javafx.fxml``
