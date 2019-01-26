@@ -1,20 +1,26 @@
 package talkbox.gui;
 
-import javafx.scene.control.Button;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+
 
 public class ButtonInventory {
 
 
-    ArrayList<Button> buttonList;
+    private ArrayList<TalkButton> talkButtons;
+    ButtonInventory(ArrayList<TalkButton> talkButtons) {
+       this.talkButtons= talkButtons;
+    }
 
-    ButtonInventory(){
-        buttonList = new ArrayList<>();
+    public ArrayList<TalkButton> talkButtons() {
+        return talkButtons;
     }
 
 
-    public ArrayList<Button> getArrayList() {
-        return buttonList;
-    }
+
+
 }
+
+
+
