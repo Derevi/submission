@@ -16,15 +16,27 @@ public class TalkBoxController implements Initializable {
     GridPane gridPane;
 
 
+    public Button talkButton;
+
+    public void talk(){
+        //make this pull from list
+        String userInput = "hello";
+        AudioPlayer.talk(userInput);
+
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*
         ButtonInventory buttonCollection = new ButtonInventory();
         int i=0;
         for(Button b: buttonCollection.getArrayList()){
             gridPane.add(b,i,i);
             i=i+5;
         }
+    */
     }
 
 }
