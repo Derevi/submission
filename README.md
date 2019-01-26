@@ -18,9 +18,13 @@ you want to add the lib to your IDE first..
 
 
 and when you run make sure you set the VM options!! JVM needs to know where the libraries are or else it can run anything
+
 for mac/linux use:
+
 ``--module-path /path/to/javafx-sdk-11.0.1/lib --add-modules=javafx.controls,javafx.fxml``
-for windows use
+
+for windows use:
+
 ``--module-path "\path\to\javafx-sdk-11.0.1\lib" --add-modules=javafx.controls,javafx.fxml``
 
 # Website for maven dep
