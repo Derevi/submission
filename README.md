@@ -21,11 +21,11 @@ and when you run make sure you set the VM options!! JVM needs to know where the 
 
 for mac/linux use:
 
-``--module-path /path/to/javafx-sdk-11.0.1/lib --add-modules=javafx.controls,javafx.fxml``
+``--module-path /path/to/javafx-sdk-11.0.1/lib --add-modules=javafx.controls,javafx.graphics,javafx.media,javafx.fxml``
 
 for windows use:
 
-``--module-path "\path\to\javafx-sdk-11.0.1\lib" --add-modules=javafx.controls,javafx.fxml``
+``--module-path "\path\to\javafx-sdk-11.0.1\lib" --add-modules=javafx.controls,javafx.graphics,javafx.media,javafx.fxml``
 
 # Website for maven dep
 
