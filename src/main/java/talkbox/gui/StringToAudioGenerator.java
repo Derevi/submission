@@ -13,7 +13,6 @@ public class StringToAudioGenerator {
     void generateAudio(String word){
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         Voice voice;
-        VoiceManager voiceManager = VoiceManager.getInstance();
         voice = VoiceManager.getInstance().getVoice("kevin16");
         voice.allocate();
         AudioPlayer audioPlayer = new SingleFileAudioPlayer("audio"+ File.separator+word, AudioFileFormat.Type.WAVE);
