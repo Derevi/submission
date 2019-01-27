@@ -10,7 +10,12 @@ You should be able to create the front end and then the program will spit out an
 
 ************************THERE ARE ISSUES RUNNING FXML WITH MAVEN DEPENDENCIES I HAVE TO FIX THE MAVEN PLUGINS I WILL DO THAT LATER***
 
+***download These libraries**
+
 for now use the SDK download from here https://gluonhq.com/products/javafx/
+http://central.maven.org/maven2/net/sf/sociaal/freetts/1.2.2/freetts-1.2.2.jar
+
+
 
 use the guide here: https://openjfx.io/openjfx-docs/
 
