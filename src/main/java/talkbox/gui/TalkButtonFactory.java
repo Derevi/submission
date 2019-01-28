@@ -10,6 +10,7 @@ public class TalkButtonFactory {
     }
     public TalkButton createTalkButton(ButtonInventory buttonInventory, String buttonName){
         TalkButton talkButton = new TalkButton(buttonName);
+
         return talkButton;
     }
 
