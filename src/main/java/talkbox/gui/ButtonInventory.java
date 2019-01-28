@@ -44,7 +44,7 @@ public class ButtonInventory {
     }
 
     public void replaceTalkButton(){
-        
+
     }
 
 
