@@ -21,7 +21,7 @@ public class ButtonInventory {
         talkButtons = new ArrayList<>();
     }
 
-    public List<TalkButton> talkButtons() {
+    public List<TalkButton> getTalkButtons() {
         List<TalkButton> copy = new ArrayList<TalkButton>(talkButtons);
         return Collections.unmodifiableList(copy);
     }
@@ -45,6 +45,10 @@ public class ButtonInventory {
 
     public void replaceTalkButton(){
 
+    }
+
+    public int size(){
+       return talkButtons.size();
     }
 
 

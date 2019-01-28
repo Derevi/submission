@@ -34,4 +34,8 @@ public class TalkButton implements TalkButtonInterface, Serializable {
         return new Button(buttonLabel);
 
     }
+
+    public String getName(){
+        return new String(buttonLabel);
+    }
 }
