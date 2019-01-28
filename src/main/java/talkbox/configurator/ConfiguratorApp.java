@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class ConfiguratorApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
+
        Parent root = FXMLLoader.load(getClass().getResource("configurator.fxml"));
         primaryStage.setTitle("TalkBox Button Editor");
         primaryStage.setScene(new Scene(root, 480, 600));

@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class ConfiguratorController implements Initializable {
 //public class ConfiguratorController{
-    VBox box;
+    ButtonInventoryCatalog buttonInventoryCatalog;
 
     @FXML
     GridPane gridPane;
@@ -39,6 +39,8 @@ public class ConfiguratorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("help");
+        buttonInventoryCatalog = new ButtonInventoryCatalog();
+
 
 
         Button button1 = new Button("one");

@@ -1,7 +1,5 @@
 package talkbox.configurator;
 
-import talkbox.gui.AudioPlayer;
-import talkbox.gui.ButtonInventory;
 import talkbox.gui.TalkButton;
 import java.nio.file.Path;
 

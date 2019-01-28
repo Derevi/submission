@@ -1,5 +1,5 @@
-package talkbox.gui;
-import talkbox.configurator.ButtonInventoryCatalog;
+package talkbox.configurator;
+import talkbox.gui.TalkButton;
 
 public class TalkButtonFactory {
     ButtonInventoryCatalog buttonInventoryCatalog;

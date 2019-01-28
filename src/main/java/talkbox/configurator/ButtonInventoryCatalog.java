@@ -1,18 +1,20 @@
 package talkbox.configurator;
 
-import talkbox.gui.ButtonInventory;
-import talkbox.gui.TalkButton;
-
+import java.io.Serializable;
 import java.util.*;
 
-public class ButtonInventoryCatalog {
+public class ButtonInventoryCatalog implements Serializable {
     //ArrayList<ButtonInventory> catalog;
     String name;
     LinkedHashMap<String, ButtonInventory> catalog;
+    private static final long serialVersionUID = 1L;
 
     public ButtonInventoryCatalog(){
      //catalog = new ArrayList<>();
      catalog = new LinkedHashMap<>();
+    }
+    public ButtonInventoryCatalog(LinkedHashMap<String, ButtonInventory> catalog){
+        catalog = TalkButtons.load();
     }
 
 
