@@ -1,5 +1,6 @@
 package talkbox.gui;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.media.AudioClip;
 
@@ -31,11 +32,16 @@ public class TalkButton implements TalkButtonInterface, Serializable {
     }
 
     public Button getButton(){
-        return new Button(buttonLabel);
+        return button;
 
     }
 
     public String getName(){
         return new String(buttonLabel);
+    }
+
+    private void handleButtonAction(ActionEvent event) {
+        // Button was clicked, do something…
+        System.out.println("test");
     }
 }

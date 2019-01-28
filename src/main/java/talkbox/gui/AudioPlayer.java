@@ -8,7 +8,7 @@ import java.io.File;
  public final class AudioPlayer {
 
 
-     static final void talk(String audioFile){
+     public static final void talk(String audioFile){
         MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("audio"+File.separator+audioFile+".wav").toURI().toString()));
         mediaPlayer.setAutoPlay(true);
     }

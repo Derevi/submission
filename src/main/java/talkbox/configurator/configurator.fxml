@@ -14,4 +14,15 @@
     <GridPane alignment="CENTER" fx:id="gridPane"/>
 </center>
 
+    <bottom>
+        <HBox>
+            <!--
+            <Button alignment="BOTTOM_LEFT" text="Save"></Button>
+            <Button alignment="BOTTOM_CENTER" text="Load"></Button>
+            <Button alignment="BOTTOM_RIGHT" text="exit"></Button>
+            -->
+        </HBox>
+    </bottom>
+
+
 </BorderPane>

@@ -12,6 +12,7 @@ public class ConfiguratorApp extends Application {
 
        Parent root = FXMLLoader.load(getClass().getResource("configurator.fxml"));
         primaryStage.setTitle("TalkBox Button Editor");
+
         primaryStage.setScene(new Scene(root, 480, 600));
         primaryStage.show();
     }
