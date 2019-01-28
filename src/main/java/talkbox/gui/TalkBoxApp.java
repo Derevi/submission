@@ -13,7 +13,7 @@ public class TalkBoxApp extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("talkbox.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Talk Box");
         primaryStage.setScene(new Scene(root, 480, 600));
         primaryStage.show();
     }

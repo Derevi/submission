@@ -1,25 +1,37 @@
 package talkbox.gui;
 
+import javafx.scene.control.Button;
 import javafx.scene.media.AudioClip;
 
 import java.io.Serializable;
+import java.lang.instrument.UnmodifiableClassException;
 
 public class TalkButton implements TalkButtonInterface, Serializable {
-    String Label;
+
+    String buttonLabel;
     AudioClip audioClip; //connect audio clip here, Iam not sure if the is the right object type
+    private Button button;
+
     private static final long serialVersionUID = 1L;
 
-
-    TalkButton(String s){
-        //create label via sprint
-        //instantiate label and audioclip
-
-
+    public TalkButton(String buttonLabel){
+        this.buttonLabel = buttonLabel;
+        if(buttonLabel.isEmpty()){throw new IllegalArgumentException();}
+        button = new Button(buttonLabel);
+        button.setMinSize(20,20);
     }
+
+
+
 
     @Override
     public AudioClip talk() {
-        //return audio clip here
+        AudioPlayer.talk(buttonLabel);
         return null;
+    }
+
+    public Button getButton(){
+        return new Button(buttonLabel);
+
     }
 }
