@@ -1,6 +1,4 @@
 Describes the test cases that have been implemented
-• Includes discussion on how these test cases were
-derived
 
 First test cases check the function of the save and load method as well as the buttonCatalog.
 A test case was made to ensure that the serialized file is loaded correctly. 
@@ -9,15 +7,13 @@ Another test case was created to ensure that if the file did not exist, that the
 These test are sufficient as it only involves two methods, save and load, and the main object of interest is  the button
 
 The next text will assure that the correct buttons are loaded. This will be done by creating a mock button in the gridPane 
-upon loading of the button an output will be created and that will be tested with an assertion.
+upon loading of the button an output will be created and that will be tested with an assertion. this is sufficient to 
+test the functionality of th gui, because it is one of the only dynamically generated layouts that all other functions depend on.
 
 Most of the methods in the provided interface will be tested as well. Most of the methods are getters for state, and will be checked to ensure
-the correct state of the objecct.
+the correct state of the objecct. This will ensure functionality of the implemented interface and is sufficient for this case.
 
 Another series of text cases will ensure that audiofiles are created upon compile. it will test the count, and name, compared to the amount
-of buttons in the catalog
+of buttons in the catalog. This is sufficient to ensure proper gui layout loading since as long as there are the right amount of buttons, 
+and right amount of state the gui has loaded properly
 
-• Includes discussion on why these test cases are
-sufficient
-• Includes test coverage discussion (next week’s topic)
-• No particular format required for this course 
