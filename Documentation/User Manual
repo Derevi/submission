@@ -1,0 +1,21 @@
+This is a step by step guide on how to install the TalkBox application, and how to use the application itself.
+
+*DOCUMENTATION FOR INSTALLATION PROCESS*
+------Getting Started: (Image to be uploaded for every step process)
+        1.Install Eclipse IDE 2018‑12 by this link: https://www.eclipse.org/downloads/ 
+        2.After installation, open up eclipse from your eclipse directory folder 
+        3.Click on File > Import > Existing Project into Workspace > Click Next > Select "Select root directory" > Navigate to your project folder and open.
+        4.When you have succesfully opened up project folder in eclipse, on the project explorer tab on the left navigate to src folder
+        5. From there find the .java file that has the "main" class in it.
+        6. Right Click on the .java file in the project explorer window and click "export"
+        7. Next open up the drop down menu that says Java
+        8. Click on "Runnable Jar File" and click Next
+        9. From the launch configiration drop down, select the name of the java file you want to create into excecutable
+        10. In export destination section, browse for a location where you would like to save this .exe file on your computer
+        11. Now you have successfully created a .exe file which can now run the entire application by running this .exe file.
+       
+*Uses for this application*
+When you run the .exe file after installation, the user can edit into the configuration mode or the normal mode, where the configuration mode
+gives control and flexability to change the number of application buttons, sounds, and images. The normal mode is where the user can interact
+with the software. This can be done by clicking any button on the application and then the specific sound would be outputed to the user.
+

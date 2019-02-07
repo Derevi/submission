@@ -42,21 +42,23 @@ You CANNOT run the project regularly the reason for this is because JVM needs to
 Use maven to execute it because it will load the proper jars
 I have created custom plugin that will compile and run with maven jars
 
-# Naming Conventions for Branches
-feature/name      Feature I'm adding or expanding
+# Naming Conventions for Branches **use lecture specifications
+feature-*    Feature I'm adding or expanding
 
-bug/name          Bug fix or experiment
+hotfix-*      bug fixes
+
+develop-*     version in development
 
 
 # Creating and push branches
 
 When working on a feature make sure you create a new branch use command:
 
-``git checkout -b "feature/name"    ..... (ignore quotes)``
+``git checkout -b "feature-*"    ..... (ignore quotes)``
 
 To push the branch to remote origin so that it shows up on github use command:
 
-``git push -u origin "feature/name"  ..... (ignore quotes)``
+``git push -u origin "feature-*"  ..... (ignore quotes)``
 
 # Merging Branches
 When you merge a branch it will merge on your local project files first and effectively remove one of the branches.
@@ -64,14 +66,14 @@ As an example if I want to merge one of my feature branches to master I would do
 
 ``git checkout master``
 
-``git merge feature/something``    
+``git merge feature-*``    
 
 ``git push origin master      ...... this pushes all the changes to origin the remote repo on github``
 
 
 Notice that the branch will still appear on github and you have to delete that as well using command:
 
-``git push origin --delete feature/something``
+``git push origin --delete feature-*``
 
 ***Be sure to issue "--delete" or its alias "-d" as that only deletes a branch if it has already been fully merged upstream***
 
@@ -79,7 +81,7 @@ Notice that the branch will still appear on github and you have to delete that a
 
 to delete your branch locally use commmand:
 
-``git branch -d feature/something``
+``git branch -d feature-*``
 
 
 # Before you merge
