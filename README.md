@@ -2,6 +2,7 @@
 
 # Proposal for package structure:
 root-
+``
 |---GuiDesktop
 
 |    |---TalkBoxApp
@@ -9,12 +10,19 @@ root-
 |    |      |---Model
 
 |    |      |---View
+
 |    |      └---Controller
+
 |    |
+
 |    └---TalkBoxEditor
+
 |           |---Model
+
 |           |---View
+
 |           └---Controller
+
 |     
 |---Rpi (and other)
 |    |---Model
@@ -24,6 +32,7 @@ root-
 └---shared
      |---services
      └---dao
+     ``
 
 # Note About JavaFX
 
