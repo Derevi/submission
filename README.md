@@ -1,28 +1,18 @@
 # General FAQ for group project goes here for now..
 
 # Proposal for package structure:
-root-
-``
+<pre>
+root
 |---GuiDesktop
-
 |    |---TalkBoxApp
-
 |    |      |---Model
-
 |    |      |---View
-
 |    |      └---Controller
-
 |    |
-
 |    └---TalkBoxEditor
-
 |           |---Model
-
 |           |---View
-
 |           └---Controller
-
 |     
 |---Rpi (and other)
 |    |---Model
@@ -32,7 +22,8 @@ root-
 └---shared
      |---services
      └---dao
-     ``
+     </pre>
+     
 
 # Note About JavaFX
 
