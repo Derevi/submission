@@ -3,8 +3,11 @@
 # Proposal for package structure:
 root-
 |---GuiDesktop
+
 |    |---TalkBoxApp
+
 |    |      |---Model
+
 |    |      |---View
 |    |      └---Controller
 |    |
