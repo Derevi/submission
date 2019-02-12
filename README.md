@@ -1,5 +1,30 @@
 # General FAQ for group project goes here for now..
 
+# Proposal for package structure:
+<pre>
+root
+|---GuiDesktop
+|    |---TalkBoxApp
+|    |      |---Model
+|    |      |---View
+|    |      └---Controller
+|    |
+|    └---TalkBoxEditor
+|           |---Model
+|           |---View
+|           └---Controller
+|     
+|---Rpi (and other)
+|    |---Model
+|    |---View
+|    └---Controller
+|
+└---shared
+     |---services
+     └---dao
+     </pre>
+     
+
 # Note About JavaFX
 
 For this project we will beusing FXML to create our gui. Luckily there is a graphical based tool that can generate the front end for us
