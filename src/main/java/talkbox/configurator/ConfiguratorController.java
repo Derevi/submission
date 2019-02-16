@@ -26,6 +26,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ConfiguratorController implements Initializable, EventHandler {
@@ -34,6 +36,8 @@ public class ConfiguratorController implements Initializable, EventHandler {
     ArrayList<Button> genBtns = new ArrayList<Button>();
     ArrayList<TextField> genTxts = new ArrayList<TextField>();
     ArrayList<Button> genCat = new ArrayList<Button>();
+    HashMap<Button, Button[]> categories = new HashMap<Button, Button[]>();
+    //ArrayList<Catalogs>
     Button cat = new Button();
     @FXML
     Button button;
@@ -293,19 +297,18 @@ public class ConfiguratorController implements Initializable, EventHandler {
     @Override
     public void handle(Event event) {
 
+        if(event.getSource()==cat) {
+            gridPane.getChildren().clear();
+            gridPane.setHgap(5);
+            gridPane.setVgap(20);
+            secondWindow();
+        }
 
-        gridPane.getChildren().clear();
-        gridPane.setHgap(5);
-        gridPane.setVgap(20);
 
-        Text lblTitle = new Text("Configure Categories");
-        gridPane.add(lblTitle, 2, 0);
-        Button add = new Button("Add Category");
-        gridPane.add(add, 4, 1);
-        Button remove = new Button("Remove Category");
-        gridPane.add(remove, 6, 1);
 
-        if (genCat.size() < 1) {
+
+
+        /*if (genCat.size() < 1) {
             remove.setDisable(true);
         } else {
             remove.setDisable(false);
@@ -371,13 +374,35 @@ public class ConfiguratorController implements Initializable, EventHandler {
                     });
                 }
             });
+*/
 
+        //}
+    }
+
+    public void secondWindow() {
+        Text lblTitle = new Text("Configure Categories");
+        gridPane.add(lblTitle, 2, 0);
+        Button add = new Button("Add Category");
+        gridPane.add(add, 4, 1);
+        Button remove = new Button("Remove Category");
+        gridPane.add(remove, 6, 1);
+
+        add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                int index =0;
+
+                    categories.put(new Button("Edit name"), null);
+                    for(Map.Entry<Button,Button[]> entry : categories.entrySet()) {
+                        gridPane.addColumn(index, entry.getKey());
+                        index++;
+                    }
 
         }
-    }
 
-
+    });
     }
+}
 
 
 
