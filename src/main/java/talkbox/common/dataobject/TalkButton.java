@@ -1,11 +1,12 @@
-package talkbox.gui;
+package talkbox.common.dataobject;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.media.AudioClip;
+import talkbox.common.service.AudioPlayer;
+
 
 import java.io.Serializable;
-import java.lang.instrument.UnmodifiableClassException;
 
 public class TalkButton implements TalkButtonInterface, Serializable {
 
