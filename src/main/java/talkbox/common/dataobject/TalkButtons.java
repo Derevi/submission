@@ -1,22 +1,17 @@
-package talkbox.configurator;
-
-import javafx.scene.control.Button;
-import talkbox.gui.TalkButton;
+package talkbox.common.dataobject;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 public class TalkButtons {
 
-    public static LinkedHashMap<String, ButtonInventory> load() {
-        LinkedHashMap<String, ButtonInventory> talkButtons = new LinkedHashMap<>();
+    public static LinkedHashMap<String, TalkButtonInventory> load() {
+        LinkedHashMap<String, TalkButtonInventory> talkButtons = new LinkedHashMap<>();
         try (
                 FileInputStream fis = new FileInputStream("buttonLister.ser");
                 ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
-            talkButtons = (LinkedHashMap<String, ButtonInventory>) ois.readObject();
+            talkButtons = (LinkedHashMap<String, TalkButtonInventory>) ois.readObject();
         } catch (IOException ioe) {
             System.out.println("Error reading talkbuttons.ser file");
             ioe.printStackTrace();
@@ -27,7 +22,7 @@ public class TalkButtons {
         return talkButtons;
     }
 
-    public static void save(LinkedHashMap<String, ButtonInventory> talkButtons) {
+    public static void save(LinkedHashMap<String, TalkButtonInventory> talkButtons) {
         //TODO allow user to specify .ser filename
         try (
                 FileOutputStream fos = new FileOutputStream("talkbuttons.ser");

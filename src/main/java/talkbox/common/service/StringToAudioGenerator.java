@@ -1,4 +1,4 @@
-package talkbox.configurator;
+package talkbox.common.service;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;

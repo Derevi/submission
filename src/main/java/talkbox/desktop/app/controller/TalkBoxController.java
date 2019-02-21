@@ -1,13 +1,13 @@
-package talkbox.gui;
+package talkbox.desktop.app.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import talkbox.configurator.ButtonData;
-import talkbox.configurator.ButtonSaver;
-import talkbox.configurator.SerButton;
+import talkbox.common.service.AudioPlayer;
+import talkbox.common.dataaccessobject.ButtonData;
+import talkbox.desktop.editor.SerButton;
 
 import java.net.URL;
 import java.util.ArrayList;

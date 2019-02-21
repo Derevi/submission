@@ -1,4 +1,4 @@
-package talkbox.configurator;
+package talkbox.desktop.editor;
 
 import javafx.scene.control.Button;
 

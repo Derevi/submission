@@ -1,4 +1,4 @@
-package talkbox.gui;
+package talkbox.common.service;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

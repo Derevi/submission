@@ -1,11 +1,10 @@
 package talkbox.common.service;
 
-import talkbox.common.dao.TalkButtons;
+import talkbox.common.dataobject.TalkButtons;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class TalkButtonCatalogSaver {

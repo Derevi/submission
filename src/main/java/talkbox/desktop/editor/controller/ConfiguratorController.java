@@ -1,4 +1,4 @@
-package talkbox.configurator;
+package talkbox.desktop.editor.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,8 +6,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import talkbox.gui.AudioPlayer;
-import talkbox.gui.TalkButton;
+import talkbox.common.dataaccessobject.ButtonData;
+import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.service.StringToAudioGenerator;
+import talkbox.common.service.AudioPlayer;
+import talkbox.common.dataobject.TalkButton;
+import talkbox.desktop.editor.SerButton;
+import talkbox.common.dataobject.TalkButtons;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class ConfiguratorController implements Initializable {
 //public class ConfiguratorController{
-    ButtonInventoryCatalog catalog;
+    TalkButtonCatalog catalog;
 
     @FXML
     Button button;
@@ -54,7 +59,7 @@ public class ConfiguratorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("help");
-       // catalog = new ButtonInventoryCatalog();
+       // catalog = new TalkButtonCatalog();
 
         ArrayList<SerButton> buttonsA = new ArrayList<>(); ArrayList<Button> buttonsB = new ArrayList<>();
         ArrayList<TextField> textFieldsA = new ArrayList<>(); ArrayList<TextField> textFieldsB = new ArrayList<>();

@@ -1,18 +1,13 @@
-package talkbox.configurator;
+package talkbox.common.dataobject;
 
 
-import com.sun.javafx.UnmodifiableArrayList;
 import javafx.scene.control.Button;
-import talkbox.gui.TalkButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 
-public class ButtonInventory implements Serializable {
+public class TalkButtonInventory implements Serializable {
 
 
     String name;
@@ -20,7 +15,7 @@ public class ButtonInventory implements Serializable {
     private ArrayList<TalkButton> talkButtons;
     private static final long serialVersionUID = 1L;
 
-    public ButtonInventory(String name){
+    public TalkButtonInventory(String name){
         this.name = name;
         selectButton = new Button("name");
         talkButtons = new ArrayList<>();

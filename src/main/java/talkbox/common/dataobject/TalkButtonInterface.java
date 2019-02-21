@@ -1,4 +1,4 @@
-package talkbox.gui;
+package talkbox.common.dataobject;
 
 import javafx.scene.media.AudioClip;
 

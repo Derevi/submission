@@ -1,13 +1,14 @@
-package talkbox.configurator;
+package talkbox.common.dataobject;
 
-import talkbox.gui.TalkButton;
+import talkbox.common.service.TalkBoxConfiguration;
+
 import java.nio.file.Path;
 
 public class TalkBoxDeviceConfiguration implements TalkBoxConfiguration {
 
-    ButtonInventoryCatalog catalog;
+    TalkButtonCatalog catalog;
 
-    public TalkBoxDeviceConfiguration(ButtonInventoryCatalog catalog){
+    public TalkBoxDeviceConfiguration(TalkButtonCatalog catalog){
         this.catalog = catalog;
     }
 
