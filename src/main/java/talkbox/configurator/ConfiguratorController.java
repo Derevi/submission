@@ -9,15 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import talkbox.gui.AudioPlayer;
 import talkbox.gui.TalkButton;
@@ -25,10 +24,7 @@ import talkbox.gui.TalkButton;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ConfiguratorController implements Initializable, EventHandler {
     //public class ConfiguratorController{
@@ -36,9 +32,16 @@ public class ConfiguratorController implements Initializable, EventHandler {
     ArrayList<Button> genBtns = new ArrayList<Button>();
     ArrayList<TextField> genTxts = new ArrayList<TextField>();
     ArrayList<Button> genCat = new ArrayList<Button>();
-    HashMap<Button, Button[]> categories = new HashMap<Button, Button[]>();
+    LinkedHashMap<RadioButton, Integer> categories = new LinkedHashMap<RadioButton, Integer>();
+    private ArrayList<SerButton> btns = new ArrayList<SerButton>();
+    private ArrayList<TextField> textFieldsA = new ArrayList<>();
+
+    private RadioButton selectedButton = new RadioButton();
     //ArrayList<Catalogs>
     Button cat = new Button();
+    Button compile = new Button();
+    Button save = new Button();
+    Button load = new Button();
     @FXML
     Button button;
     Button okay;
@@ -83,7 +86,7 @@ public class ConfiguratorController implements Initializable, EventHandler {
 
         ArrayList<SerButton> buttonsA = new ArrayList<>();
         ArrayList<Button> buttonsB = new ArrayList<>();
-        ArrayList<TextField> textFieldsA = new ArrayList<>();
+        //ArrayList<TextField> textFieldsA = new ArrayList<>();
         ArrayList<TextField> textFieldsB = new ArrayList<>();
         SerButton button1a = new SerButton("one");
         Button button1b = new Button("one");
@@ -160,7 +163,7 @@ public class ConfiguratorController implements Initializable, EventHandler {
         ArrayList<ButtonData> buttonData = new ArrayList<>();
 
 
-        //Opening a new window when clicked on btn
+        //Opening a new window when clicked on change catalog btn
 
         cat.setText("Change Catalog");
         gridPane.add(cat, 1, 1);
@@ -181,6 +184,8 @@ public class ConfiguratorController implements Initializable, EventHandler {
 
 
         }
+
+
 /*
          row = 4;
         for(Button b:buttonsB){
@@ -297,112 +302,244 @@ public class ConfiguratorController implements Initializable, EventHandler {
     @Override
     public void handle(Event event) {
 
-        if(event.getSource()==cat) {
-            gridPane.getChildren().clear();
-            gridPane.setHgap(5);
-            gridPane.setVgap(20);
-            secondWindow();
-        }
+
+        if (event.getSource() == cat) {
+
+                btns.clear();
+                textFieldsA.clear();
+                final Stage secondWindow = new Stage();
+                secondWindow.initModality(Modality.APPLICATION_MODAL);
+                //VBox windowVbox = new VBox(20);
+                Pane root = new Pane();
 
 
 
 
-
-        /*if (genCat.size() < 1) {
-            remove.setDisable(true);
-        } else {
-            remove.setDisable(false);
-        }
-
-
-        add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                genCat.add(new Button("Edit Name"));
-                gridPane.add(genCat.get(countAdd), 1, countAdd);
-                countAdd++;
-                remove.setDisable(false);
-
-            }
-        });
+                Text lblTitle = new Text("Configure Categories");
+               // lblTitle.resize(200,200);
+                lblTitle.setStyle("-fx-font: 24 arial;");
+                lblTitle.setX(150);
+                lblTitle.setY(50);
 
 
-        remove.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
 
-                remove.setDisable(false);
-                genCat.remove(genCat.get(genCat.size() - 1));
-                System.out.println("Size of arr: " + genCat.size());
-                gridPane.getChildren().remove(gridPane.getChildren().size() - 1);
-                countAdd--;
-                if (genCat.size() > 0) {
-                    remove.setDisable(false);
-                } else {
-                    remove.setDisable(true);
-                }
 
-            }
-        });
+                Button add = new Button("Add Category");
+                add.setLayoutX(150);
+                add.setLayoutY(400);
+                Button remove = new Button("Remove Category");
+                remove.setLayoutX(250);
+                remove.setLayoutY(400);
 
-        if (genCat.size() > 0) {
-            genCat.get(0).setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    gridPane.getChildren().clear();
 
-                    TextField field = new TextField("Enter number of buttons");
-                    okay = new Button("Okay");
-                    gridPane.add(okay, 2, 1);
-                    gridPane.add(field, 1, 1);
-                    okay.setOnAction(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent actionEvent) {
-                            gridPane.getChildren().clear();
+                Button edit = new Button("Edit");
+                edit.setLayoutX(400);
+                edit.setLayoutY(465);
 
-                            for (int i = 0; i < Integer.parseInt(field.getText()); i++) {
+                Button back = new Button("Back");
+                back.setLayoutX(450);
+                back.setLayoutY(465);
 
-                                genBtns.add(new Button("Button " + i));
-                                gridPane.add(genBtns.get(i), 0, i);
-                                genTxts.add(new TextField());
-                                gridPane.add(genTxts.get(i), 1, i);
+                ToggleGroup g = new ToggleGroup();
+                GridPane p = new GridPane();
+                ScrollPane lists = new ScrollPane();
+                lists.setLayoutX(200);
+                lists.setLayoutY(200);
+                lists.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+                lists.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+                p.setVgap(20);
 
+
+                add.setOnAction(new EventHandler<ActionEvent>() {
+                    int index = 0;
+                    int c = 0;
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+
+                        final Stage dialog = new Stage();
+                        dialog.initModality(Modality.APPLICATION_MODAL);
+                        VBox dialogVbox = new VBox(20);
+                        dialogVbox.getChildren().add(new Text("Name of this List:"));
+                        TextField txt = new TextField();
+                        dialogVbox.getChildren().add(txt);
+                        Button okay = new Button("Okay!");
+                        dialogVbox.getChildren().add(okay);
+
+                        okay.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent actionEvent) {
+                                RadioButton b = new RadioButton(txt.getText());
+                                categories.put(b,0);
+                                p.add(b,0,index);
+                                for (Map.Entry<RadioButton, Integer> entry : categories.entrySet()) {
+                                    entry.getKey().setToggleGroup(g);
+                                }
+
+                                index++;
+                                dialog.close();
+                            }
+                        });
+                        lists.setContent(p);
+
+                        Scene dialogScene = new Scene(dialogVbox, 400, 100);
+                        dialog.setScene(dialogScene);
+                        dialog.show();
+
+                    }
+                });
+
+
+               remove.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        final Stage dialog = new Stage();
+                        dialog.initModality(Modality.APPLICATION_MODAL);
+                        VBox dialogVbox = new VBox(20);
+                        dialogVbox.getChildren().add(new Text("Are you sure you want to remove this category from the list?"));
+                        Button yes = new Button("Yes");
+                        Button no = new Button("No");
+                        dialogVbox.getChildren().addAll(yes,no);
+                        for (Map.Entry<RadioButton, Integer> entry : categories.entrySet()) {
+                            if (entry.getKey().isSelected()) {
+                                yes.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent actionEvent) {
+                                        categories.remove(entry.getKey());
+                                        p.getChildren().remove(entry.getKey());
+                                        p.getChildren().clear();
+                                        int index=0;
+                                        for (Map.Entry<RadioButton, Integer> innerEntry : categories.entrySet()) {
+                                            p.add(innerEntry.getKey(),0,index);
+                                            index++;
+                                        }
+                                        dialog.close();
+                                    }
+                                });
+
+                                no.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent actionEvent) {
+                                        dialog.close();
+                                    }
+                                });
 
                             }
-
                         }
-                    });
-                }
-            });
-*/
 
-        //}
-    }
 
-    public void secondWindow() {
-        Text lblTitle = new Text("Configure Categories");
-        gridPane.add(lblTitle, 2, 0);
-        Button add = new Button("Add Category");
-        gridPane.add(add, 4, 1);
-        Button remove = new Button("Remove Category");
-        gridPane.add(remove, 6, 1);
 
-        add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                int index =0;
 
-                    categories.put(new Button("Edit name"), null);
-                    for(Map.Entry<Button,Button[]> entry : categories.entrySet()) {
-                        gridPane.addColumn(index, entry.getKey());
-                        index++;
+
+                        Scene dialogScene = new Scene(dialogVbox, 400, 100);
+                        dialog.setScene(dialogScene);
+                        dialog.show();
                     }
+                });
+
+
+                for (Map.Entry<RadioButton, Integer> entry : categories.entrySet()) {
+                    if (entry.getKey().isSelected()) {
+                        selectedButton = entry.getKey();
+                    }
+                }
+
+                edit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        for (Map.Entry<RadioButton, Integer> entry : categories.entrySet()) {
+                            if (entry.getKey().isSelected()) {
+                                final Stage dialog = new Stage();
+                                dialog.initModality(Modality.APPLICATION_MODAL);
+                                //dialog.initOwner(primaryStage);
+                                VBox dialogVbox = new VBox(20);
+                                dialogVbox.getChildren().add(new Text("Enter the amount of buttons you would like to have in this list: "));
+                                TextField txt = new TextField();
+                                dialogVbox.getChildren().add(txt);
+                                Button okay = new Button("Okay!");
+                                dialogVbox.getChildren().add(okay);
+                                okay.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent actionEvent) {
+                                        entry.setValue(Integer.parseInt(txt.getText()));
+                                        //System.out.println("Size of numButtons: " + entry.getValue().length);
+                                        dialog.close();
+                                    }
+                                });
+                                Scene dialogScene = new Scene(dialogVbox, 400, 100);
+                                dialog.setScene(dialogScene);
+                                dialog.show();
+                            }
+                        }
+                    }
+                });
+
+            root.getChildren().addAll(lblTitle,add,remove,edit,back, lists);
+            Scene windowScene = new Scene(root, 500, 500);
+            secondWindow.setTitle("Configure Categories");
+            secondWindow.setScene(windowScene);
+            secondWindow.show();
+
+                back.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        secondWindow.close();
+                        for (Map.Entry<RadioButton, Integer> entry : categories.entrySet()) {
+                            if (entry.getKey().isSelected()) {
+                                gridPane.getChildren().clear();
+
+
+                                //FOR BUTTONS
+                                for (int i=0;i<entry.getValue();i++){
+                                    btns.add(new SerButton("Edit"));
+                                }
+                                int row = 4;
+                                for (SerButton b : btns) {
+                                    gridPane.add(b, 0, row);
+                                    row++;
+                                }
+
+                                //FOR TEXTFIELDS
+                                for (int i=0;i<entry.getValue();i++){
+                                    textFieldsA.add(new TextField(""));
+                                }
+                                row = 4;
+                                for (TextField t : textFieldsA) {
+                                    gridPane.add(t, 3, row);
+                                    row++;
+                                }
+
+                                compile = new Button("compile audio");
+                                gridPane.add(compile, 1, 15);
+
+                                save = new Button("Save");
+                                gridPane.add(save, 2, 15);
+
+                                load = new Button("load");
+                                gridPane.add(load, 3, 15);
+
+                                cat.setText("Change Catalog");
+                                gridPane.add(cat, 1, 1);
+
+                            }
+                        }
+
+                    }
+                });
+
+
 
         }
 
-    });
-    }
+        }
+
 }
+
+
+
+
+
+
+
 
 
 
