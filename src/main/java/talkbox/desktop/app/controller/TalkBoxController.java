@@ -2,19 +2,31 @@ package talkbox.desktop.app.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import talkbox.common.dataobject.TalkButton;
+import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.service.AudioPlayer;
-import talkbox.common.dataaccessobject.ButtonData;
-import talkbox.desktop.editor.SerButton;
+import talkbox.desktop.app.model.PopulateTalkButtonToUI;
 
+import java.awt.*;
+import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TalkBoxController implements Initializable {
     VBox box;
+    TalkButtonCatalog talkButtonCatalog;
 
     @FXML
     GridPane gridPane;
@@ -33,31 +45,48 @@ public class TalkBoxController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ArrayList<ButtonData> buttonsData = ButtonSaver.load();
-        ArrayList<SerButton> buttons = new ArrayList<>();
-        int row = 4;
-        int i = 0;
-        for (ButtonData data : buttonsData) {
-            buttons.add(new SerButton(data.name));
-            gridPane.add(buttons.get(i), 0, row);
 
-            row++;
-            buttons.get(i).setOnAction(e -> {
-                AudioPlayer.talk(data.name);
-                System.out.println("Playing:  " + data.name);
 
-            });
-            i++;
-/*
-        /*
-        ButtonInventory buttonCollection = new ButtonInventory();
-        int i=0;
-        for(Button b: buttonCollection.getArrayList()){
-            gridPane.add(b,i,i);
-            i=i+5;
-        }
-    */
-        }
+       // PopulateTalkButtonToUI populateTalkButtonToUI = new PopulateTalkButtonToUI(talkButtonCatalog);
+        Button createNewButton = new Button("Create New");
+        Button loadButton = new Button("Load");
+
+
+
+        //populateTalkButtonToUI.printTalkButtons(gridPane,"test");
+        TalkButton talkButton = new TalkButton("text");
+        HBox hBox = new HBox(createNewButton);
+
+
+
+        HBox hBox1 = new HBox();
+        gridPane.add(hBox,0,0);
+        Text text = new Text("Enter new Name: ");
+        ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.getItems().add("first");
+        comboBox.getItems().add("second");
+        comboBox.getItems().add("third");
+        gridPane.add(comboBox,2,2);
+        TextField textField = new TextField();
+        gridPane.add(text,2,3);
+        gridPane.add(textField,3,3);
+
+        Button browseButton=new Button("Browse");
+
+        browseButton.setOnAction(e->{
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            Stage stage = (Stage) gridPane.getScene().getWindow();
+            File file = directoryChooser.showDialog(stage);
+            System.out.println(file.getAbsoluteFile());
+            for (File fileName:file.listFiles()){
+                comboBox.getItems().add(fileName.getName());
+            }
+
+
+        });
+        gridPane.add(browseButton,5,5);
 
     }
+
+
 }

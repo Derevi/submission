@@ -1,5 +1,6 @@
 package talkbox.common.dataobject;
 
+import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.common.service.TalkButtonCatalogSaver;
 
 import java.io.Serializable;
@@ -11,39 +12,40 @@ public class TalkButtonCatalog implements Serializable {
     private LinkedHashMap<String, TalkButtonInventory> catalog;
     private static final long serialVersionUID = 1L;
 
-    public TalkButtonCatalog(String name){
+    public TalkButtonCatalog(){
         catalog = new LinkedHashMap<>();
-        this.name = name;
-        TalkButtonCatalogSaver.save(catalog, name);
-
-    }
-    public TalkButtonCatalog(LinkedHashMap<String, TalkButtonInventory> catalog){
-      //  catalog = TalkButtons.load();
     }
 
-    LinkedHashMap<String, TalkButtonInventory> getButtonInventoryMap(){
+    public void TalkButtonCatalogLoad(String catalogName){
+        catalog = TalkButtonCatalogLoader.load(catalogName);
+        this.name = catalogName;
+    }
+
+    public void TalkButtonCatalogSave(String catalogName){
+        this.name = catalogName;
+        TalkButtonCatalogSaver.save(catalog, catalogName);
+    }
+
+
+    public LinkedHashMap<String, TalkButtonInventory> getTalkButtonCatalogMap(){
         LinkedHashMap<String, TalkButtonInventory> mapClone = (LinkedHashMap<String, TalkButtonInventory>) catalog.clone();
         return mapClone;
     }
 
 
-    public void addButtonInventory(TalkButtonInventory buttonInventory){
-        catalog.put(buttonInventory.getName(), buttonInventory);
+    public void addTalkButtonInventory(TalkButtonInventory talkButtonInventory){
+        catalog.put(talkButtonInventory.getName(), talkButtonInventory);
     }
 
-    public void removeButtonInventory(TalkButtonInventory buttonInventory){
-        if(!catalog.containsKey(buttonInventory.getName())){throw new IllegalArgumentException();}
-        catalog.remove(buttonInventory.getName());
+    public void removeTalkButtonInventory(String buttonInventoryName){
+        if(!catalog.containsKey(buttonInventoryName)){throw new IllegalArgumentException();}
+        catalog.remove(buttonInventoryName);
     }
 
-    //replace button inventory
-    //swap button inventory
-
-
-    public TalkButtonInventory getButtonInventory(int index){
+    public TalkButtonInventory getTalkButtonInventory(int index){
         return  catalog.get(index);
     }
-    public TalkButtonInventory getButtonInventory(String name){
+    public TalkButtonInventory getTalkButtonInventory(String name){
         return  catalog.get(name);
     }
 
@@ -60,8 +62,8 @@ public class TalkButtonCatalog implements Serializable {
         return sum;
     }
 
-    public Set<String> getKeys(){
-        return catalog.keySet();
+    public Set<String> getTalkButtonCatalogKeys(){
+       return getTalkButtonCatalogMap().keySet();
     }
 
     public int totalButtons(){

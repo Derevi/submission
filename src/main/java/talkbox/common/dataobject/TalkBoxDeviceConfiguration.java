@@ -36,11 +36,11 @@ public class TalkBoxDeviceConfiguration implements TalkBoxConfiguration {
     public String[][] getAudioFileNames() {
         int i= 0;
         String[][] allAudioFileNames = new String[getNumberOfAudioSets()][getNumberOfAudioButtons()+1];
-        for(String name: catalog.getKeys()){
+        for(String name: catalog.getTalkButtonCatalogKeys()){
             int j = 1;
             allAudioFileNames[i][j] = name;
             i++;
-            for(TalkButton talkButton: catalog.getButtonInventory(name).getTalkButtons()){
+            for(TalkButton talkButton: catalog.getTalkButtonInventory(name).getTalkButtons()){
                 allAudioFileNames[i][j] = talkButton.getName();
             }
         }

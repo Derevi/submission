@@ -33,6 +33,9 @@ public class TalkButton implements TalkButtonInterface, Serializable {
     }
 
     public Button getButton(){
+        Button button = new Button();
+        button.setText(buttonLabel);
+        button.setPrefSize(40,40);
         return button;
 
     }

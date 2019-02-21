@@ -14,7 +14,8 @@ public class TalkButtonInventory implements Serializable {
     private Button selectButton;
     private ArrayList<TalkButton> talkButtons;
     private static final long serialVersionUID = 1L;
-
+    private int numberOfColumns;
+    private int numberOfRows;
     public TalkButtonInventory(String name){
         this.name = name;
         selectButton = new Button("name");
@@ -25,6 +26,21 @@ public class TalkButtonInventory implements Serializable {
         ArrayList<TalkButton> copy = (ArrayList<TalkButton>)talkButtons.clone();
         return copy;
     }
+
+    public void setNumberOfRowsAndColumns(int numberOfRows, int numberOfColumns){
+        if(numberOfColumns*numberOfRows>getTalkButtons().size()){throw new IllegalArgumentException();}
+        this.numberOfRows =numberOfRows;
+        this.numberOfColumns = numberOfColumns;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public int getNumberOfColumns() {
+        return numberOfColumns;
+    }
+
 
 
     public String getName(){

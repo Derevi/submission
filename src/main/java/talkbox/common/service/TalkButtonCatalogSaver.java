@@ -1,5 +1,6 @@
 package talkbox.common.service;
 
+import talkbox.common.dataobject.TalkButtonInventory;
 import talkbox.common.dataobject.TalkButtons;
 
 import java.io.FileOutputStream;
@@ -9,7 +10,7 @@ import java.util.LinkedHashMap;
 
 public class TalkButtonCatalogSaver {
 
-    public static void save(LinkedHashMap<String, TalkButtons> talkButtonCatalog, String fileName) {
+    public static void save(LinkedHashMap<String, TalkButtonInventory> talkButtonCatalog, String fileName) {
         //TODO allow user to specify .ser filename
         try (
                 FileOutputStream fos = new FileOutputStream("serbutton.ser");

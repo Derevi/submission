@@ -7,7 +7,7 @@ public class TalkButtonFactory {
     TalkButtonCatalog talkButtonCatalog;
 
     public TalkButtonFactory(){
-        talkButtonCatalog = new TalkButtonCatalog();
+        //talkButtonCatalog = new TalkButtonCatalog();
     }
     public void createTalkButton(TalkButtonInventory buttonInventory, String buttonName){
         TalkButton talkButton = new TalkButton(buttonName);
@@ -17,11 +17,11 @@ public class TalkButtonFactory {
 
     public void createButtonInventory(TalkButtonInventory buttonInventory, String name){
         buttonInventory = new TalkButtonInventory(name);
-        talkButtonCatalog.addButtonInventory(buttonInventory);
+        talkButtonCatalog.addTalkButtonInventory(buttonInventory);
     }
 
     public TalkButtonInventory getButtonInventory(String name){
-        return talkButtonCatalog.getButtonInventory(name);
+        return talkButtonCatalog.getTalkButtonInventory(name);
     }
 
 
