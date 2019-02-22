@@ -4,13 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import talkbox.common.service.FileBrowser;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,13 +26,36 @@ public class LoadEditorController implements Initializable {
     ListView<String> filesInDirectory;
 
     @FXML
-    GridPane gridPane;
+    GridPane parentDirectoryGridPane;
+
+    @FXML
+    GridPane selectedFileGridPane;
 
     @FXML
     Label selectedDirectory;
 
     @FXML
-    private void Start(ActionEvent event){
+    public void loadTalkBox(ActionEvent event){
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/maineditor.fxml"));
+
+            AnchorPane anchorPane = loader.load();
+            MainEditorController controller = loader.getController();
+            root.getChildren().setAll(anchorPane);
+            controller.setName(filesInDirectory.getSelectionModel().getSelectedItem());
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        //TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(fileName));
+
 
     }
 
@@ -45,19 +71,36 @@ public class LoadEditorController implements Initializable {
 
     @FXML
     private void browse(ActionEvent event){
-        FileBrowser fileBrowser = new FileBrowser();
-        File selectedFile = fileBrowser.selectDirectory(event);
-        updateListView(selectedFile, fileBrowser);
+
+        //if file histor exist load it to the listview
+       // FileBrowser fileBrowser = new FileBrowser();
+        //selectedFileGridPane.getChildren().clear();
+        File selectedFile = FileBrowser.selectFile(event);
+        updateListView(selectedFile.getParentFile());
+        Label label = new Label("Selected File :  " +selectedFile.getName());
+        selectedFileGridPane.add(label,0,0);
     }
 
-    private void updateListView(File selectedFile, FileBrowser fileBrowser){
-        gridPane.getChildren().clear();
-        fileBrowser.generateList(selectedFile,filesInDirectory);
-        fileBrowser.generateDirectoryLabel(selectedFile,gridPane);
+    private void updateListView(File selectedFile){
+        parentDirectoryGridPane.getChildren().clear();
+        FileBrowser.generateList(selectedFile,filesInDirectory);
+        Label label = new Label("Selected Directory:  "+selectedFile.getParentFile().getAbsolutePath());
+        parentDirectoryGridPane.setAlignment(Pos.CENTER_LEFT);
+        parentDirectoryGridPane.add(label,0,0);
+
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        try (BufferedReader reader = new BufferedReader(new FileReader("directoryHistory.txt"))) {
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null) {
+                File loadPreviousDirectory = new File(currentLine);
+                updateListView(loadPreviousDirectory);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

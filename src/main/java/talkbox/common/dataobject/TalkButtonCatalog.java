@@ -16,6 +16,10 @@ public class TalkButtonCatalog implements Serializable {
         catalog = new LinkedHashMap<>();
     }
 
+    public TalkButtonCatalog(LinkedHashMap<String, TalkButtonInventory> catalog){
+        this.catalog = catalog;
+    }
+
     public void TalkButtonCatalogLoad(String catalogName){
         catalog = TalkButtonCatalogLoader.load(catalogName);
         this.name = catalogName;

@@ -4,16 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.editor.controller.CreateNewEditorController">
    <children>
-      <Button layoutX="463.0" layoutY="371.0" mnemonicParsing="false" text="Browse" />
-      <Label layoutX="536.0" layoutY="375.0" text="Selected Directory:" />
-      <Label layoutX="648.0" layoutY="376.0" prefHeight="17.0" prefWidth="315.0" text="path" />
+      <Button layoutX="463.0" layoutY="371.0" mnemonicParsing="false" onAction="#browse" text="Browse" />
       <Button layoutX="624.0" layoutY="176.0" mnemonicParsing="false" onAction="#back" text="Back To Start Menu" />
       <Button layoutX="649.0" layoutY="506.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Start Editor" />
       <TextField layoutX="580.0" layoutY="287.0" prefHeight="25.0" prefWidth="267.0" promptText="do not use spaces or symbols in name" />
       <Label layoutX="516.0" layoutY="290.0" text="Filename:" />
+      <GridPane fx:id="gridPane" layoutX="527.0" layoutY="368.0" prefHeight="30.0" prefWidth="370.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
    </children>
 </AnchorPane>

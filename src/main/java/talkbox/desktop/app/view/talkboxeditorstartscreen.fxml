@@ -6,6 +6,6 @@
             fx:controller="talkbox.desktop.app.controller.TalkBoxController"
             prefHeight="400.0" prefWidth="600.0">
    <!-- <Button text="play" fx:id="talkButton" onAction="#talk"/> -->
-    <!--<GridPane fx:id="gridPane"/>-->
+    <!--<GridPane fx:id="parentDirectoryGridPane"/>-->
     <StackPane fx:id="stackPane"/>
 </HBox>

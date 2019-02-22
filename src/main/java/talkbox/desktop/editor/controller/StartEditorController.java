@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,12 +25,15 @@ public class StartEditorController implements Initializable {
     @FXML
     private void load(ActionEvent event){
 
+
+
         try {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
     }
 
