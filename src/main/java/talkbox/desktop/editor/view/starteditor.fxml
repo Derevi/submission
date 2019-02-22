@@ -24,7 +24,7 @@
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <center>
-                  <Button minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Create New" BorderPane.alignment="CENTER" />
+                  <Button minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#createNew" text="Create New" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">

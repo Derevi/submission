@@ -31,7 +31,7 @@ public class StartEditorController implements Initializable {
     @FXML
     private void createNew(ActionEvent event){
         try {
-            BorderPane borderPane = FXMLLoader.load(getClass().getResource("view/loadeditor.fxml"));
+            BorderPane borderPane = FXMLLoader.load(getClass().getResource("../view/createneweditor.fxml"));
             root.getChildren().setAll(borderPane);
         } catch (IOException e) {
             e.printStackTrace();
