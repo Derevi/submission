@@ -19,7 +19,14 @@ public class FileBrowser {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select File");
         File file=fileChooser.showOpenDialog(new Stage());
-        createDirectoryHistory(file);
+        //createDirectoryHistory(file);
+        return file;
+    }
+
+    public static File selectDirectory(ActionEvent event){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Save Directory");
+        File file = directoryChooser.showDialog(new Stage());
         return file;
     }
 

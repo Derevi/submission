@@ -4,11 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import talkbox.common.service.FileBrowser;
 
-import java.awt.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -26,12 +29,14 @@ public class CreateNewEditorController implements Initializable {
 
     @FXML
     private void load(ActionEvent event){
+        /*
         try {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
 
     @FXML
@@ -41,19 +46,29 @@ public class CreateNewEditorController implements Initializable {
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+    }
     }
 
     @FXML
     private void browse(ActionEvent event){
-        File selectedFile = FileBrowser.selectFile(event);
-        updateListView(selectedFile);
-
+        File selectDirectory = FileBrowser.selectDirectory(event);
+        updateTextLabel(selectDirectory);
     }
 
-    private void updateListView(File selectedFile){
+    private void updateTextLabel(File selectedFile){
         gridPane.getChildren().clear();
-        FileBrowser.generateDirectoryLabel(selectedFile,gridPane);
+        Label label = new Label("Selected Save Directory:  "+selectedFile.getAbsolutePath());
+        gridPane.add(label,0,0);
+    }
+
+    @FXML
+    private void startEditor(ActionEvent  event){
+        if(!textField.getText().isBlank()){  //TODO also check if string has any symbols or white space
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Please enter a valid filename in the textfield, try again");
+            return;
+        }
     }
 
     @Override

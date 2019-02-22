@@ -46,30 +46,33 @@ public class MainEditorController implements Initializable {
 
     }
 
-    public void makeButton(){
-        Button button = new Button(name);
-        gridPane.add(button,0,0);
-    }
-
-
     public void load(){
+        //precondition talkbuttoncatalogMap must not be empty.
+        //load key set to a gridPane
+        //load all other talkbuttons to othergrid pane
+
 
     }
 
     public void saveAndCompile(){
+        //save the current progress
+        //compile all audio
 
     }
 
     public void speak(String word){
+        //play audio upon button click
         AudioPlayer.talk(word);
     }
 
     public void save(){
+        //saves catalog
        // TalkButtons.save(catalog.getButtonInventoryMap("test"));
 
     }
 
     public void compileAudio(){
+        //compiles audio
       // for(TalkButton talkButton:catalog.getButtonInventoryMap().get("animals").getTalkButtons())
      //  StringToAudioGenerator.generateAudio(talkButton.getName());
 
@@ -89,6 +92,11 @@ public class MainEditorController implements Initializable {
     private void save(ActionEvent event){
 
     }
+
+    //TODO implement all above methods
+    //TODO implement method to create new button and add to grid pane
+    //TODO remove button from grid pane
+    //TODO update and link FXML file and controller
 
 
     }

@@ -74,6 +74,8 @@ public class LoadEditorController implements Initializable {
     @FXML
     private void browse(ActionEvent event){
 
+        //TODO File reader and writer not working
+
         //if file histor exist load it to the listview
        // FileBrowser fileBrowser = new FileBrowser();
         selectedFileGridPane.getChildren().clear();

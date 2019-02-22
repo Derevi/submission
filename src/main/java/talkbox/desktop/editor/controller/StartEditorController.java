@@ -24,23 +24,21 @@ public class StartEditorController implements Initializable {
 
     @FXML
     private void load(ActionEvent event){
-
-
-
         try {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
+
 
     @FXML
     private void createNew(ActionEvent event){
 
         try {
+
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/createneweditor.fxml"));
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
