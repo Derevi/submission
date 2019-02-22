@@ -7,12 +7,12 @@ import talkbox.common.dataobject.TalkButtonInventory;
 
 import java.util.ArrayList;
 
-public class PopulateTalkButtonToUI {
+public class LoadTalkButtonToUI {
     TalkButtonCatalog talkButtonCatalog;
     int numberOfColumns;
     int numberOfRows;
 
-    public PopulateTalkButtonToUI(TalkButtonCatalog talkButtonCatalog){
+    public LoadTalkButtonToUI(TalkButtonCatalog talkButtonCatalog){
         this.talkButtonCatalog = talkButtonCatalog;
     }
 
