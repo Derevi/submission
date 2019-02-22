@@ -53,6 +53,7 @@ public class CreateNewEditorController implements Initializable {
     private void browse(ActionEvent event){
         File selectDirectory = FileBrowser.selectDirectory(event);
         updateTextLabel(selectDirectory);
+
     }
 
     private void updateTextLabel(File selectedFile){
@@ -63,12 +64,15 @@ public class CreateNewEditorController implements Initializable {
 
     @FXML
     private void startEditor(ActionEvent  event){
-        if(!textField.getText().isBlank()){  //TODO also check if string has any symbols or white space
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+       // if(textField.getText().isEmpty()){  //TODO also check if string has any symbols or white space
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ERROR");
             alert.setHeaderText("Please enter a valid filename in the textfield, try again");
+            alert.showAndWait();
+            System.out.println("empty");
             return;
-        }
+
+       // }
     }
 
     @Override
