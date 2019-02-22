@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import talkbox.common.service.FileBrowser;
@@ -21,6 +22,9 @@ import java.util.ResourceBundle;
 public class LoadEditorController implements Initializable {
     @FXML
     AnchorPane root;
+
+    @FXML
+    String selectedFileName;
 
     @FXML
     ListView<String> filesInDirectory;
@@ -43,9 +47,7 @@ public class LoadEditorController implements Initializable {
             AnchorPane anchorPane = loader.load();
             MainEditorController controller = loader.getController();
             root.getChildren().setAll(anchorPane);
-            controller.setName(filesInDirectory.getSelectionModel().getSelectedItem());
-
-
+            controller.setName(selectedDirectory.getText());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,11 +76,12 @@ public class LoadEditorController implements Initializable {
 
         //if file histor exist load it to the listview
        // FileBrowser fileBrowser = new FileBrowser();
-        //selectedFileGridPane.getChildren().clear();
+        selectedFileGridPane.getChildren().clear();
         File selectedFile = FileBrowser.selectFile(event);
-        updateListView(selectedFile.getParentFile());
+        updateListView(selectedFile.getAbsoluteFile());
         Label label = new Label("Selected File :  " +selectedFile.getName());
         selectedFileGridPane.add(label,0,0);
+
     }
 
     private void updateListView(File selectedFile){
@@ -93,6 +96,8 @@ public class LoadEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         try (BufferedReader reader = new BufferedReader(new FileReader("directoryHistory.txt"))) {
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
@@ -102,5 +107,12 @@ public class LoadEditorController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void listClick(MouseEvent event){
+       selectedFileGridPane.getChildren().clear();
+       String fileName =filesInDirectory.getSelectionModel().getSelectedItem();
+       Label label = new Label("Selected File :  " + fileName);
+       selectedFileGridPane.add(label,0,0);
     }
 }
