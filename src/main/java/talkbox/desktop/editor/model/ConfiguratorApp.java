@@ -13,7 +13,14 @@ public class ConfiguratorApp extends Application {
        Parent root = FXMLLoader.load(getClass().getResource("../view/starteditor.fxml"));
         primaryStage.setTitle("TalkBox Button Editor");
 
-        primaryStage.setScene(new Scene(root, 480, 600));
+        primaryStage.setMaxWidth(1366);
+        primaryStage.setMinWidth(1366);
+        primaryStage.setMaxHeight(768);
+        primaryStage.setMinHeight(768);
+        primaryStage.setScene(new Scene(root, 1366, 768));
+
+
+
         primaryStage.show();
     }
 

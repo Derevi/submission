@@ -57,7 +57,7 @@ public class TalkBoxController implements Initializable {
 
 
         //TODO make load screen with two buttons, load existing or create new
-        //If create New selected allows for set new name and select browse file
+        //If create New selected allows for set new name and select selectDirectory file
         //filepath is saved in txt
 
 

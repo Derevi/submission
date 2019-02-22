@@ -17,8 +17,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ConfiguratorController implements Initializable {
-//public class ConfiguratorController{
+public class MainEditorController implements Initializable {
+//public class MainEditorController{
     TalkButtonCatalog catalog;
 
     @FXML

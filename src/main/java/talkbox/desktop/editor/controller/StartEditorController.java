@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -16,26 +17,30 @@ public class StartEditorController implements Initializable {
 
 
     @FXML
-    BorderPane root;
+    AnchorPane root;
 
     @FXML
     private void load(ActionEvent event){
+
         try {
-            BorderPane borderPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
-            root.getChildren().setAll(borderPane);
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
+            root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
     private void createNew(ActionEvent event){
+
         try {
-            BorderPane borderPane = FXMLLoader.load(getClass().getResource("../view/createneweditor.fxml"));
-            root.getChildren().setAll(borderPane);
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/createneweditor.fxml"));
+            root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
