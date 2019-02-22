@@ -76,6 +76,8 @@ public class TalkBoxController implements Initializable {
         }
 
     }
+    //TODO controller for loading a different talk box, or maybe just a load button
+    //TODO set up grid pane to load all talk buttons
 
 
 }
