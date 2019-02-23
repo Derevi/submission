@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,9 +13,9 @@
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.editor.controller.CreateNewEditorController">
    <children>
       <Button layoutX="463.0" layoutY="371.0" mnemonicParsing="false" onAction="#browse" text="Browse" />
-      <Button layoutX="624.0" layoutY="176.0" mnemonicParsing="false" onAction="#back" text="Back To Start Menu" />
+      <Button layoutX="625.0" layoutY="210.0" mnemonicParsing="false" onAction="#back" text="Back To Start Menu" />
       <Button layoutX="649.0" layoutY="506.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#startEditor" text="Start Editor" />
-      <TextField fx:id="" layoutX="580.0" layoutY="287.0" prefHeight="25.0" prefWidth="267.0" promptText="do not use spaces or symbols in name" />
+      <TextField fx:id="" layoutX="580.0" layoutY="287.0" prefHeight="25.0" prefWidth="267.0" promptText="Do not use spaces or symbols in name" />
       <Label layoutX="516.0" layoutY="290.0" text="Filename:" />
       <GridPane fx:id="gridPane" layoutX="527.0" layoutY="368.0" prefHeight="30.0" prefWidth="370.0">
         <columnConstraints>
@@ -23,5 +25,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <ImageView fitHeight="143.0" fitWidth="308.0" layoutX="541.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../TalkBox%20Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
