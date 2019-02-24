@@ -20,21 +20,27 @@ public class TalkButtonCatalog implements Serializable {
         this.catalog = catalog;
     }
 
+    /*
     public void TalkButtonCatalogLoad(String catalogName){
         catalog = TalkButtonCatalogLoader.load(catalogName);
         this.name = catalogName;
     }
-
+*/
+    /*
     public void TalkButtonCatalogSave(String catalogName){
         this.name = catalogName;
         TalkButtonCatalogSaver.save(catalog, catalogName);
     }
-
+*/
 
     public LinkedHashMap<String, TalkButtonInventory> getTalkButtonCatalogMap(){
         LinkedHashMap<String, TalkButtonInventory> mapClone = (LinkedHashMap<String, TalkButtonInventory>) catalog.clone();
         return mapClone;
     }
+
+
+    //TODO get list
+    //TODO get button
 
 
     public void addTalkButtonInventory(TalkButtonInventory talkButtonInventory){
