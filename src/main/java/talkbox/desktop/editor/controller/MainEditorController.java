@@ -89,21 +89,6 @@ public class MainEditorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(selectedFile.getAbsolutePath()));
-
-        ArrayList<TalkButton> talkButtonsList = talkButtonCatalog.getTalkButtonCatalogMap().get(0).getTalkButtons();
-        int row = 0;
-        int column = 0;
-        for(TalkButton talkButton:talkButtonsList){
-            gridPane.add(talkButton.getButton(),row,column);
-            TextField textField = new TextField();
-            textField.setOnInputMethodTextChanged(inputMethodEvent -> {
-
-            });
-            talkButton.getButton().setOnAction(event -> {
-
-            });
-        }
 
 
 

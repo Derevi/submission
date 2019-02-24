@@ -8,14 +8,17 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.service.FileBrowser;
+import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.common.service.TalkButtonCatalogSaver;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CreateNewEditorController implements Initializable {
@@ -75,6 +78,10 @@ public class CreateNewEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        TalkButton talkButton = new TalkButton("test");
+        gridPane.add(talkButton.getTextFieldButton(),0,0);
+        /*
+    //TEXT FIELD IN A BUTTON
         int texFieldHeight = 30;
         int textFieldWidth = 100;
         int buttonDimension = 130;
@@ -88,6 +95,19 @@ public class CreateNewEditorController implements Initializable {
         button.setPrefSize(buttonDimension,buttonDimension);
         textField.setText("SUCESS");
 
+            ArrayList<String> testList = new ArrayList<>();
+        for(TalkButton talkButton:talkButtonsList){
+            gridPane.add(talkButton.getButton(),row,column);
+            TextField textField = new TextField();
+            textField.setOnInputMethodTextChanged(inputMethodEvent -> {
+
+            });
+            talkButton.getButton().setOnAction(event -> {
+
+            });
+        }
+
+*/
     }
 
     public void isInputEmptyAlert(){

@@ -13,10 +13,12 @@ public class TalkButtonCatalog implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public TalkButtonCatalog(){
+
         catalog = new LinkedHashMap<>();
     }
 
     public TalkButtonCatalog(LinkedHashMap<String, TalkButtonInventory> catalog){
+
         this.catalog = catalog;
     }
 
