@@ -14,8 +14,8 @@ public class TalkButtonInventory implements Serializable {
     private Button selectButton;
     private ArrayList<TalkButton> talkButtons;
     private static final long serialVersionUID = 1L;
-    private int numberOfColumns;
-    private int numberOfRows;
+    private final int numberOfColumns = 6;
+    private final int numberOfRows = 4;
     public TalkButtonInventory(String name){
         this.name = name;
         selectButton = new Button("name");
@@ -27,11 +27,7 @@ public class TalkButtonInventory implements Serializable {
         return copy;
     }
 
-    public void setNumberOfRowsAndColumns(int numberOfRows, int numberOfColumns){
-        if(numberOfColumns*numberOfRows>getTalkButtons().size()){throw new IllegalArgumentException();}
-        this.numberOfRows =numberOfRows;
-        this.numberOfColumns = numberOfColumns;
-    }
+
 
     public int getNumberOfRows() {
         return numberOfRows;
@@ -50,6 +46,10 @@ public class TalkButtonInventory implements Serializable {
     public void addTalkButton(TalkButton talkButton){
         talkButtons.add(talkButton);
     }
+    public void addTalkButton(String name){
+        TalkButton talkButton = new TalkButton(name);
+        talkButtons.add(talkButton);
+    }
 
     public void removeTalkButton(TalkButton talkButton){
         talkButtons.remove(talkButton);
@@ -59,9 +59,15 @@ public class TalkButtonInventory implements Serializable {
         talkButtons.remove(index);
     }
 
-    public void replaceTalkButton(){
+    public void replaceTalkButton(String name, TalkButton talkButton ){
+        talkButtons.set(talkButtons.indexOf(talkButton), new TalkButton(name));
+    }
+
+    public void getTalkButton(int index){
+        talkButtons.get(index);
 
     }
+
 
     public int size(){
        return talkButtons.size();
