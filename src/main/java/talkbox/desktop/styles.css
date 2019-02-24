@@ -1,4 +1,25 @@
-.button {
+.grey-button {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#5A5A64, #51525A),
+            linear-gradient(#FEFEFE 0%, #CBCBCB 10%, #C1C1C1 50%, #AAAAAB 51%, #F2F2F3 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 30;
+    -fx-padding: 5 20 5 20;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 16px;
+}
+
+.grey-button:hover {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#5A5A64, #51525A),
+            linear-gradient(#F2F3FB 0%, #CECED2 10%, #A5A5A5 50%, #88888D 51%, #D5D5D5 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-text-fill: #1B1D20;
+}
+
+.blue-button {
     -fx-background-color:
             rgba(0,0,0,0.08),
             linear-gradient(#5a61af, #51536d),
@@ -10,12 +31,33 @@
     -fx-font-size: 16px;
 }
 
-.button:hover {
+.blue-button:hover {
     -fx-background-color:
             rgba(0,0,0,0.08),
             linear-gradient(#5a61af, #51536d),
             linear-gradient(#D4E2F4 0%, #BDD2ED 10%, #6FAAF7 50%, #5296ED 51%, #C4DDFE 100%);
     -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-text-fill: #1B1D20;
+}
+
+.red-button {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#D75A5A, #CD5959),
+            linear-gradient(#E2E1E1 0%, #E2CBCB 10%, #DFA5A5 50%, #E38888 51%, #EAD5D5 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 30;
+    -fx-padding: 5 20 5 20;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 16px;
+}
+
+.red-button:hover {
+    -fx-background-color:
+            rgba(0, 0, 0, 0.08),
+            linear-gradient(#D75A5A, #CD5959),
+            linear-gradient(#DED4D4 0%, #DBBDBD 10%, #D16F6F 50%, #CD5252 51%, #D0C5C5 100%);
+    -fx-background-insets: 0 0 -1 0, 0, 1;
     -fx-text-fill: #1B1D20;
 }
 
