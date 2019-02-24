@@ -12,7 +12,11 @@ public class TalkBoxApp extends Application{
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../view/talkbox.fxml"));
         primaryStage.setTitle("Talk Box");
-        primaryStage.setScene(new Scene(root, 480, 600));
+        primaryStage.setScene(new Scene(root, 1366 , 768));
+        primaryStage.setMaxWidth(1366);
+        primaryStage.setMinWidth(1366);
+        primaryStage.setMaxHeight(768);
+        primaryStage.setMinHeight(768);
         primaryStage.show();
     }
 

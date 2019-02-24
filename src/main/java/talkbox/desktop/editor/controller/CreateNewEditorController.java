@@ -4,12 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.service.FileBrowser;
+import talkbox.common.service.TalkButtonCatalogSaver;
 
 
 import java.io.File;
@@ -26,6 +27,8 @@ public class CreateNewEditorController implements Initializable {
 
     @FXML
     TextField textField;
+
+    File selectDirectory;
 
     @FXML
     private void load(ActionEvent event){
@@ -51,7 +54,7 @@ public class CreateNewEditorController implements Initializable {
 
     @FXML
     private void browse(ActionEvent event){
-        File selectDirectory = FileBrowser.selectDirectory(event);
+        this.selectDirectory = FileBrowser.selectDirectory(event);
         updateTextLabel(selectDirectory);
 
     }
@@ -64,19 +67,36 @@ public class CreateNewEditorController implements Initializable {
 
     @FXML
     private void startEditor(ActionEvent  event){
-       // if(textField.getText().isEmpty()){  //TODO also check if string has any symbols or white space
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Please enter a valid filename in the textfield, try again");
-            alert.showAndWait();
-            System.out.println("empty");
-            return;
-
-       // }
-    }
+       // if(textField.getText().isEmpty()){  //TODO also check if string has any symbols or white space, call isInputEmptyAlert
+               // } //TODO check if name has any strings
+        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog();
+        TalkButtonCatalogSaver.save(talkButtonCatalog.getTalkButtonCatalogMap(), selectDirectory,textField.getText());
+        }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        int texFieldHeight = 30;
+        int textFieldWidth = 100;
+        int buttonDimension = 130;
+        TextField textField = new TextField();
+        textField.setMaxSize(textFieldWidth,texFieldHeight);
+        textField.setMinSize(textFieldWidth,texFieldHeight);
+        textField.setPrefSize(textFieldWidth,texFieldHeight);
+        Button button = new Button("",textField);
+        button.setMaxSize(buttonDimension,buttonDimension);
+        button.setMinSize(buttonDimension,buttonDimension);
+        button.setPrefSize(buttonDimension,buttonDimension);
+        textField.setText("SUCESS");
+
+    }
+
+    public void isInputEmptyAlert(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("ERROR");
+        alert.setHeaderText("Please enter a valid filename in the textfield, try again");
+        alert.showAndWait();
+        System.out.println("empty");
+        return;
 
     }
 }

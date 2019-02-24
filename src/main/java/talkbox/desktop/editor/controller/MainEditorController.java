@@ -5,15 +5,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputEvent;
 import javafx.scene.layout.GridPane;
 import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.dataobject.TalkButtonInventory;
 import talkbox.common.service.StringToAudioGenerator;
 import talkbox.common.service.AudioPlayer;
 import talkbox.common.dataobject.TalkButton;
+import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.desktop.editor.SerButton;
 import talkbox.common.dataobject.TalkButtons;
 
 import java.awt.*;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,6 +36,9 @@ public class MainEditorController implements Initializable {
 
     @FXML
     private String name;
+
+    @FXML
+    private File selectedFile;
 
     @FXML
     public TextField textField;
@@ -82,8 +89,30 @@ public class MainEditorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(selectedFile.getAbsolutePath()));
 
+        ArrayList<TalkButton> talkButtonsList = talkButtonCatalog.getTalkButtonCatalogMap().get(0).getTalkButtons();
+        int row = 0;
+        int column = 0;
+        for(TalkButton talkButton:talkButtonsList){
+            gridPane.add(talkButton.getButton(),row,column);
+            TextField textField = new TextField();
+            textField.setOnInputMethodTextChanged(inputMethodEvent -> {
+
+            });
+            talkButton.getButton().setOnAction(event -> {
+
+            });
         }
+
+
+
+    }
+
+    private void inputTextField(InputEvent inputEvent){
+        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(selectedFile.getAbsolutePath()));
+        ArrayList<TalkButton> talkButtonsList = talkButtonCatalog.getTalkButtonCatalogMap().get(0).getTalkButtons();
+    }
 
     private void handleButtonAction(ActionEvent event) {
         // Button was clicked, do something…
