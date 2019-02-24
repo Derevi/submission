@@ -46,6 +46,7 @@ public class TalkButtonInventory implements Serializable {
     public void addTalkButton(TalkButton talkButton){
         talkButtons.add(talkButton);
     }
+
     public void addTalkButton(String name){
         TalkButton talkButton = new TalkButton(name);
         talkButtons.add(talkButton);

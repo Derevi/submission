@@ -1,5 +1,6 @@
 package talkbox.common.dataobject;
 
+import javafx.scene.control.Button;
 import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.common.service.TalkButtonCatalogSaver;
 
@@ -11,6 +12,7 @@ public class TalkButtonCatalog implements Serializable {
     String name;
     private LinkedHashMap<String, TalkButtonInventory> catalog;
     private static final long serialVersionUID = 1L;
+    private LinkedHashSet<Button> buttonKeyset;
 
     public TalkButtonCatalog(){
 
@@ -18,7 +20,6 @@ public class TalkButtonCatalog implements Serializable {
     }
 
     public TalkButtonCatalog(LinkedHashMap<String, TalkButtonInventory> catalog){
-
         this.catalog = catalog;
     }
 
@@ -75,10 +76,20 @@ public class TalkButtonCatalog implements Serializable {
     }
 
     public Set<String> getTalkButtonCatalogKeys(){
+
        return getTalkButtonCatalogMap().keySet();
     }
 
     public int totalButtons(){
         return totalAudioButtons() + catalog.size();
+    }
+
+    public LinkedHashSet<TalkButton> getKeysAsButtons(){
+        LinkedHashSet<TalkButton> keySetButtons = new LinkedHashSet<>();
+        for(String name:catalog.keySet()){
+            keySetButtons.add(new TalkButton(name));
+
+        }
+        return keySetButtons;
     }
 }
