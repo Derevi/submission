@@ -76,7 +76,7 @@ public class LoadEditorController implements Initializable {
 
         //TODO File reader and writer not working
 
-        //if file histor exist load it to the listview
+        //if file history exist load it to the listview
        // FileBrowser fileBrowser = new FileBrowser();
         selectedFileGridPane.getChildren().clear();
         File selectedFile = FileBrowser.selectFile(event);

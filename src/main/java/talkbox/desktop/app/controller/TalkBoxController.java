@@ -21,12 +21,13 @@ public class TalkBoxController implements Initializable {
     TalkButtonCatalog talkButtonCatalog;
     private FXMLLoader fXMLLoader = new FXMLLoader();
 
+    //@FXML
+    //GridPane gridPane;
+    //@FXML
+    //BorderPane borderPane;
+    //@FXML
+    //StackPane stackPane;
     @FXML
-    GridPane gridPane;
-    @FXML
-    BorderPane borderPane;
-    @FXML
-    StackPane stackPane;
     AnchorPane root;
 
 
@@ -46,11 +47,11 @@ public class TalkBoxController implements Initializable {
        // InitialLoadSetup initialLoadSetup = new InitialLoadSetup(gridPane);
        //GridPane gpane = new GridPane();
        //gpane.add(new Button("TEST"),0,0);
-      //  initialLoadSetup.generateLoadingScreen(gridPane);
-        Button button = new Button("TEST");
+      //  initialLoadSetup.generateLoadingScreen(gridPane)
+        // Button button = new Button("TEST");
       //  borderPane.setCenter(button);
-        stackPane.getChildren().add(button);
-        stackPane.setAlignment(button, Pos.CENTER);
+        //stackPane.getChildren().add(button);
+        //stackPane.setAlignment(button, Pos.CENTER);
 
 
 

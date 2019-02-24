@@ -6,13 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class TalkBoxApp extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/talkbox.fxml"));
-        primaryStage.setTitle("Talk Box");
-        primaryStage.setScene(new Scene(root, 1366 , 768));
+
+        Parent root = FXMLLoader.load(getClass().getResource("../view/talkboxeditorstartscreen.fxml"));
+
+        Scene scene = new Scene(root, 1366, 768);
+        scene.getStylesheets().add(getClass().getResource("../../styles.css").toExternalForm());
+
+        primaryStage.setTitle("TalkBox");
+        primaryStage.setScene(scene);
         primaryStage.setMaxWidth(1366);
         primaryStage.setMinWidth(1366);
         primaryStage.setMaxHeight(768);

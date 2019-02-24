@@ -11,16 +11,15 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.app.controller.TalkBoxEditorStartScreenControllertalkbox.desktop.app.controller.TalkBoxEditorStartScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.app.controller.TalkBoxEditorStartScreenController">
    <children>
       <ImageView fitHeight="166.0" fitWidth="485.0" layoutX="105.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../TalkBox%20Logo.png" />
          </image>
       </ImageView>
-      <ListView fx:id="filesInDirectory" layoutX="754.0" layoutY="95.0" onMouseClicked="#listClick" prefHeight="633.0" prefWidth="544.0" />
-      <Button layoutX="764.0" layoutY="52.0" mnemonicParsing="false" onAction="#browse" styleClass="blue-button" text="Browse" />
+      <ListView fx:id="filesInDirectory" layoutX="754.0" layoutY="95.0" prefHeight="633.0" prefWidth="544.0" />
+      <Button layoutX="764.0" layoutY="52.0" mnemonicParsing="false" styleClass="blue-button" text="Browse" />
       <GridPane fx:id="parentDirectoryGridPane" layoutX="829.0" layoutY="49.0" prefHeight="32.0" prefWidth="470.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.33331298828125" minWidth="10.0" prefWidth="287.33331298828125" />

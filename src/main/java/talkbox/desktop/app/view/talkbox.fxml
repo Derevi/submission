@@ -11,16 +11,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.app.controller.TalkBoxControllertalkbox.desktop.app.controller.TalkBoxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.app.controller.TalkBoxController">
    <children>
-      <HBox layoutX="83.0" layoutY="45.0" prefHeight="88.0" prefWidth="1200.0" spacing="100.0">
+      <HBox layoutX="517.0" layoutY="45.0" prefHeight="88.0" prefWidth="750.0" spacing="100.0">
          <children>
             <Button mnemonicParsing="false" prefWidth="200.0" styleClass="blue-button" text="Load" />
             <Button mnemonicParsing="false" prefWidth="200.0" styleClass="red-button" text="Exit" />
          </children>
          <padding>
-            <Insets bottom="25.0" left="350.0" right="350.0" top="25.0" />
+            <Insets bottom="25.0" left="175.0" right="175.0" top="25.0" />
          </padding>
       </HBox>
       <GridPane alignment="CENTER" hgap="10.0" layoutX="98.0" layoutY="202.0" prefHeight="475.0" prefWidth="1171.0" vgap="10.0">
@@ -44,11 +43,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ImageView fitHeight="134.0" fitWidth="361.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="144.0" fitWidth="412.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../TalkBox%20Logo.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="74.0" layoutX="417.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" width="533.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="68.0" layoutX="626.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" width="533.0" />
    </children>
 </AnchorPane>
