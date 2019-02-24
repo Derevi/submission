@@ -1,27 +1,54 @@
 package talkbox.desktop.editor.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import talkbox.common.dataobject.TalkBoxCatalogString;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonInventory;
+import talkbox.common.service.FileBrowser;
 import talkbox.common.service.GenerateTalkButtonsToView;
+import talkbox.common.service.TalkButtonCatalogSaver;
+import talkbox.common.service.TalkButtonCatalogStringSaver;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 public class TestController implements Initializable {
+
+    @FXML
+    AnchorPane root;
 
     @FXML
     GridPane gridPane;
 
     @FXML
     GridPane gridPaneList;
+
+    @FXML
+    GridPane parentDirectoryGridPane;
+
+    @FXML
+    GridPane selectedFileGridPane;
+
+    @FXML
+    TextField textField;
+
+    @FXML
+    Label selectedDirectory;
+
+    File selectDirectory;
 
     TalkButtonCatalog talkButtonCatalog;
 
@@ -48,70 +75,91 @@ public class TestController implements Initializable {
 
         int row = 0;
         int column =0;
-        //TalkButton talkButton = new TalkButton("tester");
 
-      // gridPane.add(talkButtonInventory.getTalkButtons().get(0).getButton(),0,0);
+        Button browse = new Button("BROWSE");
 
         GenerateTalkButtonsToView.generateButtons(gridPane,talkButtonCatalog.getTalkButtonInventory("Animals"));
 
 
-/*
-        Button button = new Button("PRINT");
-        button.setOnAction(e->{
-            System.out.println(talkButtonInventory.getTalkButtons().get(0).getName());
-            System.out.println(talkButtonInventory.getTalkButtons().get(1).getName());
-            System.out.println(talkButtonInventory.getTalkButtons().get(2).getName());
-        });
 
-        //gridPane.add(button,4,4);
-        Button button2 = new Button("PRINT");
-        button2.setOnAction(e->{
-            for(TalkButton talkButton: talkButtonInventory.getTalkButtons()){
-                if(talkButton.getName().isEmpty()){
-                    System.out.println("this is empty");
-                    talkButtonInventory.removeTalkButton(talkButton);
-                    generateButtons(talkButtonInventory);
-                }
-            }
-        });
-
- */
         GenerateTalkButtonsToView.generateButtons(gridPane,gridPaneList,talkButtonCatalog);
 
 
 
     }
 
-    private void generateButtons(TalkButtonInventory talkButtonInventory){
-        gridPane.getChildren().clear();
-        int row = 0;
-        int column =0;
-        for(TalkButton talkButton: talkButtonInventory.getTalkButtons()){
-            if(row>6){column++; continue;}
-            //gridPane.add(talkButton.getButton(),row,column);
-            gridPane.add(talkButton.getTextFieldButton(),row,column);
-            talkButton.getTextField().textProperty().addListener((input, previousText,newText)->{
-                talkButton.setName(newText);
-            });
-            row++;
+    @FXML
+    private void save(ActionEvent event) {
+        /*
+        talkButtonCatalog = new TalkButtonCatalog();
+
+        TalkButtonInventory talkButtonInventory = new TalkButtonInventory("Animals");
+        talkButtonInventory.addTalkButton("Turkey");
+        talkButtonInventory.addTalkButton("Cat");
+        talkButtonInventory.addTalkButton("Dog");
+        talkButtonCatalog.addTalkButtonInventory(talkButtonInventory);
+
+        TalkButtonInventory talkButtonInventory2 = new TalkButtonInventory("Colours");
+        talkButtonInventory2.addTalkButton("Blue");
+        talkButtonInventory2.addTalkButton("Red");
+        talkButtonInventory2.addTalkButton("Black");
+        talkButtonInventory2.addTalkButton("Yellow");
+        talkButtonCatalog.addTalkButtonInventory(talkButtonInventory2);
+        */
+
+        LinkedHashMap<String, ArrayList<String>> catalog = new LinkedHashMap<>();
+        ArrayList<String> colors = new ArrayList<>();
+        colors.add("blue");
+        colors.add("yellow");
+        colors.add("red");
+        colors.add("black");
+        ArrayList<String> animals = new ArrayList<>();
+        animals.add("cow");
+        animals.add("turtle");
+        animals.add("dog");
+        animals.add("salmon");
+        animals.add("chicken");
+        animals.add("turkey");
+        catalog.put("colors", colors);
+        catalog.put("animals", animals);
+
+        TalkBoxCatalogString talkBoxCatalogString = new TalkBoxCatalogString(catalog);
+
+        TalkButtonCatalogStringSaver.save(talkBoxCatalogString.getCatalogLabels(), selectDirectory,"TESTer");
+    }
+        @FXML
+        private void browse(ActionEvent event){
+            this.selectDirectory = FileBrowser.selectDirectory(event);
+            updateTextLabel(selectDirectory);
+
         }
+
+    private void updateTextLabel(File selectedFile){
+        parentDirectoryGridPane.getChildren().clear();
+        Label label = new Label("Selected Save Directory:  "+selectedFile.getAbsolutePath());
+        parentDirectoryGridPane.add(label,0,0);
+      //  System.out.println(selectedFile.getAbsolutePath()+File.separator+"fileNAMe.ser");
     }
 
-    private void generateButtons(LinkedHashSet<TalkButton> list){
-        gridPaneList.getChildren().clear();
-        int row = 5;
-        int column =0;
-        for(TalkButton talkButton: list){
+    private void updateListView(File selectedFile){
+        parentDirectoryGridPane.getChildren().clear();
+        Label label = new Label("Selected Directory:  "+selectedFile.getParentFile().getAbsolutePath());
+        parentDirectoryGridPane.setAlignment(Pos.CENTER_LEFT);
+        parentDirectoryGridPane.add(label,0,0);
 
-            gridPaneList.add(talkButton.getButton(),row,column);
-            talkButton.getButton().setOnAction(e->{
-                generateButtons(talkButtonCatalog.getTalkButtonInventory(talkButton.getButton().getText()));
-                System.out.println(talkButton.getButton().getText());
-            });
 
-            column++;
-        }
     }
+
+
+
+        //TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(fileName));
+
+
+
+
+
+
+
 
     private void cleanEmpty(){
 
