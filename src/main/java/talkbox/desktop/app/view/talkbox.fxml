@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<HBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="talkbox.desktop.app.controller.TalkBoxController"
-            prefHeight="400.0" prefWidth="600.0">
-   <!-- <Button text="play" fx:id="talkButton" onAction="#talk"/> -->
-    <!--<GridPane fx:id="parentDirectoryGridPane"/>-->
-    <StackPane fx:id="stackPane"/>
-    <Button text="load other FXML" fx:id="talkButton" onAction="#loadAnother"/>
 
-</HBox>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="119.0" layoutY="48.0" prefHeight="88.0" prefWidth="1129.0" />
+   </children>
+</AnchorPane>
