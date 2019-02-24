@@ -65,17 +65,7 @@ public class TalkBoxController implements Initializable {
 
 
     }
-    public void loadAnother(ActionEvent event){
 
-        try{
-
-        GridPane gPane = fXMLLoader.load(getClass().getResource("../view/talkboxeditor.fxml"));
-        gridPane.getChildren().setAll(gPane);
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-
-    }
     //TODO controller for loading a different talk box, or maybe just a load button
     //TODO set up grid pane to load all talk buttons
 
