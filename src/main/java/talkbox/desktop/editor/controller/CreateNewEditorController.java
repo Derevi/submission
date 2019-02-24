@@ -78,36 +78,7 @@ public class CreateNewEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TalkButton talkButton = new TalkButton("test");
-        gridPane.add(talkButton.getTextFieldButton(),0,0);
-        /*
-    //TEXT FIELD IN A BUTTON
-        int texFieldHeight = 30;
-        int textFieldWidth = 100;
-        int buttonDimension = 130;
-        TextField textField = new TextField();
-        textField.setMaxSize(textFieldWidth,texFieldHeight);
-        textField.setMinSize(textFieldWidth,texFieldHeight);
-        textField.setPrefSize(textFieldWidth,texFieldHeight);
-        Button button = new Button("",textField);
-        button.setMaxSize(buttonDimension,buttonDimension);
-        button.setMinSize(buttonDimension,buttonDimension);
-        button.setPrefSize(buttonDimension,buttonDimension);
-        textField.setText("SUCESS");
-
-            ArrayList<String> testList = new ArrayList<>();
-        for(TalkButton talkButton:talkButtonsList){
-            gridPane.add(talkButton.getButton(),row,column);
-            TextField textField = new TextField();
-            textField.setOnInputMethodTextChanged(inputMethodEvent -> {
-
-            });
-            talkButton.getButton().setOnAction(event -> {
-
-            });
-        }
-
-*/
+        
     }
 
     public void isInputEmptyAlert(){
