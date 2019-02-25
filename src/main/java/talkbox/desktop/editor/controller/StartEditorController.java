@@ -13,6 +13,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,8 +27,28 @@ public class StartEditorController implements Initializable {
 
     @FXML
     private void load(ActionEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ser Object File(*.ser)","*.ser"));
+        fileChooser.setTitle("Open File");
+        File file = fileChooser.showOpenDialog(new Stage());
+
+        if (file != null) {
+            try (FileWriter fw = new FileWriter(file.getAbsolutePath())) {
+                System.out.println(file.getName());
+                fw.write("test");
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+
+        //TODO load file and set the file
         try {
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/maineditor.fxml"));
+            AnchorPane anchorPane = loader.load();
+            MainEditorController controller = loader.getController();
+            controller.initialSetup(file);
+            controller.print();
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,13 +60,37 @@ public class StartEditorController implements Initializable {
     @FXML
     private void createNew(ActionEvent event){
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ser Object File(*.ser)","*.ser"));
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showSaveDialog(new Stage());
+
+        if (file != null) {
+            try (FileWriter fw = new FileWriter(file.getAbsolutePath())) {
+                System.out.println(file.getName());
+                fw.write("test");
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+
         try {
 
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/createneweditor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/maineditor.fxml"));
+            AnchorPane anchorPane = loader.load();
+            MainEditorController controller = loader.getController();
+            controller.initialSetup(file);
+            controller.print();
             root.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @FXML
+    private void save(){
 
     }
 
