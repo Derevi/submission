@@ -1,10 +1,10 @@
 # Installation
 
-Refer to the documentation user manual in the documentation folder
+Refer to the User Manual in the folder "Documentation" for installation help.
 
 # Requirements
 
-Refer to the documentation requirements in the documentation folder
+Refer to the Requirements Document in the folder "Documentation".
 
 # Executable Jars
 
