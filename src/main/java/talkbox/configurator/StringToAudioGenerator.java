@@ -15,7 +15,7 @@ public class StringToAudioGenerator {
         Voice voice;
         voice = VoiceManager.getInstance().getVoice("kevin16");
         voice.allocate();
-        AudioPlayer audioPlayer = new SingleFileAudioPlayer("audio"+ File.separator+word, AudioFileFormat.Type.WAVE);
+        AudioPlayer audioPlayer = new SingleFileAudioPlayer(word, AudioFileFormat.Type.WAVE);
         voice.setAudioPlayer(audioPlayer);
         voice.speak(word);
         voice.deallocate();

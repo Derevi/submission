@@ -9,7 +9,7 @@ import java.io.File;
 
 
      public static final void talk(String audioFile){
-        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("audio"+File.separator+audioFile+".wav").toURI().toString()));
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(audioFile+".wav").toURI().toString()));
         mediaPlayer.setAutoPlay(true);
     }
 
