@@ -33,17 +33,6 @@ public class CreateNewEditorController implements Initializable {
 
     File selectDirectory;
 
-    @FXML
-    private void load(ActionEvent event){
-        /*
-        try {
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/loadeditor.fxml"));
-            root.getChildren().setAll(anchorPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-    }
 
     @FXML
     private void back(ActionEvent event){
@@ -70,10 +59,17 @@ public class CreateNewEditorController implements Initializable {
 
     @FXML
     private void startEditor(ActionEvent  event){
-       // if(textField.getText().isEmpty()){  //TODO also check if string has any symbols or white space, call isInputEmptyAlert
-               // } //TODO check if name has any strings
-        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog();
-        TalkButtonCatalogSaver.save(talkButtonCatalog.getTalkButtonCatalogMap(), selectDirectory,textField.getText());
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/maineditor.fxml"));
+            AnchorPane anchorPane = loader.load();
+            MainEditorController controller = loader.getController();
+            root.getChildren().setAll(anchorPane);
+            controller.initialSetup(textField.getText(),selectDirectory);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         }
 
     @Override
