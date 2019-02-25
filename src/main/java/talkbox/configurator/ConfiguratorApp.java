@@ -14,7 +14,7 @@ public class ConfiguratorApp extends Application {
         primaryStage.setTitle("TalkBox Button Editor");
 
         Scene scene = new Scene(root, 480, 600);
-        scene.getStylesheets().add(getClass().getResource("../styles.css").toExternalForm());
+      //  scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.show();

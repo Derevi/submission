@@ -15,7 +15,7 @@ public class TalkBoxApp extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("talkbox.fxml"));
 
         Scene scene = new Scene(root, 480, 600);
-        scene.getStylesheets().add(getClass().getResource("../styles.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         primaryStage.setTitle("TalkBox");
         primaryStage.setScene(scene);
