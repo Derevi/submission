@@ -7,21 +7,19 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class TalkButtonCatalogLoader {
 
-    void createLoadButton(){
 
-    }
-
-    public static LinkedHashMap<String, TalkButtonInventory> load(String fileName) {
-        LinkedHashMap<String, TalkButtonInventory>  talkButtonCatalog = new LinkedHashMap<>();
+    public static LinkedHashMap<String, ArrayList<String>> load(String fileName) {
+        LinkedHashMap<String, ArrayList<String>>  talkButtonCatalog = new LinkedHashMap<>();
         try (
                 FileInputStream fis = new FileInputStream("serbutton.ser");
                 ObjectInputStream ois = new ObjectInputStream(fis);
         ) {
-            talkButtonCatalog = (LinkedHashMap<String, TalkButtonInventory>) ois.readObject();
+            talkButtonCatalog = (LinkedHashMap<String, ArrayList<String>>) ois.readObject();
         } catch (IOException ioe) {
             System.out.println("Error reading button catalog file");
             ioe.printStackTrace();

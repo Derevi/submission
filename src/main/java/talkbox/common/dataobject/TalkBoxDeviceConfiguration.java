@@ -4,8 +4,8 @@ import talkbox.common.service.TalkBoxConfiguration;
 
 import java.nio.file.Path;
 
-public class TalkBoxDeviceConfiguration implements TalkBoxConfiguration {
-
+public class TalkBoxDeviceConfiguration {
+/*
     TalkButtonCatalog catalog;
 
     public TalkBoxDeviceConfiguration(TalkButtonCatalog catalog){
@@ -47,4 +47,5 @@ public class TalkBoxDeviceConfiguration implements TalkBoxConfiguration {
 
         return allAudioFileNames;
     }
+    */
 }

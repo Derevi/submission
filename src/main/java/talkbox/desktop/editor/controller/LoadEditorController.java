@@ -38,6 +38,8 @@ public class LoadEditorController implements Initializable {
     @FXML
     Label selectedDirectory;
 
+    private File SelectedDirectory;
+
     @FXML
     public void loadTalkBox(ActionEvent event){
 
@@ -47,7 +49,7 @@ public class LoadEditorController implements Initializable {
             AnchorPane anchorPane = loader.load();
             MainEditorController controller = loader.getController();
             root.getChildren().setAll(anchorPane);
-            controller.setName(selectedDirectory.getText());
+           // controller.initialSetup(selectedDirectory.getText(),selectedDirectory);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,8 +78,7 @@ public class LoadEditorController implements Initializable {
 
         //TODO File reader and writer not working
 
-        //if file history exist load it to the listview
-       // FileBrowser fileBrowser = new FileBrowser();
+
         selectedFileGridPane.getChildren().clear();
         File selectedFile = FileBrowser.selectFile(event);
         updateListView(selectedFile.getAbsoluteFile());

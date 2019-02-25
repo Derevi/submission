@@ -64,8 +64,10 @@ public class CreateNewEditorController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/maineditor.fxml"));
             AnchorPane anchorPane = loader.load();
             MainEditorController controller = loader.getController();
+
+            //controller.initialSetup(textField.getText(),selectDirectory);
             root.getChildren().setAll(anchorPane);
-            controller.initialSetup(textField.getText(),selectDirectory);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

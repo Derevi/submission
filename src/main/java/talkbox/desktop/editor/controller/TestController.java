@@ -2,26 +2,17 @@ package talkbox.desktop.editor.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import talkbox.common.dataobject.TalkBoxCatalogString;
-import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
-import talkbox.common.dataobject.TalkButtonInventory;
 import talkbox.common.service.FileBrowser;
-import talkbox.common.service.GenerateTalkButtonsToView;
 import talkbox.common.service.TalkButtonCatalogSaver;
-import talkbox.common.service.TalkButtonCatalogStringSaver;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -54,6 +45,8 @@ public class TestController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        /*
         talkButtonCatalog = new TalkButtonCatalog();
 
         TalkButtonInventory talkButtonInventory = new TalkButtonInventory("Animals");
@@ -84,7 +77,7 @@ public class TestController implements Initializable {
 
         GenerateTalkButtonsToView.generateButtons(gridPane,gridPaneList,talkButtonCatalog);
 
-
+*/
 
     }
 
@@ -123,9 +116,9 @@ public class TestController implements Initializable {
         catalog.put("colors", colors);
         catalog.put("animals", animals);
 
-        TalkBoxCatalogString talkBoxCatalogString = new TalkBoxCatalogString(catalog);
+        TalkButtonCatalog talkBoxCatalog = new TalkButtonCatalog(catalog);
 
-        TalkButtonCatalogStringSaver.save(talkBoxCatalogString.getCatalogLabels(), selectDirectory,"TESTer");
+        TalkButtonCatalogSaver.save(talkBoxCatalog.getCatalogLabels(), selectDirectory,textField.getText());
     }
         @FXML
         private void browse(ActionEvent event){

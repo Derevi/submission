@@ -22,6 +22,8 @@ public class TalkButtonInventory implements Serializable {
         talkButtons = new ArrayList<>();
     }
 
+
+
     public ArrayList<TalkButton> getTalkButtons() {
         ArrayList<TalkButton> copy = (ArrayList<TalkButton>)talkButtons.clone();
         return copy;

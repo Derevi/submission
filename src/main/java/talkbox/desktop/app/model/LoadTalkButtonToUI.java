@@ -19,7 +19,7 @@ public class LoadTalkButtonToUI {
 
 
     public void printTalkButtons(GridPane gridPane, String talkButtonInventoryName){
-
+/*
         ArrayList<TalkButton> talkButtons = talkButtonCatalog.getTalkButtonInventory(talkButtonInventoryName).getTalkButtons();
         numberOfRows = talkButtonCatalog.getTalkButtonInventory(talkButtonInventoryName).getNumberOfRows();
         numberOfColumns = talkButtonCatalog.getTalkButtonInventory(talkButtonInventoryName).getNumberOfColumns();
@@ -32,7 +32,7 @@ public class LoadTalkButtonToUI {
                 index++;
             }
         }
-
+*/
     }
 
 }

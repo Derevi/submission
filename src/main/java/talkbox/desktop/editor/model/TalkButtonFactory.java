@@ -17,13 +17,13 @@ public class TalkButtonFactory {
 
     public void createButtonInventory(TalkButtonInventory buttonInventory, String name){
         buttonInventory = new TalkButtonInventory(name);
-        talkButtonCatalog.addTalkButtonInventory(buttonInventory);
+       // talkButtonCatalog.addTalkButtonInventory(buttonInventory);
     }
-
+/*
     public TalkButtonInventory getButtonInventory(String name){
-        return talkButtonCatalog.getTalkButtonInventory(name);
+     //   return talkButtonCatalog.getTalkButtonInventory(name);
     }
-
+*/
 
         //add button to current inventory
 }

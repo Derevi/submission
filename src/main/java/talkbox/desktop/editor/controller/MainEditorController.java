@@ -8,15 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.InputEvent;
 import javafx.scene.layout.GridPane;
 import talkbox.common.dataobject.TalkButtonCatalog;
-import talkbox.common.dataobject.TalkButtonInventory;
-import talkbox.common.service.StringToAudioGenerator;
 import talkbox.common.service.AudioPlayer;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.service.TalkButtonCatalogLoader;
-import talkbox.desktop.editor.SerButton;
-import talkbox.common.dataobject.TalkButtons;
-
-import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,28 +29,37 @@ public class MainEditorController implements Initializable {
     Button SaveAndCompile;
 
     @FXML
-    private String name;
+    private String fileName;
 
     @FXML
-    private File selectedFile;
+    private File selectedDirectory;
 
     @FXML
     public TextField textField;
 
-    public void setName(String name){
-        if(!name.matches("(.*)ser$")){throw new IllegalArgumentException();
-        }
-        this.name = name;
+    public void initialSetup(String name, File selectedDirectory){
+        this.fileName = name;
+        this.selectedDirectory = selectedDirectory;
 
         //use name to generate the TalkButonCatalog
-        System.out.println(name);
+      // System.out.println(name);
+
+    }
+
+    public void initialSetup(File selectedFile){
+        this.fileName = selectedFile.getName();
+        this.selectedDirectory = selectedFile.getParentFile();
+
+        //use name to generate the TalkButonCatalog
+       // System.out.println(name);
 
     }
 
     public void load(){
-        //precondition talkbuttoncatalogMap must not be empty.
-        //load key set to a gridPane
-        //load all other talkbuttons to othergrid pane
+
+            //precondition talkbuttoncatalogMap must not be empty.
+            //load key set to a gridPane
+            //load all other talkbuttons to othergrid pane
 
 
     }
@@ -96,8 +99,10 @@ public class MainEditorController implements Initializable {
     }
 
     private void inputTextField(InputEvent inputEvent){
+      /*
         TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(selectedFile.getAbsolutePath()));
         ArrayList<TalkButton> talkButtonsList = talkButtonCatalog.getTalkButtonCatalogMap().get(0).getTalkButtons();
+    */
     }
 
     private void handleButtonAction(ActionEvent event) {
