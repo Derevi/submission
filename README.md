@@ -4,7 +4,7 @@ Refer to the documentation user manual in the documentation folder
 
 # requirements
 
-Refer to the documentation user manual in the documentation folder
+Refer to the documentation requirements in the documentation folder
 
 # Executable Jars
 
