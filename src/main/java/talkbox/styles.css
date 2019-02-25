@@ -7,7 +7,7 @@
     -fx-background-radius: 30;
     -fx-padding: 5 20 5 20;
     -fx-text-fill: #242d35;
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
 }
 
 .button:hover {
@@ -28,7 +28,7 @@
     -fx-background-radius: 30;
     -fx-padding: 5 20 5 20;
     -fx-text-fill: #242d35;
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
 }
 
 .blue-button:hover {
@@ -49,7 +49,7 @@
     -fx-background-radius: 30;
     -fx-padding: 5 20 5 20;
     -fx-text-fill: #242d35;
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
 }
 
 .red-button:hover {
@@ -62,5 +62,5 @@
 }
 
 .label {
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
 }
