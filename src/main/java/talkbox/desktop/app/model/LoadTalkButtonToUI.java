@@ -1,11 +1,7 @@
 package talkbox.desktop.app.model;
 
 import javafx.scene.layout.GridPane;
-import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
-import talkbox.common.dataobject.TalkButtonInventory;
-
-import java.util.ArrayList;
 
 public class LoadTalkButtonToUI {
     TalkButtonCatalog talkButtonCatalog;

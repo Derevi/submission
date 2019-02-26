@@ -1,7 +1,6 @@
 package talkbox.common.service;
 
-import talkbox.common.dataobject.TalkButtonInventory;
-import talkbox.common.dataobject.TalkButtons;
+import talkbox.common.dataobject.TalkButton;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,6 +15,20 @@ public class TalkButtonCatalogSaver {
         //TODO allow user to specify .ser filename
         try (
                 FileOutputStream fos = new FileOutputStream(selectedDirectory.getAbsolutePath()+fileName+".ser");
+                ObjectOutputStream oos = new ObjectOutputStream(fos)
+        ) {
+            oos.writeObject(talkButtonCatalog);
+        } catch (IOException ioe) {
+            System.out.println("Error saving TalkButtons");
+            ioe.printStackTrace();
+        }
+
+    }
+
+    public static void save(LinkedHashMap<TalkButton, ArrayList<TalkButton>> talkButtonCatalog, String fileName) {
+        //TODO allow user to specify .ser filename
+        try (
+                FileOutputStream fos = new FileOutputStream(fileName+".ser");
                 ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
             oos.writeObject(talkButtonCatalog);

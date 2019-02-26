@@ -2,31 +2,35 @@ package talkbox.desktop.editor.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import talkbox.common.dataobject.TalkButtonCatalog;
+import javafx.stage.Stage;
 import talkbox.common.service.AudioPlayer;
-import talkbox.common.dataobject.TalkButton;
-import talkbox.common.service.TalkButtonCatalogLoader;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainEditorController implements Initializable {
 
 
-    @FXML
-    Button button;
 
     @FXML
-    GridPane gridPane;
+    private GridPane gridPane;
 
     @FXML
-    Button SaveAndCompile;
+    private AnchorPane root;
+
+    @FXML
+    private Button SaveAndCompile;
 
     @FXML
     private String fileName;
@@ -35,11 +39,41 @@ public class MainEditorController implements Initializable {
     private File selectedDirectory;
 
     @FXML
-    public TextField textField;
+    private File selectedFile;
+
+    @FXML
+    private TextField textField;
+
+    @FXML
+    private void back(ActionEvent event){
+        try {
+            //AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/starteditor.fxml"));
+           // root.getChildren().setAll(anchorPane);
+
+
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/starteditor.fxml"));
+            anchorPane.getStylesheets().add(getClass().getResource("../../styles.css").toExternalForm());
+            root.getScene();
+
+           // primaryStage.setScene(anchorPane);
+
+          //  primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void print(){
+       // System.out.println(fileName);
+       // System.out.println(selectedFile.getName());
+    }
+
 
     public void initialSetup(String name, File selectedDirectory){
-        this.fileName = name;
-        this.selectedDirectory = selectedDirectory;
+        //this.fileName = name;
+        //this.selectedDirectory = selectedDirectory;
 
         //use name to generate the TalkButonCatalog
       // System.out.println(name);
@@ -47,11 +81,11 @@ public class MainEditorController implements Initializable {
     }
 
     public void initialSetup(File selectedFile){
-        this.fileName = selectedFile.getName();
-        this.selectedDirectory = selectedFile.getParentFile();
+      //  this.fileName = selectedFile.getName();
+        //this.selectedFile = selectedFile;
 
         //use name to generate the TalkButonCatalog
-       // System.out.println(name);
+       // System.out.println(fileName);
 
     }
 
@@ -97,6 +131,8 @@ public class MainEditorController implements Initializable {
 
 
     }
+
+
 
     private void inputTextField(InputEvent inputEvent){
       /*

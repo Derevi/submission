@@ -1,5 +1,7 @@
 package talkbox.common.dataobject;
 
+import talkbox.toberemoved.TalkButtonInventory;
+
 import java.io.*;
 import java.util.LinkedHashMap;
 

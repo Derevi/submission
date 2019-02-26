@@ -1,4 +1,4 @@
-package talkbox.desktop.editor.controller;
+package talkbox.desktop.app.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StartEditorController implements Initializable {
+public class StartTalkBoxController implements Initializable {
 
 
 
