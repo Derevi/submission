@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.app.controller.TalkBoxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/talkbox/desktop/styles.css" fx:controller="talkbox.desktop.app.controller.TalkBoxController">
    <children>
       <HBox layoutX="517.0" layoutY="45.0" prefHeight="88.0" prefWidth="750.0" spacing="100.0">
          <children>

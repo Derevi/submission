@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.toberemoved.CreateNewEditorController">
+   <children>
+      <Button layoutX="401.0" layoutY="371.0" mnemonicParsing="false" onAction="#browse" styleClass="blue-button" text="Browse" />
+      <Button layoutX="612.0" layoutY="238.0" mnemonicParsing="false" onAction="#back" prefWidth="200.0" styleClass="red-button" text="Back To Start Menu">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding></Button>
+      <Button layoutX="613.0" layoutY="435.0" mnemonicParsing="false" onAction="#startEditor" prefWidth="200.0" styleClass="blue-button" text="Start Editor" />
+      <GridPane fx:id="gridPane" layoutX="470.0" layoutY="370.0" prefHeight="30.0" prefWidth="484.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <ImageView fitHeight="166.0" fitWidth="388.0" layoutX="520.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../TalkBox%20Config%20Logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="504.0" layoutY="309.0" prefWidth="75.0" text="Filename:" textAlignment="RIGHT" />
+      <TextField fx:id="textField" layoutX="579.0" layoutY="304.0" prefHeight="25.0" prefWidth="267.0" promptText="Do not use spaces or symbols in name" />
+   </children>
+</AnchorPane>

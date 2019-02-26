@@ -1,4 +1,4 @@
-package talkbox.desktop.editor.model;
+package talkbox.toberemoved;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +10,13 @@ public class TestApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../../toberemoved/newlayoutsimple.fxml"));
         primaryStage.setTitle("TalkBox Button Editor");
         primaryStage.setScene(new Scene(root,  1366, 768));
-        primaryStage.setMaxWidth(1366);
-        primaryStage.setMinWidth(1366);
-        primaryStage.setMaxHeight(768);
-        primaryStage.setMinHeight(768);
+        //primaryStage.setMaxWidth(1366);
+        //primaryStage.setMinWidth(1366);
+        //primaryStage.setMaxHeight(768);
+        //primaryStage.setMinHeight(768);
 
         primaryStage.show();
     }

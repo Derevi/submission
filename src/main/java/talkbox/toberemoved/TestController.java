@@ -1,4 +1,4 @@
-package talkbox.desktop.editor.controller;
+package talkbox.toberemoved;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

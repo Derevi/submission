@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.app.controller.TalkBoxEditorStartScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/talkbox/desktop/styles.css" fx:controller="talkbox.desktop.app.controller.TalkBoxEditorStartScreenController">
    <children>
       <ImageView fitHeight="166.0" fitWidth="485.0" layoutX="105.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>

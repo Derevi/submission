@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="768.0" maxWidth="1366.0" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.editor.controller.TestController">
+<AnchorPane maxHeight="768.0" maxWidth="1366.0" minHeight="768.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.toberemoved.TestController">
    <children>
       <GridPane fx:id="gridPaneList" layoutX="245.0" layoutY="140.0">
 
