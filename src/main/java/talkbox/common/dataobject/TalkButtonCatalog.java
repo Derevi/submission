@@ -9,6 +9,8 @@ import java.util.Set;
 
 public class TalkButtonCatalog implements Serializable {
 
+    //TODO fix catalog serialized file it should serialize and deserialize LinkedHashMap<TalkButton, ArrayList<TalkButton>> catalogLabels;
+
     LinkedHashMap<String, ArrayList<String>> catalogLabels;
     LinkedHashMap<String, ArrayList<TalkButton>> catalog;
     private Button button;
