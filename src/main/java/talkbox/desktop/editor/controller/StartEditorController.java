@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StartEditorController implements Initializable {
@@ -26,7 +27,6 @@ public class StartEditorController implements Initializable {
 
     @FXML
     private void load(ActionEvent event){
-
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ser Object File(*.ser)","*.ser"));
@@ -46,9 +46,9 @@ public class StartEditorController implements Initializable {
 
         try {
             Parent parent = FXMLLoader.load(getClass().getResource("../view/maineditor.fxml"));
-            Scene dashboard=new Scene(parent);
+           // Scene dashboard=new Scene(parent);
             Stage newWindow=(Stage)((Node)event.getSource()).getScene().getWindow();
-            newWindow.setScene(dashboard);
+            newWindow.setScene(new Scene(parent));
             newWindow.show();
 
         } catch (IOException e) {
@@ -80,9 +80,9 @@ public class StartEditorController implements Initializable {
         try {
 
             Parent parent = FXMLLoader.load(getClass().getResource("../view/maineditor.fxml"));
-            Scene dashboard=new Scene(parent);
+            //Scene dashboard=new Scene(parent);
             Stage newWindow=(Stage)((Node)event.getSource()).getScene().getWindow();
-            newWindow.setScene(dashboard);
+            newWindow.setScene(new Scene(parent));
             newWindow.show();
 
         } catch (IOException e) {
