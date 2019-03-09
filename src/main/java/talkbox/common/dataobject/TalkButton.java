@@ -6,14 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import talkbox.common.service.AudioPlayer;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class TalkButton implements TalkButtonInterface, Serializable {
+public class TalkButton implements Serializable {
 
     String name;
     AudioClip audioClip; //connect audio clip here, Iam not sure if the is the right object type
@@ -25,6 +27,9 @@ public class TalkButton implements TalkButtonInterface, Serializable {
     private Image buttonImage;
     private VBox internalButtonVBox;
     private Label buttonLabel;
+    private int row; //start at 1
+    private int column;
+    private boolean initialized;
 
 
     private static final long serialVersionUID = 1L;
@@ -32,11 +37,22 @@ public class TalkButton implements TalkButtonInterface, Serializable {
     public TalkButton(){
         this.name = " ";
         this.buttonSize = 150;
-
+        initialized = false;
     }
 
     public TalkButton(String name, int buttonSize){
         this.name = name;
+        this.buttonSize = buttonSize;
+
+    }
+
+    public void initializeFxButton(){
+        if(!isInitialized(initialized)){ this.initialized = true;}
+        else{
+            //TODO THROW ERROR
+            System.out.println("WAS ALREADY INITIALIZEd");
+        }
+
         buttonLabel = new Label(name);
         internalButtonVBox = new VBox();
         internalButtonVBox.getChildren().clear();
@@ -48,56 +64,18 @@ public class TalkButton implements TalkButtonInterface, Serializable {
         button.setMaxSize(buttonSize,buttonSize);
         button.setMinSize(buttonSize,buttonSize);
         button.setPrefSize(buttonSize,buttonSize);
-
+        HBox hBox = new HBox();
     }
 
-    public TalkButton(String name, int buttonSize, ImageView image){
-        this(name, buttonSize);
-        internalButtonVBox.getChildren().add(0, image);
-    }
-
-    //TODO set up with image view in order to load image on to button
-    //TODO set pre condition such that image is smaller than button
-    public void setButtonImage(Image image){
-        this.buttonImage = image;
-
-    }
-
-    //TODO make return deep copy of image
-    public Image getButtonImage(){
-        return this.buttonImage;
-    }
-
-    @Override
-    public AudioClip talk() {
-        AudioPlayer.talk(name);
-        return null;
-    }
-
-    public Button getButton(){
-        this.button = new Button("",textField);
-        button.setMaxSize(buttonSize,buttonSize);
-        button.setMinSize(buttonSize,buttonSize);
-        button.setPrefSize(buttonSize,buttonSize);
+    public Button getFxButton(){
+        if(!isInitialized(initialized)){
+            System.out.println("please initialize with initialize FxButton first");
+            //TODO throw error
+        }
         return button;
+
     }
-    //TODO implement private method to clone button.
-
-    public int getButtonSize(){
-        return buttonSize;
-    }
-
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getName(){
-        return new String(name);
-    }
-
-    private void handleButtonAction(ActionEvent event) {
-        // Button was clicked, do something…
-        System.out.println("test");
+    private boolean isInitialized(boolean initialized){
+        return initialized;
     }
 }

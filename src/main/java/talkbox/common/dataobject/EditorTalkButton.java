@@ -11,7 +11,7 @@ import javafx.scene.media.AudioClip;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
-public class EditorTalkButton extends TalkButton implements TalkButtonInterface, Serializable {
+public class EditorTalkButton extends TalkButton implements Serializable {
 
     String name;
     AudioClip audioClip; //connect audio clip here, Iam not sure if the is the right object type
@@ -41,11 +41,6 @@ public class EditorTalkButton extends TalkButton implements TalkButtonInterface,
         internalButtonVBox.getChildren().add(0, image);
     }
 
-
-    @Override
-    public Button getButton(){
-        return this.button;
-    }
 
 
 

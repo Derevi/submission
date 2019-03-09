@@ -9,8 +9,36 @@ import java.util.Set;
 
 public class TalkButtonCatalog implements Serializable {
 
-    //TODO fix catalog serialized file it should serialize and deserialize LinkedHashMap<TalkButton, ArrayList<TalkButton>> catalogLabels;
+    LinkedHashMap<String, ArrayList<String>> catalogLabels;
+    LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog;
+    private Button button;
+    private TextField textField;
+    private final int texFieldHeight = 30;
+    private final int textFieldWidth = 130;
+    private final int buttonSize = 150;
+    private static final long serialVersionUID = 1L;
 
+    public TalkButtonCatalog() {
+        this.catalog = new LinkedHashMap<>();
+
+    }
+
+    public TalkButtonCatalog(LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog) {
+        this.catalog = catalog;
+    }
+
+    public void put(String key, ArrayList<ArrayList<TalkButton>> value){
+        catalog.put(key,value);
+    }
+
+    public LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> getCatalog(){
+        return this.catalog;
+    }
+
+
+}
+
+/*
     LinkedHashMap<String, ArrayList<String>> catalogLabels;
     LinkedHashMap<String, ArrayList<TalkButton>> catalog;
     private Button button;
@@ -19,6 +47,7 @@ public class TalkButtonCatalog implements Serializable {
     private final int textFieldWidth = 130;
     private final int buttonSize = 150;
     private static final long serialVersionUID = 1L;
+    String name;
 
     public TalkButtonCatalog() {
         this.catalogLabels = new LinkedHashMap<>();
@@ -66,6 +95,4 @@ public class TalkButtonCatalog implements Serializable {
         return talkButtons;
     }
 
-
-
-}
+*/
