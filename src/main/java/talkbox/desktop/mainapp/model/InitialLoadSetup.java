@@ -1,16 +1,11 @@
-package talkbox.desktop.app.model;
+package talkbox.desktop.mainapp.model;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import talkbox.common.dataobject.TalkButton;
 
 import java.io.File;
 

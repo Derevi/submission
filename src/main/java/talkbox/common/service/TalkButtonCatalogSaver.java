@@ -1,6 +1,7 @@
 package talkbox.common.service;
 
 import talkbox.common.dataobject.TalkButton;
+import talkbox.common.dataobject.TalkButtonCatalog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,7 +12,7 @@ import java.util.LinkedHashMap;
 
 public class TalkButtonCatalogSaver {
 
-    public static void save( LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog) {
+    public static void save( TalkButtonCatalog catalog) {
         try (
                 FileOutputStream fos = new FileOutputStream("test.ser");
                 ObjectOutputStream oos = new ObjectOutputStream(fos)

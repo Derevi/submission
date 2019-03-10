@@ -22,6 +22,14 @@ public class TalkButtonPage {
         this.pageName = pageName;
     }
 
+    public String getPageName(){
+        if(pageName.isEmpty()){
+            //TODO throw error for null
+        }
+        String clone = new String(this.pageName);
+        return clone;
+    }
+
     public void setPageName(String pageName){
         if(pageName.isEmpty()){
             //TODO throw error for null

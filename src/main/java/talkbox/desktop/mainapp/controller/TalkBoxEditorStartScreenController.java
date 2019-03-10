@@ -1,4 +1,4 @@
-package talkbox.desktop.app.controller;
+package talkbox.desktop.mainapp.controller;
 
 import javafx.fxml.Initializable;
 

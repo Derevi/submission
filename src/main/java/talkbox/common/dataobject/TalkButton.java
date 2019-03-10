@@ -51,17 +51,18 @@ public class TalkButton implements Serializable {
         this.imageFilePath = imageFilePath.getPath();
     }
 
-    protected void setButtonSize(int buttonSize){
-        this.buttonSize = buttonSize;
-    }
-
-    protected int getButtonSize(){
+    public int getButtonSize(){
         return this.buttonSize;
     }
 
 
-    protected String getName(){
-        return this.name;
+    public String getName(){
+        String clone = new String(this.name);
+        return clone;
+    }
+
+    protected void setButtonSize(int buttonSize){
+        this.buttonSize = buttonSize;
     }
 
     protected void setImage(File file){
@@ -75,9 +76,4 @@ public class TalkButton implements Serializable {
     protected void speak(){
         AudioPlayer.talk(name);
     }
-
-
-
-
-
 }

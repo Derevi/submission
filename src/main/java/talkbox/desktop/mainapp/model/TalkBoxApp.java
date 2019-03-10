@@ -1,4 +1,4 @@
-package talkbox.desktop.app.model;
+package talkbox.desktop.mainapp.model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

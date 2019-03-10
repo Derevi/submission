@@ -111,56 +111,62 @@ public class StartEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //TODO use this initialization for testing
         TalkButtonPage talkButtonPage = new TalkButtonPage("animal",150);
         Button button = new Button("test");
 
         ArrayList<TalkButton> rowOne = new ArrayList<>();
-        rowOne.add(new TalkButton("cat",130));
-        rowOne.add(new TalkButton("dog",130));
-        rowOne.add(new TalkButton("bird",130));
-
         ArrayList<TalkButton> rowTwo = new ArrayList<>();
-        rowTwo.add(new TalkButton("Fish",130));
-        rowTwo.add(new TalkButton("Whale",130));
-        rowTwo.add(new TalkButton("Dolphin",130));
-        rowTwo.add(new TalkButton("Crab",130));
-
-
         ArrayList<TalkButton> rowThree = new ArrayList<>();
-        rowThree.add(new TalkButton("Monkey",130));
-        rowThree.add(new TalkButton("Ape",130));
-        rowThree.add(new TalkButton("gorilla",130));
+        talkButtonPage.addRow(rowOne);
+        talkButtonPage.addRow(rowTwo);
+        talkButtonPage.addRow(rowThree);
 
-        talkButtonPage.add(rowOne);
-        talkButtonPage.add(rowTwo);
-        talkButtonPage.add(rowThree);
+        talkButtonPage.addButtonToRow(0,"cat");
+        talkButtonPage.addButtonToRow(0,"dog");
+        talkButtonPage.addButtonToRow(0,"bird");
+        talkButtonPage.addButtonToRow(0,"cat");
+
+        talkButtonPage.addButtonToRow(1,"Fish");
+        talkButtonPage.addButtonToRow(1,"Whale");
+        talkButtonPage.addButtonToRow(1,"Dolphin");
+        talkButtonPage.addButtonToRow(1,"Crab");
+
+        talkButtonPage.addButtonToRow(2,"Monkey");
+        talkButtonPage.addButtonToRow(2,"Ape");
+        talkButtonPage.addButtonToRow(2,"gorilla");
+
 
         TalkButtonCatalog catalog = new TalkButtonCatalog();
-        catalog.put("animals",talkButtonPage.getPage());
+        catalog.addPage(talkButtonPage.getPageName(), talkButtonPage.getPage());
 
         System.out.println("Printing all Keys original:");
         for(String s : catalog.getCatalog().keySet()){
             System.out.println(s);
-            for(TalkButton talkButton: catalog.getCatalog().get(s).get(0)){
-                System.out.println(talkButton.getName());
+            for(ArrayList<TalkButton> row: catalog.getCatalog().get(s)){
+                for(TalkButton talkButton: row){
+                    System.out.println(talkButton.getName());
+                }
+
             }
         }
       //  root.getChildren().add(new Button("TESTETSTSETSETSEt"));
-        root.getChildren().add(TalkButtonInterpretor.mainAppButton(catalog.getCatalog().get("animals").get(1).get(1)));
+        Button converted = TalkButtonInterpretor.mainAppButton(catalog.getCatalog().get("animal").get(1).get(2));
+        root.getChildren().add(converted);
 
         System.out.println();
         System.out.println();
 
-        LinkedHashMap<String, ArrayList<ArrayList<Button>>> fxCat = TalkButtonInterpretor.getFxButtonCatalog(catalog);
+        TalkButtonCatalogSaver.save(catalog);
 
-        root.getChildren().add(fxCat.get("animals").get(1).get(1));
-        System.out.println("TEST FROM CONVERTED TABLE");
-        for(String s : fxCat.keySet()){
+        TalkButtonCatalog loaded = TalkButtonCatalogLoader.load("test.ser");
+
+        System.out.println("Printing all Keys from loaded:");
+        for(String s : loaded.getCatalog().keySet()){
             System.out.println(s);
-            for(ArrayList<Button> row: fxCat.get(s)){
-                for(Button button1: row){
-                    System.out.println(button1.getText());
+            for(ArrayList<TalkButton> row: loaded.getCatalog().get(s)){
+                for(TalkButton talkButton: row){
+                    System.out.println(talkButton.getName());
                 }
 
             }
@@ -168,7 +174,6 @@ public class StartEditorController implements Initializable {
 
 
 
-      //  TalkButtonCatalogSaver.save(catalog.getCatalog());
 
 
 

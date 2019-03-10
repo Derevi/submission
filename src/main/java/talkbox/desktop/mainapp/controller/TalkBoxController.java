@@ -1,18 +1,13 @@
-package talkbox.desktop.app.controller;
+package talkbox.desktop.mainapp.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.service.AudioPlayer;
-import talkbox.desktop.app.model.InitialLoadSetup;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
