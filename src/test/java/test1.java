@@ -64,7 +64,7 @@ public class test1 {
             System.out.println(s);
             for(ArrayList<TalkButton> row: loaded.getCatalog().get(s)){
                 for(TalkButton talkButton: row){
-                    System.out.println(talkButton.getName());
+                    System.out.println(talkButton.getName() + talkButton.getButtonSize());
                 }
 
             }

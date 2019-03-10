@@ -15,15 +15,25 @@ import java.io.*;
 public class FileBrowser {
 
 
-    public static File selectFile(ActionEvent e){
+    public static File loadFile(){
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select File");
-        File file=fileChooser.showOpenDialog(new Stage());
-        //createDirectoryHistory(file);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ser Object File(*.ser)","*.ser"));
+        fileChooser.setTitle("Open File");
+        File file = fileChooser.showOpenDialog(new Stage());
         return file;
     }
 
-    public static File selectDirectory(ActionEvent event){
+    public static File saveFile(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TalkBox Object File(*.ser)","*.ser"));
+        fileChooser.setTitle("Save File");
+        File file = fileChooser.showSaveDialog(new Stage());
+        return file;
+    }
+
+
+
+    public static File setDirectory(ActionEvent event){
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select Save Directory");
         File file = directoryChooser.showDialog(new Stage());

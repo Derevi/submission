@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import talkbox.common.service.FileBrowser;
+import talkbox.common.service.SceneViewLoader;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,81 +28,21 @@ public class StartTalkBoxController implements Initializable {
 
     @FXML
     private void load(ActionEvent event){
-
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ser Object File(*.ser)","*.ser"));
-        fileChooser.setTitle("Open File");
-        File file = fileChooser.showOpenDialog(new Stage());
-
-        if (file != null) {
-            try (FileWriter fw = new FileWriter(file.getAbsolutePath())) {
-                System.out.println(file.getName());
-                fw.write("test");
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-        }
-
-
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource("../view/maineditor.fxml"));
-            Scene dashboard=new Scene(parent);
-            Stage newWindow=(Stage)((Node)event.getSource()).getScene().getWindow();
-            newWindow.setScene(dashboard);
-            newWindow.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        File loadFile = FileBrowser.loadFile();
+        setNewScene("/talkbox/desktop/mainapp/view/talkbox.fxml", event);
     }
 
 
 
-    @FXML
-    private void createNew(ActionEvent event){
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TalkBox Object File(*.ser)","*.ser"));
-        fileChooser.setTitle("Save File");
-        File file = fileChooser.showSaveDialog(new Stage());
-
-        if (file != null) {
-            try (FileWriter fw = new FileWriter(file.getAbsolutePath())) {
-                System.out.println(file.getName());
-                fw.write("test");
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-        }
-
-        try {
-
-            Parent parent = FXMLLoader.load(getClass().getResource("../view/maineditor.fxml"));
-            Scene dashboard=new Scene(parent);
-            Stage newWindow=(Stage)((Node)event.getSource()).getScene().getWindow();
-            newWindow.setScene(dashboard);
-            newWindow.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    private void save(){
-
+    private void setNewScene(String pathToFXML, ActionEvent event){
+        SceneViewLoader sceneViewLoader = new SceneViewLoader(pathToFXML);
+        sceneViewLoader.setNewScene(event);
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
 
     }

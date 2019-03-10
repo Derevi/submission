@@ -1,5 +1,4 @@
 package talkbox.desktop.editor.model;
-import talkbox.toberemoved.TalkButtonInventory;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButton;
 
