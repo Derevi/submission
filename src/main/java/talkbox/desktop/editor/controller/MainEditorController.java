@@ -47,25 +47,6 @@ public class MainEditorController implements Initializable {
     @FXML
     public String line;
 
-    @FXML
-    private void back(ActionEvent event){
-        try {
-            //AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/starteditor.fxml"));
-           // root.getChildren().setAll(anchorPane);
-
-
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/starteditor.fxml"));
-            anchorPane.getStylesheets().add(getClass().getResource("../../styles.css").toExternalForm());
-            root.getScene();
-
-           // primaryStage.setScene(anchorPane);
-
-          //  primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     public void setprint(String line){
@@ -74,6 +55,74 @@ public class MainEditorController implements Initializable {
        //System.out.println(fileName.getPath());
        //System.out.println(selectedFile.getName());
     }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO load fxButtonCatalog in to View, keyset, pages and all buttons
+
+
+    }
+
+
+    @FXML
+    public void addTalkButton(int row){
+        //TODO get row and add button to end of row first on talkbutton
+        //TODO update FxButton catalog and refresh view
+    }
+
+    @FXML
+    public void removeTalkButton(int row){
+        //TODO get row and col to delected specified talkbutton
+        //TODO update FxButton catalog and refresh view
+    }
+
+    @FXML
+    public void addRow(int row){
+        //TODO insert new row with an empty button
+    }
+
+    private void refreshView(){
+        //TODO to be done anytime there is an update to the catalog
+    }
+
+    @FXML
+    public void addNewPage(){
+        //TODO @ Dhruv
+    }
+
+    @FXML
+    public void addPageFromAnotherCatalog(){
+        //TODO @ Dhruv
+    }
+
+    @FXML
+    public void loadOtherCatalog(){
+        //TODO allow for loading of a different catalog via menu bar (deser)
+    }
+
+    @FXML
+    public void saveCatalog(){
+        //TODO saving of current catalog file (ser)
+    }
+
+    @FXML
+    public void saveAsCatalog(){
+        //TODO allow uses to save current selected catalog as another file (ser)
+    }
+
+
+    //TODO @ Rachel DRAG AND DROP ACTIONS
+    //TODO @ Rachel added images
+
+
+
+    }
+
+
+
+    /*
+
 
 
     public void initialSetup(String name, File selectedDirectory){
@@ -140,26 +189,22 @@ public class MainEditorController implements Initializable {
 
 
     private void inputTextField(InputEvent inputEvent){
-      /*
+
         TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(selectedFile.getAbsolutePath()));
         ArrayList<TalkButton> talkButtonsList = talkButtonCatalog.getTalkButtonCatalogMap().get(0).getTalkButtons();
-    */
-    }
 
-    private void handleButtonAction(ActionEvent event) {
+
+
+private void handleButtonAction(ActionEvent event) {
         // Button was clicked, do something…
         System.out.println("test");
-    }
-    private void save(ActionEvent event){
+        }
+private void save(ActionEvent event){
 
-    }
-
-    //TODO implement all above methods
-    //TODO implement method to create new button and add to grid pane
-    //TODO remove button from grid pane
-    //TODO update and link FXML file and controller
+        }
 
 
-    }
+
+        */
 
 
