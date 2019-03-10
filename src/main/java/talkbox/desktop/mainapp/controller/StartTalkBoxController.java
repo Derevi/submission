@@ -29,17 +29,13 @@ public class StartTalkBoxController implements Initializable {
     @FXML
     private void load(ActionEvent event){
         File loadFile = FileBrowser.loadFile();
-        setNewScene("/talkbox/desktop/mainapp/view/talkbox.fxml", event);
+        setNewScene("/talkbox/desktop/editor/view/maineditor.fxml",loadFile, event);
     }
 
-
-
-    private void setNewScene(String pathToFXML, ActionEvent event){
-        SceneViewLoader sceneViewLoader = new SceneViewLoader(pathToFXML);
+    private void setNewScene(String pathToFXML, File selectedFile, ActionEvent event){
+        SceneViewLoader sceneViewLoader = new SceneViewLoader(pathToFXML,selectedFile);
         sceneViewLoader.setNewScene(event);
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -36,21 +36,22 @@ public class StartEditorController {
 
     @FXML
     private void load(ActionEvent event){
-
             File loadFile = FileBrowser.loadFile();
-            //TODO send file to Main editor screen
-            setNewScene("/talkbox/desktop/editor/view/maineditor.fxml", event);
+            setNewScene("/talkbox/desktop/editor/view/maineditor.fxml",loadFile, event);
     }
 
     @FXML
     private void createNew(ActionEvent event){
         File saveFile = FileBrowser.saveFile();
-        //TODO send file to Main editor screen
-        setNewScene("/talkbox/desktop/editor/view/maineditor.fxml", event);
+        setNewScene("/talkbox/desktop/editor/view/maineditor.fxml", saveFile, event);
+
     }
 
-    private void setNewScene(String pathToFXML, ActionEvent event){
-        SceneViewLoader sceneViewLoader = new SceneViewLoader(pathToFXML);
+    private void setNewScene(String pathToFXML, File selectedFile, ActionEvent event){
+        SceneViewLoader sceneViewLoader = new SceneViewLoader(pathToFXML,selectedFile);
         sceneViewLoader.setNewScene(event);
     }
+
+
+
 }

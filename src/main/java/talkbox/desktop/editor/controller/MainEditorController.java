@@ -45,6 +45,9 @@ public class MainEditorController implements Initializable {
     private TextField textField;
 
     @FXML
+    public String line;
+
+    @FXML
     private void back(ActionEvent event){
         try {
             //AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../view/starteditor.fxml"));
@@ -64,10 +67,12 @@ public class MainEditorController implements Initializable {
         }
     }
 
-
-    public void print(){
-       // System.out.println(fileName);
-       // System.out.println(selectedFile.getName());
+    @FXML
+    public void setprint(String line){
+        this.line = line;
+        System.out.println(line);
+       //System.out.println(fileName.getPath());
+       //System.out.println(selectedFile.getName());
     }
 
 

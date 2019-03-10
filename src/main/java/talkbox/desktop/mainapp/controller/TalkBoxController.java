@@ -28,6 +28,18 @@ public class TalkBoxController implements Initializable {
 
     public Button talkButton;
 
+    @FXML
+    public String line;
+
+
+    @FXML
+    public void setprint(String line){
+        this.line = line;
+        System.out.println(line);
+        //System.out.println(fileName.getPath());
+        //System.out.println(selectedFile.getName());
+    }
+
     public void talk() {
         //make this pull from list
         String userInput = "hello";

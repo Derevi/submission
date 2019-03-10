@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import talkbox.desktop.editor.controller.MainEditorController;
-import talkbox.desktop.mainapp.controller.StartTalkBoxController;
 import talkbox.desktop.mainapp.controller.TalkBoxController;
 
 import java.io.File;
@@ -32,6 +31,7 @@ public class SceneViewLoader {
     }
 
 
+    //TODO automate explicit casting so you dont have to keep adding to if statements
     public void callInitializerBasedOnControllerName(FXMLLoader loader){
         if(pathToFXML.contains("editor")){ initializeControllerVariable((MainEditorController) loader.getController(),selectedSerFileToLoad);}
         else{initializeControllerVariable((TalkBoxController) loader.getController(),selectedSerFileToLoad);}
