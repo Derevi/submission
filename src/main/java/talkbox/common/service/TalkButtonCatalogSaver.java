@@ -11,13 +11,12 @@ import java.util.LinkedHashMap;
 
 public class TalkButtonCatalogSaver {
 
-    public static void save(LinkedHashMap<String, ArrayList<String>> talkButtonCatalog, File selectedDirectory, String fileName) {
-        //TODO allow user to specify .ser filename
+    public static void save( LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog) {
         try (
-                FileOutputStream fos = new FileOutputStream(selectedDirectory.getAbsolutePath()+fileName+".ser");
+                FileOutputStream fos = new FileOutputStream("test.ser");
                 ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
-            oos.writeObject(talkButtonCatalog);
+            oos.writeObject(catalog);
         } catch (IOException ioe) {
             System.out.println("Error saving TalkButtons");
             ioe.printStackTrace();
@@ -25,17 +24,4 @@ public class TalkButtonCatalogSaver {
 
     }
 
-    public static void save(LinkedHashMap<TalkButton, ArrayList<TalkButton>> talkButtonCatalog, String fileName) {
-        //TODO allow user to specify .ser filename
-        try (
-                FileOutputStream fos = new FileOutputStream(fileName+".ser");
-                ObjectOutputStream oos = new ObjectOutputStream(fos)
-        ) {
-            oos.writeObject(talkButtonCatalog);
-        } catch (IOException ioe) {
-            System.out.println("Error saving TalkButtons");
-            ioe.printStackTrace();
-        }
-
-    }
 }

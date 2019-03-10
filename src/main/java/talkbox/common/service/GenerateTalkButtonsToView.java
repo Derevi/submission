@@ -7,7 +7,7 @@ import talkbox.common.dataobject.TalkButtonCatalog;
 import java.util.ArrayList;
 
 public class GenerateTalkButtonsToView {
-
+/*
     public static void generateButtons(GridPane gridPaneTalkButtons, ArrayList<TalkButton> talkButtonInventory){
         gridPaneTalkButtons.getChildren().clear();
         int row = 0;
@@ -39,4 +39,5 @@ public class GenerateTalkButtonsToView {
     private void cleanEmpty(){
 
     }
+    */
 }

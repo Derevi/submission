@@ -1,41 +1,39 @@
 package talkbox.common.dataobject;
-
-import javafx.scene.control.Button;
 import java.io.Serializable;
-import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class TalkButtonCatalog implements Serializable {
 
-    LinkedHashMap<String, ArrayList<String>> catalogLabels;
     LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog;
-    private Button button;
-    private TextField textField;
-    private final int texFieldHeight = 30;
-    private final int textFieldWidth = 130;
-    private final int buttonSize = 150;
     private static final long serialVersionUID = 1L;
 
     public TalkButtonCatalog() {
         this.catalog = new LinkedHashMap<>();
-
     }
 
     public TalkButtonCatalog(LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog) {
         this.catalog = catalog;
     }
 
-    public void put(String key, ArrayList<ArrayList<TalkButton>> value){
-        catalog.put(key,value);
+    public void addPage(String pageName, ArrayList<ArrayList<TalkButton>> page){
+        //TODO add max limit for page
+        catalog.put(pageName,page);
+    }
+
+    public void addPage(String pageName){
+        //TODO add max limit for page
+        catalog.put(pageName,new ArrayList<ArrayList<TalkButton>>());
+    }
+
+    public ArrayList<ArrayList<TalkButton>> getTalkButtonPage(String pageName){
+        return catalog.get(pageName);
     }
 
     public LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> getCatalog(){
-        return this.catalog;
+        LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> clone = (LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>>) catalog.clone();
+        return  clone;
     }
-
-
 }
 
 /*

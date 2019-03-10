@@ -4,7 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import talkbox.common.dataobject.TalkButton;
+import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.dataobject.TalkButtonPage;
+
+import java.util.ArrayList;
 
 public class ConfiguratorApp extends Application {
     @Override
@@ -21,6 +27,8 @@ public class ConfiguratorApp extends Application {
         primaryStage.setMaxHeight(768);
         primaryStage.setMinHeight(768);
         */
+
+
         primaryStage.setScene(scene);
 
         primaryStage.show();

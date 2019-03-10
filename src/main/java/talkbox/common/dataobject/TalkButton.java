@@ -12,70 +12,72 @@ import javafx.scene.media.AudioClip;
 import talkbox.common.service.AudioPlayer;
 
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TalkButton implements Serializable {
 
     String name;
-    AudioClip audioClip; //connect audio clip here, Iam not sure if the is the right object type
-    private Button button;
-    private TextField textField;
-    private final int texFieldHeight = 30;
-    private int textFieldWidth;
+    AudioClip audioClip;
+    String imageFilePath;
+    String audioFilePath;
+
     private int buttonSize;
-    private Image buttonImage;
-    private VBox internalButtonVBox;
-    private Label buttonLabel;
-    private int row; //start at 1
-    private int column;
-    private boolean initialized;
+
 
 
     private static final long serialVersionUID = 1L;
 
-    public TalkButton(){
+    protected TalkButton(){
         this.name = " ";
         this.buttonSize = 150;
-        initialized = false;
     }
 
-    public TalkButton(String name, int buttonSize){
+
+    protected TalkButton(String name){
         this.name = name;
+        this.buttonSize = 130;
+    }
+
+
+    protected TalkButton(String name, int buttonSize){
+        this(name);
         this.buttonSize = buttonSize;
-
     }
 
-    public void initializeFxButton(){
-        if(!isInitialized(initialized)){ this.initialized = true;}
-        else{
-            //TODO THROW ERROR
-            System.out.println("WAS ALREADY INITIALIZEd");
-        }
+    protected TalkButton(String name, int buttonSize, File imageFilePath){
+        this(name, buttonSize);
+        this.imageFilePath = imageFilePath.getPath();
+    }
 
-        buttonLabel = new Label(name);
-        internalButtonVBox = new VBox();
-        internalButtonVBox.getChildren().clear();
-        internalButtonVBox.getChildren().add(1,textField);
-        internalButtonVBox.getChildren().get(0);
-        button = new Button(name, internalButtonVBox);
+    protected void setButtonSize(int buttonSize){
         this.buttonSize = buttonSize;
-        if(name.isEmpty()){throw new IllegalArgumentException();}
-        button.setMaxSize(buttonSize,buttonSize);
-        button.setMinSize(buttonSize,buttonSize);
-        button.setPrefSize(buttonSize,buttonSize);
-        HBox hBox = new HBox();
     }
 
-    public Button getFxButton(){
-        if(!isInitialized(initialized)){
-            System.out.println("please initialize with initialize FxButton first");
-            //TODO throw error
-        }
-        return button;
+    protected int getButtonSize(){
+        return this.buttonSize;
+    }
+
+
+    protected String getName(){
+        return this.name;
+    }
+
+    protected void setImage(File file){
+        this.imageFilePath = file.getPath();
+    }
+
+    protected void generateAudio(){
 
     }
-    private boolean isInitialized(boolean initialized){
-        return initialized;
+
+    protected void speak(){
+        AudioPlayer.talk(name);
     }
+
+
+
+
+
 }
