@@ -18,7 +18,7 @@
                <children>
                   <Button minHeight="130.0" minWidth="130.0" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" onDragDetected="#back">
+                        <VBox alignment="TOP_CENTER" >
                            <children>
                               <TextField alignment="BOTTOM_CENTER" />
                            </children>

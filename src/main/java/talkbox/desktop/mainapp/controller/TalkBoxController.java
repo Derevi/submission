@@ -3,10 +3,13 @@ package talkbox.desktop.mainapp.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.service.AudioPlayer;
+import talkbox.common.service.TalkButtonInterpretor;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,21 +20,54 @@ public class TalkBoxController implements Initializable {
     VBox box;
     TalkButtonCatalog talkButtonCatalog;
     private FXMLLoader fXMLLoader = new FXMLLoader();
+    LinkedHashMap<String, ArrayList<ArrayList<Button>>> catalogFxButtons;
+
 
     @FXML
     AnchorPane root;
 
-    private
-    TalkButtonCatalog catalog;
+    @FXML
+    private VBox baseVBox;
 
     public Button talkButton;
 
+
+    //TODO delete this mVar after as it was only for testing
     @FXML
     public String line;
 
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
         //TODO link this to start screen controller
         this.talkButtonCatalog = talkButtonCatalog;
+        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(talkButtonCatalog);
+        baseVBox.setAlignment(Pos.CENTER);
+        baseVBox.setSpacing(10);
+
+        HBox keyBox = new HBox();
+        keyBox.setAlignment(Pos.CENTER);
+        keyBox.setSpacing(10);
+        for(String s:catalogFxButtons.keySet()){
+            keyBox.getChildren().add(new Button(s));
+        }
+        keyBox.getChildren().add(new Button("+PAGE+"));
+        baseVBox.getChildren().add(1,keyBox);
+
+        for(ArrayList<Button> list: catalogFxButtons.get("animal")){
+            HBox hbox  = new HBox();
+            hbox.setAlignment(Pos.CENTER);
+            hbox.setSpacing(10);
+            for(Button b: list){
+                hbox.getChildren().add(b);
+            }
+            hbox.getChildren().add(new Button("++button++"));
+            baseVBox.getChildren().add(hbox);
+        }
+
+
+
+
+
+
     }
 
     public LinkedHashMap<String, ArrayList<ArrayList<Button>>> convertTalkButtonCatalogToFxButtons(){

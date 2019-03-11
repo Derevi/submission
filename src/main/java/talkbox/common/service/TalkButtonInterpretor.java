@@ -49,13 +49,9 @@ public class TalkButtonInterpretor {
 
 
     public static Button mainAppButton(TalkButton talkButton){
+        //TODO if image exist load it on to button
         VBox internalButtonVBox = new VBox();
         internalButtonVBox.setAlignment(Pos.CENTER);
-        TextField textField = new TextField();
-        textField.setMinSize(talkButton.getButtonSize()-30,25);
-        textField.setMaxSize(talkButton.getButtonSize()-30,25);
-        textField.setPromptText("INTEPREOTRO SU");
-        internalButtonVBox.getChildren().add(textField);
         Button button = new Button(talkButton.getName(), internalButtonVBox);
         button.setMaxSize(talkButton.getButtonSize(),talkButton.getButtonSize());
         button.setMinSize(talkButton.getButtonSize(),talkButton.getButtonSize());

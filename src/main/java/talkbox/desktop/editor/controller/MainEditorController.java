@@ -12,56 +12,47 @@ import javafx.scene.input.InputEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import talkbox.common.dataobject.TalkButton;
+import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.service.AudioPlayer;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainEditorController implements Initializable {
 
 
-
-    @FXML
-    private GridPane gridPane;
-
     @FXML
     private AnchorPane root;
 
-    @FXML
-    private Button SaveAndCompile;
-
-    @FXML
-    private String fileName;
-
-    @FXML
-    private File selectedDirectory;
-
-    @FXML
-    private File selectedFile;
-
-    @FXML
-    private TextField textField;
-
-    @FXML
-    public String line;
+    private TalkButtonCatalog talkButtonCatalog;
 
 
-    @FXML
-    public void setprint(String line){
-        this.line = line;
-        System.out.println(line);
-       //System.out.println(fileName.getPath());
-       //System.out.println(selectedFile.getName());
+
+
+    public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
+        this.talkButtonCatalog = talkButtonCatalog;
+        System.out.println("Printing all Keys from loaded:");
+        for(String s : talkButtonCatalog.getCatalog().keySet()){
+            System.out.println(s);
+            for(ArrayList<TalkButton> row: talkButtonCatalog.getCatalog().get(s)){
+                for(TalkButton talkButton: row){
+                    System.out.println(talkButton.getName() + talkButton.getButtonSize());
+                }
+
+            }
+        }
+        System.out.println("PROPERLY LOADED FILE!!!!");
     }
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO load fxButtonCatalog in to View, keyset, pages and all buttons
-
-
     }
 
 
@@ -120,91 +111,5 @@ public class MainEditorController implements Initializable {
     }
 
 
-
-    /*
-
-
-
-    public void initialSetup(String name, File selectedDirectory){
-        //this.fileName = name;
-        //this.selectedDirectory = selectedDirectory;
-
-        //use name to generate the TalkButonCatalog
-      // System.out.println(name);
-
-    }
-
-    public void initialSetup(File selectedFile){
-      //  this.fileName = selectedFile.getName();
-        //this.selectedFile = selectedFile;
-
-        //use name to generate the TalkButonCatalog
-       // System.out.println(fileName);
-
-    }
-
-    public void load(){
-
-            //precondition talkbuttoncatalogMap must not be empty.
-            //load key set to a gridPane
-            //load all other talkbuttons to othergrid pane
-
-
-    }
-
-    public void saveAndCompile(){
-        //save the current progress
-        //compile all audio
-
-    }
-
-    public void speak(String word){
-        //play audio upon button click
-        AudioPlayer.talk(word);
-    }
-
-    public void save(){
-        //saves catalog
-       // TalkButtons.save(catalog.getButtonInventoryMap("test"));
-
-    }
-
-    public void compileAudio(){
-        //compiles audio
-      // for(TalkButton talkButton:catalog.getButtonInventoryMap().get("animals").getTalkButtons())
-     //  StringToAudioGenerator.generateAudio(talkButton.getName());
-
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
-
-
-    }
-
-
-
-    private void inputTextField(InputEvent inputEvent){
-
-        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog(TalkButtonCatalogLoader.load(selectedFile.getAbsolutePath()));
-        ArrayList<TalkButton> talkButtonsList = talkButtonCatalog.getTalkButtonCatalogMap().get(0).getTalkButtons();
-
-
-
-private void handleButtonAction(ActionEvent event) {
-        // Button was clicked, do something…
-        System.out.println("test");
-        }
-private void save(ActionEvent event){
-
-        }
-
-
-
-        */
 
 

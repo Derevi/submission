@@ -1,65 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" minHeight="768.0" minWidth="1366.0" stylesheets="@/talkbox/desktop/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.editor.controller.MainEditorController">
+<AnchorPane fx:id="root" minHeight="768.0" minWidth="1366.0" stylesheets="@/talkbox/desktop/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.mainapp.controller.TalkBoxController">
    <children>
-      <VBox layoutX="200.0" layoutY="-65.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+      <VBox fx:id="baseVBox" layoutX="200.0" layoutY="-65.0" prefHeight="200.0" prefWidth="100.0" spacing="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
-            <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button minHeight="130.0" minWidth="130.0" mnemonicParsing="false">
-                     <graphic>
-                        <VBox alignment="TOP_CENTER" onDragDetected="#back">
-                           <children>
-                              <TextField alignment="BOTTOM_CENTER" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-               </children>
-            </HBox>
-            <Label />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" spacing="5.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-               </children>
-            </HBox>
+            <Button mnemonicParsing="false" text="Button" />
          </children>
       </VBox>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -73,5 +26,12 @@
           </Menu>
         </menus>
       </MenuBar>
+      <HBox alignment="CENTER" layoutX="273.0" layoutY="704.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" text="Compile Audio" />
+            <Button mnemonicParsing="false" text="Load" />
+            <Button mnemonicParsing="false" text="Save" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
