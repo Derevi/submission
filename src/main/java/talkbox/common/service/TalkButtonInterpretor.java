@@ -4,13 +4,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TalkButtonInterpretor {
 
@@ -28,9 +29,17 @@ public class TalkButtonInterpretor {
 
     }
 
-    public static LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
-        LinkedHashMap<String, ArrayList<ArrayList<Button>>> convertedCatalog = new LinkedHashMap<>();
+    public static ArrayList<Button> blist(ArrayList<TalkButton> talkButtons){
+        return talkButtons.stream()
+                .map(talkButton -> new Button(talkButton.getName()))
+                .collect(Collectors.toCollection(ArrayList::new));
 
+    }
+
+    public static  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
+
+
+        LinkedHashMap<String, ArrayList<ArrayList<Button>>> convertedCatalog = new LinkedHashMap<>();
         for(String pageName: talkButtonCatalog.getCatalog().keySet()) {
             ArrayList<ArrayList<Button>> page = new ArrayList<>();
             convertedCatalog.put(pageName,page);
@@ -47,7 +56,7 @@ public class TalkButtonInterpretor {
     }
 
 
-
+    //TODO give each button action event that allows them to play audi
     public static Button mainAppButton(TalkButton talkButton){
         //TODO if image exist load it on to button
         VBox internalButtonVBox = new VBox();
@@ -58,6 +67,7 @@ public class TalkButtonInterpretor {
         button.setPrefSize(talkButton.getButtonSize(),talkButton.getButtonSize());
         return button;
     }
+
 
     public static Button editorAppButton(TalkButton talkButton){
 
