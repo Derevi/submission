@@ -3,11 +3,13 @@ package talkbox.common.dataobject;
 import javafx.scene.control.Button;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 //Sets all parameters of of button
-public class TalkButtonPage {
+public class TalkButtonPage implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<ArrayList<TalkButton>> page;
     private int buttonSize;
     private String pageName;

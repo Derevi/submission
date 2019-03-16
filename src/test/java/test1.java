@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class test1 {
     public static void main(String[] args) {
+        /*
         TalkButtonPage talkButtonPage = new TalkButtonPage("animal",150);
         Button button = new Button("test");
 
@@ -69,5 +70,6 @@ public class test1 {
 
             }
         }
+        */
     }
 }

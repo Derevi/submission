@@ -21,6 +21,8 @@ import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.AudioPlayer;
+import talkbox.common.service.TalkButtonCatalogLoader;
+import talkbox.common.service.TalkButtonCatalogSaver;
 import talkbox.common.service.TalkButtonInterpretor;
 
 import java.io.File;
@@ -51,78 +53,13 @@ public class MainEditorController implements Initializable {
     //TODO add roww creates new row with new button, same size and style
     //TODO add button, make '+' button be smaller than minimum so it can be filtered out
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
-/*
+
         //TODO link this to start screen controller
-        this.talkButtonCatalog = talkButtonCatalog;
-        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(talkButtonCatalog);
-        baseVBox.setAlignment(Pos.CENTER);
-        baseVBox.setSpacing(10);
-
-        HBox keyBox = new HBox();
-        keyBox.setAlignment(Pos.CENTER);
-        keyBox.setSpacing(10);
-        for(String s:catalogFxButtons.keySet()){
-            keyBox.getChildren().add(new Button(s));
-        }
-        keyBox.getChildren().add(new Button("+PAGE+"));
-        baseVBox.getChildren().add(1,keyBox);
-
-        HBox initialHBoxAboveButtons = new HBox();
-        initialHBoxAboveButtons.setAlignment(Pos.CENTER);
-        initialHBoxAboveButtons.setSpacing(20);
-        Button addIntialRowButton = new Button("++add row++");
-
-        Separator separatorL1 =new Separator();
-        separatorL1.setOrientation(Orientation.HORIZONTAL);
-        separatorL1.prefWidth(200);
-        separatorL1.setMinSize(300,1);
-        separatorL1.setMaxSize(300,1);
-
-        Separator separatorR1 =new Separator();
-        separatorR1.setOrientation(Orientation.HORIZONTAL);
-        separatorR1.setMinSize(300,1);
-        separatorR1.setMaxSize(300,1);
-        initialHBoxAboveButtons.getChildren().add(separatorL1);
-        initialHBoxAboveButtons.getChildren().add(addIntialRowButton);
-        initialHBoxAboveButtons.getChildren().add(separatorR1);
-        baseVBox.getChildren().add(initialHBoxAboveButtons);
+        //this.talkButtonCatalog = talkButtonCatalog;
+       // this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(talkButtonCatalog);
 
 
-        for(ArrayList<Button> list: catalogFxButtons.get("animal")){
-            HBox hbox  = new HBox();
-            hbox.setAlignment(Pos.CENTER);
-            hbox.setSpacing(10);
-            for(Button b: list){
-                hbox.getChildren().add(b);
-            }
-            hbox.getChildren().add(new Button("++button++"));
-            baseVBox.getChildren().add(hbox);
 
-            Button addRowButton = new Button("++add row++");
-            HBox hBoxBelowButtons = new HBox();
-            hBoxBelowButtons.setAlignment(Pos.CENTER);
-            hBoxBelowButtons.setSpacing(20);
-
-            Separator separatorL =new Separator();
-            separatorL.setOrientation(Orientation.HORIZONTAL);
-            separatorL.prefWidth(200);
-            separatorL.setMinSize(300,1);
-            separatorL.setMaxSize(300,1);
-
-            Separator separatorR =new Separator();
-            separatorR.setOrientation(Orientation.HORIZONTAL);
-            separatorR.setMinSize(300,1);
-            separatorR.setMaxSize(300,1);
-
-
-            hBoxBelowButtons.getChildren().add(separatorL);
-            hBoxBelowButtons.getChildren().add(addRowButton);
-            hBoxBelowButtons.getChildren().add(separatorR);
-
-            baseVBox.getChildren().add(hBoxBelowButtons);
-        }
-
-*/
     }
 
 
@@ -174,7 +111,78 @@ public class MainEditorController implements Initializable {
 
         System.out.println();
 
-        LinkedHashMap<String, ArrayList<ArrayList<Button>>> fxButtonPage = TalkButtonInterpretor.getFxButtonCatalog(catalog);
+        TalkButtonCatalogSaver.save(catalog);
+
+
+      this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(TalkButtonCatalogLoader.load("test"));
+
+
+        baseVBox.setAlignment(Pos.CENTER);
+        baseVBox.setSpacing(10);
+
+        HBox keyBox = new HBox();
+        keyBox.setAlignment(Pos.CENTER);
+        keyBox.setSpacing(10);
+        for(String s:catalogFxButtons.keySet()){
+            keyBox.getChildren().add(new Button(s));
+        }
+        keyBox.getChildren().add(new Button("+PAGE+"));
+        baseVBox.getChildren().add(1,keyBox);
+
+        HBox initialHBoxAboveButtons = new HBox();
+        initialHBoxAboveButtons.setAlignment(Pos.CENTER);
+        initialHBoxAboveButtons.setSpacing(20);
+        Button addIntialRowButton = new Button("++add row++");
+
+        Separator separatorL1 =new Separator();
+        separatorL1.setOrientation(Orientation.HORIZONTAL);
+        separatorL1.prefWidth(200);
+        separatorL1.setMinSize(300,1);
+        separatorL1.setMaxSize(300,1);
+
+        Separator separatorR1 =new Separator();
+        separatorR1.setOrientation(Orientation.HORIZONTAL);
+        separatorR1.setMinSize(300,1);
+        separatorR1.setMaxSize(300,1);
+        initialHBoxAboveButtons.getChildren().add(separatorL1);
+        initialHBoxAboveButtons.getChildren().add(addIntialRowButton);
+        initialHBoxAboveButtons.getChildren().add(separatorR1);
+        baseVBox.getChildren().add(initialHBoxAboveButtons);
+
+
+        for(ArrayList<Button> list: catalogFxButtons.get("animals")){
+            HBox hbox  = new HBox();
+            hbox.setAlignment(Pos.CENTER);
+            hbox.setSpacing(10);
+            for(Button b: list){
+                hbox.getChildren().add(b);
+            }
+            hbox.getChildren().add(new Button("++button++"));
+            baseVBox.getChildren().add(hbox);
+
+            Button addRowButton = new Button("++add row++");
+            HBox hBoxBelowButtons = new HBox();
+            hBoxBelowButtons.setAlignment(Pos.CENTER);
+            hBoxBelowButtons.setSpacing(20);
+
+            Separator separatorL =new Separator();
+            separatorL.setOrientation(Orientation.HORIZONTAL);
+            separatorL.prefWidth(200);
+            separatorL.setMinSize(300,1);
+            separatorL.setMaxSize(300,1);
+
+            Separator separatorR =new Separator();
+            separatorR.setOrientation(Orientation.HORIZONTAL);
+            separatorR.setMinSize(300,1);
+            separatorR.setMaxSize(300,1);
+
+
+            hBoxBelowButtons.getChildren().add(separatorL);
+            hBoxBelowButtons.getChildren().add(addRowButton);
+            hBoxBelowButtons.getChildren().add(separatorR);
+
+            baseVBox.getChildren().add(hBoxBelowButtons);
+        }
     }
 
 
