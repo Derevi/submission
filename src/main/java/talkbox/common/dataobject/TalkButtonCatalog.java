@@ -1,39 +1,69 @@
 package talkbox.common.dataobject;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class TalkButtonCatalog implements Serializable {
 
-    LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog; //Consider converting this to a page
+   // LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog; //Consider converting this to a page
+   LinkedHashMap<String, TalkButtonPage> catalog;
     private static final long serialVersionUID = 1L;
 
     public TalkButtonCatalog() {
         this.catalog = new LinkedHashMap<>();
+
     }
 
-    public TalkButtonCatalog(LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog) {
+    public TalkButtonCatalog(LinkedHashMap<String, TalkButtonPage> catalog) {
         this.catalog = catalog;
     }
 
-    public void addPage(String pageName, ArrayList<ArrayList<TalkButton>> page){
+    public void addPage(String pageName, TalkButtonPage page){
         //TODO add max limit for page
         catalog.put(pageName,page);
     }
 
-    public void addPage(String pageName){
-        //TODO add max limit for page
-        catalog.put(pageName,new ArrayList<ArrayList<TalkButton>>());
+    public TalkButtonPage getPage(String pageName){
+        return this.getCatalog().get(pageName);
     }
 
-    public ArrayList<ArrayList<TalkButton>> getTalkButtonPage(String pageName){
+    public void addPage(String pageName, int buttonSize){
+        //TODO add max limit for page
+        catalog.put(pageName,new TalkButtonPage(pageName,buttonSize));
+    }
+
+
+    public void addPage(String pageName){
+        //TODO add max limit for page
+        catalog.put(pageName,new TalkButtonPage(pageName));
+    }
+    public void addPage(TalkButtonPage talkButtonPage){
+        //TODO add max limit for page
+        catalog.put(talkButtonPage.getPageName(),talkButtonPage);
+    }
+
+    public TalkButtonPage getTalkButtonPage(String pageName){
         return catalog.get(pageName);
     }
 
-    public LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> getCatalog(){
-        LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> clone = (LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>>) catalog.clone();
+    public LinkedHashMap<String, TalkButtonPage> getCatalog(){
+        LinkedHashMap<String, TalkButtonPage> clone = ( LinkedHashMap<String, TalkButtonPage>) catalog.clone();
         return  clone;
     }
+
+    public void setTalkButtonPageButtonSize(String pageName, int size){
+        this.catalog.get(pageName).setButtonSizeForPage(size);
+    }
+
+    public void setPageImageRootDirectory(String pageName, File imageDirectory){
+        //TODO set directory from where images are pulled
+    }
+
+    public void setPageAudioFileRootDirectory(String pageName, File audioFileDirectory){
+        //TODO set directory from where audio are pulled
+    }
+
 }
 
 /*

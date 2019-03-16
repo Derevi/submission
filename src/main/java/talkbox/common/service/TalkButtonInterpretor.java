@@ -29,32 +29,29 @@ public class TalkButtonInterpretor {
 
     }
 
-    public static ArrayList<Button> blist(ArrayList<TalkButton> talkButtons){
-        return talkButtons.stream()
-                .map(talkButton -> new Button(talkButton.getName()))
+
+
+    public static  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
+       return talkButtonCatalog.getCatalog().keySet()
+               .stream()
+               .map(s -> talkButtonCatalog.getTalkButtonPage(s))
+               .collect(Collectors.toMap(TalkButtonPage::getPageName, TalkButtonInterpretor::convertPage))
+               .entrySet()
+               .stream()
+               .collect(Collectors
+                       .toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new));
+    }
+
+
+
+    public static ArrayList<ArrayList<Button>> convertPage (TalkButtonPage talkButtonPage){
+        return talkButtonPage.getPage().stream()
+                .map(s ->s.stream()
+                        .map(t->mainAppButton(t))
+                        .collect(Collectors.toCollection(ArrayList::new)))
                 .collect(Collectors.toCollection(ArrayList::new));
 
     }
-
-    public static  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
-
-
-        LinkedHashMap<String, ArrayList<ArrayList<Button>>> convertedCatalog = new LinkedHashMap<>();
-        for(String pageName: talkButtonCatalog.getCatalog().keySet()) {
-            ArrayList<ArrayList<Button>> page = new ArrayList<>();
-            convertedCatalog.put(pageName,page);
-            for (ArrayList<TalkButton> talkButtonRow : talkButtonCatalog.getCatalog().get(pageName)) {
-                ArrayList<Button> row = new ArrayList<>();
-                for (TalkButton talkButton : talkButtonRow) {
-                   row.add(mainAppButton(talkButton));
-                }
-                convertedCatalog.get(pageName).add(row);
-            }
-
-        }
-        return  convertedCatalog;
-    }
-
 
     //TODO give each button action event that allows them to play audi
     public static Button mainAppButton(TalkButton talkButton){

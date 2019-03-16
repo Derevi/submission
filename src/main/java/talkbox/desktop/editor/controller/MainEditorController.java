@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.AudioPlayer;
 import talkbox.common.service.TalkButtonInterpretor;
 
@@ -50,7 +51,7 @@ public class MainEditorController implements Initializable {
     //TODO add roww creates new row with new button, same size and style
     //TODO add button, make '+' button be smaller than minimum so it can be filtered out
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
-
+/*
         //TODO link this to start screen controller
         this.talkButtonCatalog = talkButtonCatalog;
         this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(talkButtonCatalog);
@@ -121,14 +122,59 @@ public class MainEditorController implements Initializable {
             baseVBox.getChildren().add(hBoxBelowButtons);
         }
 
-
+*/
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO load fxButtonCatalog in to View, keyset, pages and all buttons
+        TalkButtonCatalog catalog = new TalkButtonCatalog();
+        catalog.addPage("animals", 150);
+
+        TalkButtonPage talkButtonPage = new TalkButtonPage("animals",150);
+        // Button button = new Button("test");
+
+
+        talkButtonPage.addRow();
+        talkButtonPage.addRow();
+        talkButtonPage.addRow();
+        System.out.println(talkButtonPage.getPage().size());
+
+
+        talkButtonPage.addButtonToRow(0,"dog");
+        talkButtonPage.addButtonToRow(0,"cat");
+        talkButtonPage.addButtonToRow(0,"bird");
+        talkButtonPage.addButtonToRow(0,"cat");
+
+        talkButtonPage.addButtonToRow(1,"Fish");
+        talkButtonPage.addButtonToRow(1,"Whale");
+        talkButtonPage.addButtonToRow(1,"Dolphin");
+        talkButtonPage.addButtonToRow(1,"Crab");
+
+        talkButtonPage.addButtonToRow(2,"Monkey");
+        talkButtonPage.addButtonToRow(2,"Ape");
+        talkButtonPage.addButtonToRow(2,"gorilla");
+        catalog.addPage(talkButtonPage);
+
+
+        talkButtonPage.getPage()
+                .stream()
+                .flatMap(t -> t.stream())
+                .map(t-> t.getName())
+                .forEach(System.out::println);
+        System.out.println();
+
+        catalog.getTalkButtonPage("animals")
+                .getPage()
+                .stream()
+                .flatMap(t -> t.stream())
+                .map(t-> t.getName())
+                .forEach(System.out::println);
+
+        System.out.println();
+
+        LinkedHashMap<String, ArrayList<ArrayList<Button>>> fxButtonPage = TalkButtonInterpretor.getFxButtonCatalog(catalog);
     }
 
 

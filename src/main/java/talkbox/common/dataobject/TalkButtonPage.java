@@ -2,7 +2,10 @@ package talkbox.common.dataobject;
 
 import javafx.scene.control.Button;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 //Sets all parameters of of button
 public class TalkButtonPage {
     private ArrayList<ArrayList<TalkButton>> page;
@@ -13,7 +16,7 @@ public class TalkButtonPage {
 
     public TalkButtonPage(String pageName, int buttonSize){
         this(pageName);
-        this.buttonSize = 130;
+        this.buttonSize = buttonSize;
     }
 
 
@@ -54,14 +57,38 @@ public class TalkButtonPage {
         page.add(row);
     }
 
-    public ArrayList<TalkButton> getButtonRow(int row){
-        ArrayList<TalkButton> clone = (ArrayList<TalkButton>)page.get(row).clone();
-        return page.get(row);
+    public void addRow(){
+        page.add(new ArrayList<>());
     }
+
+
+
+    public ArrayList<TalkButton> getButtonRow(int row){
+
+        ArrayList<TalkButton> clone = (ArrayList<TalkButton>)page.get(row).clone();
+        return clone;
+        /*
+        return (ArrayList<TalkButton>) page.get(row).stream()
+                .map(TalkButton::new)
+                .collect(Collectors.toList());
+*/
+    }
+
+
+
+
 
     public ArrayList<ArrayList<TalkButton>> getPage(){
         ArrayList<ArrayList<TalkButton>> clone = (ArrayList<ArrayList<TalkButton>>)page.clone();
         return clone;
+
+        /*
+        return (ArrayList<ArrayList<TalkButton>>)this.page.stream()
+                .map(t -> t.stream()
+                        .map(TalkButton::new)
+                        .collect(Collectors.toCollection(ArrayList::new)))
+                .collect(Collectors.toList());
+                */
     }
 
     public void addButtonToRow(int row, String talkButtonName){
@@ -72,8 +99,13 @@ public class TalkButtonPage {
         page.get(row).remove(column);
     }
 
-    public void setAudioFilePath(String audioFilePath){
-        this.audioFilePath = audioFilePath;
+
+    public void setPageImageRootDirectory(File imageDirectory){
+        //TODO set directory from where images are pulled
+    }
+
+    public void setPageAudioFileRootDirectory(File audioFileDirectory){
+        //TODO set directory from where audio are pulled
     }
 
 

@@ -32,7 +32,8 @@ public class SceneViewLoader {
         FXMLLoader loader = new FXMLLoader();
         loaderSetup(loader);
         callInitializerBasedOnControllerName(loader);
-        refreshScene(event, loader.getRoot());    }
+        refreshScene(event, loader.getRoot());
+    }
 
 
     //TODO automate explicit casting so you dont have to keep adding to if statements

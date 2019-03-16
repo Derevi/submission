@@ -40,6 +40,11 @@ public class TalkButton implements Serializable {
         this.buttonSize = 130;
     }
 
+    protected TalkButton(TalkButton talkButton){
+        this.name = talkButton.getName();
+        this.buttonSize=talkButton.getButtonSize();
+    }
+
 
     protected TalkButton(String name, int buttonSize){
         this(name);
