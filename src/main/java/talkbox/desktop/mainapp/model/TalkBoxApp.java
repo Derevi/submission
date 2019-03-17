@@ -10,10 +10,10 @@ public class TalkBoxApp extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/startview.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/talkbox/desktop/mainapp/view/startview.fxml"));
 
         Scene scene = new Scene(root, 1366, 768);
-        scene.getStylesheets().add(getClass().getResource("../../styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/talkbox/desktop/styles.css").toExternalForm());
 
         primaryStage.setTitle("TalkBox");
         primaryStage.setScene(scene);
