@@ -26,7 +26,7 @@ then click the refresh button. This will sync everything up and it should work p
 
   Everything should now work out of the box, with out messing around with any vm args or anything else
 
-QUICK NOTE: I uploaded a configuration file, specific to intellij, I know I said only push source code, but I custom made this config file. It basically sets up all the run configurations for intellij so you do not have to set it up. Just click any of the run buttons I made. Make sure it has an elephan icon since it uses gradle to run.
+QUICK NOTE: I uploaded a configuration file, specific to intellij, I know I said only push source code, but I custom made this config file. It basically sets up all the run configurations for intellij so you do not have to set it up. Just click any of the run buttons I made. Make sure it has an elephant icon since it uses gradle to run.
 
 
 # Installation
