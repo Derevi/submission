@@ -48,8 +48,7 @@ public class TalkButtonCatalog implements Serializable {
     }
 
     public LinkedHashMap<String, TalkButtonPage> getCatalog(){
-        LinkedHashMap<String, TalkButtonPage> clone = ( LinkedHashMap<String, TalkButtonPage>) catalog.clone();
-        return  clone;
+        return  ( LinkedHashMap<String, TalkButtonPage>) catalog.clone();
     }
 
     public void setTalkButtonPageButtonSize(String pageName, int size){

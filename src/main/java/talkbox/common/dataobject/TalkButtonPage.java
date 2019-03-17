@@ -66,14 +66,7 @@ public class TalkButtonPage implements Serializable {
 
 
     public ArrayList<TalkButton> getButtonRow(int row){
-
-        ArrayList<TalkButton> clone = (ArrayList<TalkButton>)page.get(row).clone();
-        return clone;
-        /*
-        return (ArrayList<TalkButton>) page.get(row).stream()
-                .map(TalkButton::new)
-                .collect(Collectors.toList());
-*/
+        return (ArrayList<TalkButton>)page.get(row).clone();
     }
 
 
@@ -81,16 +74,7 @@ public class TalkButtonPage implements Serializable {
 
 
     public ArrayList<ArrayList<TalkButton>> getPage(){
-        ArrayList<ArrayList<TalkButton>> clone = (ArrayList<ArrayList<TalkButton>>)page.clone();
-        return clone;
-
-        /*
-        return (ArrayList<ArrayList<TalkButton>>)this.page.stream()
-                .map(t -> t.stream()
-                        .map(TalkButton::new)
-                        .collect(Collectors.toCollection(ArrayList::new)))
-                .collect(Collectors.toList());
-                */
+        return (ArrayList<ArrayList<TalkButton>>)page.clone();
     }
 
     public void addButtonToRow(int row, String talkButtonName){
