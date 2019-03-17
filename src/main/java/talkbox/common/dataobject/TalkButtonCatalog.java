@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 
 public class TalkButtonCatalog implements Serializable {
 
-   // LinkedHashMap<String, ArrayList<ArrayList<TalkButton>>> catalog; //Consider converting this to a page
    LinkedHashMap<String, TalkButtonPage> catalog;
     private static final long serialVersionUID = 1L;
 
