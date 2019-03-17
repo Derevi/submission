@@ -213,6 +213,11 @@ public class MainEditorController implements Initializable {
 
     }
 
+    //TODO FILTER METHOD: reads entire ui and gets string and image from button stores to talkbutton,
+    // stops at size-1 (since the last button is an add button)
+    // & does not add first row since that is the keylist
+    // & does not add row with separator
+
 
     @FXML
     public void addTalkButton(int row){
