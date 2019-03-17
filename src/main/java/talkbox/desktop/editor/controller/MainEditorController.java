@@ -116,7 +116,6 @@ public class MainEditorController implements Initializable {
 
       this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(TalkButtonCatalogLoader.load("test"));
 
-
         baseVBox.setAlignment(Pos.CENTER);
         baseVBox.setSpacing(10);
 

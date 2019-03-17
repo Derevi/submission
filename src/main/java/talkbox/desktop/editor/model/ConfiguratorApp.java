@@ -21,12 +21,6 @@ public class ConfiguratorApp extends Application {
 
         Scene scene = new Scene(root, 1366, 768);
         scene.getStylesheets().add(getClass().getResource("/talkbox/desktop/styles.css").toExternalForm());
-/*
-        primaryStage.setMaxWidth(1366);
-        primaryStage.setMinWidth(1366);
-        primaryStage.setMaxHeight(768);
-        primaryStage.setMinHeight(768);
-        */
 
 
         primaryStage.setScene(scene);
