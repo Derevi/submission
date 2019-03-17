@@ -9,7 +9,7 @@ plugins {
 group 'mainapp'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
