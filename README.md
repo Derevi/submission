@@ -1,4 +1,4 @@
-# USING WITH PROJECT WITH INTELLIJ
+# USING PROJECT WITH WITH INTELLIJ
 Major updates to master were done.
 
 Instructions to use:
