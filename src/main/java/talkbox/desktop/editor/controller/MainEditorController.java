@@ -157,6 +157,7 @@ public class MainEditorController implements Initializable {
                 hbox.getChildren().add(b);
             }
 
+            //TODO separate in to its own method and refactor
             //ADD BUTTON METHOD
             Button newb = new Button("++button++");
             newb.setOnAction(e-> {
@@ -166,18 +167,10 @@ public class MainEditorController implements Initializable {
             hbox.getChildren().add(newb);
             baseVBox.getChildren().add(hbox);
 
+            //TODO separate in to its own method and refactor
             //ADD NEW ROW METHOD
             Button addRowButton = new Button("++add row++");
-            addRowButton.setOnAction(e->{
-                HBox newh = new HBox();
-                newh.setAlignment(Pos.CENTER);
-                 Button newbut= new Button("tesst");
-                 newbut.setMinSize(100,100);
-                newh.getChildren().add(newbut);
-                baseVBox.getChildren().add(newh);
-                baseVBox.getChildren().add(new Button("++add row++"));
-                    }
-                    );
+
             HBox hBoxBelowButtons = new HBox();
             hBoxBelowButtons.setAlignment(Pos.CENTER);
             hBoxBelowButtons.setSpacing(20);
@@ -199,6 +192,19 @@ public class MainEditorController implements Initializable {
             hBoxBelowButtons.getChildren().add(separatorR);
 
             baseVBox.getChildren().add(hBoxBelowButtons);
+            int rowb = baseVBox.getChildren().indexOf(hBoxBelowButtons);
+            //System.out.println(rowb);
+            addRowButton.setOnAction(e->{
+                        HBox newh = new HBox();
+                        newh.setAlignment(Pos.CENTER);
+                        Button newbut= new Button("tesst");
+                        newbut.setMinSize(100,100);
+                        newh.getChildren().add(newbut);
+                        System.out.println();
+                        baseVBox.getChildren().add(rowb,newh);
+                        baseVBox.getChildren().add(rowb+1,new Button("++add row++"));
+                    }
+            );
         }
     }
 
@@ -223,6 +229,7 @@ public class MainEditorController implements Initializable {
     @FXML
     public void addRow(int row){
         //TODO insert new row with an empty button
+        //TODO Hbox with position set to right so it is in right bottom corner
     }
 
     private void refreshView(){
