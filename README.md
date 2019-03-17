@@ -14,13 +14,17 @@ IF not download install and setup the proper pathing
 
 5) once the project is loaded a popup will appear  asking the following:
 
-"Unlinked Gradle project?
+[Popup](https://github.com/Derevi/submission/blob/master/Capture1.PNG)
 
-Import Gradle project, this will als enable Gradle 
-Tool Window..."
+  Click on the blue font "import Gradle project"
+  
+6) Now you need to tell intellij which folders is your source code, test etc. Gradle does this automatically for you.
+You can do this by opening the gradle task (it is the tool bar on the far right side, labelled gradle, and has an elephant icon)
+then click the refresh button. This will sync everything up and it should work perfectly
 
-Click on the blue font "import Gradle project"
-Everything should now work out of the box, with out messing around with any vm args or anything else
+[screenshot labelled](https://github.com/Derevi/submission/blob/master/Capture2.PNG)
+
+  Everything should now work out of the box, with out messing around with any vm args or anything else
 
 
 
