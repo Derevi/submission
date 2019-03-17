@@ -156,10 +156,28 @@ public class MainEditorController implements Initializable {
             for(Button b: list){
                 hbox.getChildren().add(b);
             }
-            hbox.getChildren().add(new Button("++button++"));
+
+            //ADD BUTTON METHOD
+            Button newb = new Button("++button++");
+            newb.setOnAction(e-> {
+                Button newt = new Button("test");
+                hbox.getChildren().add(hbox.getChildren().size()-1, new Button());
+            });
+            hbox.getChildren().add(newb);
             baseVBox.getChildren().add(hbox);
 
+            //ADD NEW ROW METHOD
             Button addRowButton = new Button("++add row++");
+            addRowButton.setOnAction(e->{
+                HBox newh = new HBox();
+                newh.setAlignment(Pos.CENTER);
+                 Button newbut= new Button("tesst");
+                 newbut.setMinSize(100,100);
+                newh.getChildren().add(newbut);
+                baseVBox.getChildren().add(newh);
+                baseVBox.getChildren().add(new Button("++add row++"));
+                    }
+                    );
             HBox hBoxBelowButtons = new HBox();
             hBoxBelowButtons.setAlignment(Pos.CENTER);
             hBoxBelowButtons.setSpacing(20);
@@ -182,6 +200,11 @@ public class MainEditorController implements Initializable {
 
             baseVBox.getChildren().add(hBoxBelowButtons);
         }
+    }
+
+    public void addButton(ActionEvent event){
+
+
     }
 
 
