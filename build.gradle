@@ -1,0 +1,76 @@
+plugins {
+    id 'java'
+    id 'application'
+    
+    //https://plugins.gradle.org/plugin/org.openjfx.javafxplugin
+    id "org.openjfx.javafxplugin" version "0.0.7"
+}
+
+group 'mainapp'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.4.0'
+    compile group: 'net.sf.sociaal', name: 'freetts', version: '1.2.2'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media' ]
+}
+
+//Default main when you use the 'run' task from gradle
+mainClassName = 'talkbox.desktop.editor.model.ConfiguratorApp'
+
+
+
+////////////////////////////////SetMultiple run configurations////////////////////////////////
+
+apply plugin: 'java'
+
+//the first parameter is the name of the task in gradle
+task(runTalkBoxApp, type: JavaExec) {
+    //specify main here, must be fully qualified name
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs = ['--module-path', classpath.asPath,
+               '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics,javafx.media' ]
+    main = 'talkbox.desktop.mainapp.model.TalkBoxApp'
+    //args 'put-argument-here'
+}
+
+//the first parameter is the name of the task in gradle
+//the second parameter sets the Type of gradle task
+task(runEditorApp, type: JavaExec) {
+    //specify main here, must be fully qualified name
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs = ['--module-path', classpath.asPath,
+               '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics,javafx.media' ]
+    main = 'talkbox.desktop.editor.model.ConfiguratorApp'
+    //args 'put-argument-here'
+}
+
+defaultTasks 'runTalkBoxApp'
+
+//Specifies another package as the source for resources such as .fxml and .css
+sourceSets.main {
+    java {
+        srcDir 'src/main/java'
+    }
+    resources {
+        srcDirs = ['src/main/java']
+        exclude "**/*.java"
+    }
+}
