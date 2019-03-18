@@ -63,9 +63,9 @@ public class MainEditorController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ///START OF SETUP CODE///THIS IS SET UP CODE ONLY IT WILL BE DELETED after//
         TalkButtonCatalog catalog = new TalkButtonCatalog();
         catalog.addPage("animals", 150);
 
@@ -119,6 +119,10 @@ public class MainEditorController implements Initializable {
         baseVBox.setAlignment(Pos.CENTER);
         baseVBox.setSpacing(10);
 
+        ///END OF SETUP CODE///THIS IS SET UP CODE ONLY IT WILL BE DELETED after//
+
+
+        //START OF CODE THAT DRAWS BUTTON ON UI ..IT is basically one big for loop//
         HBox keyBox = new HBox();
         keyBox.setAlignment(Pos.CENTER);
         keyBox.setSpacing(10);
@@ -207,6 +211,7 @@ public class MainEditorController implements Initializable {
                     }
             );
         }
+        //END OF CODE THAT DRAWS BUTTON ON UI//
     }
 
     public VBox addFxButton(HBox hBox, Button addClick){
@@ -233,6 +238,15 @@ public class MainEditorController implements Initializable {
         verticalSeparatorComponent.setMaxSize(3,10);
         verticalSeparatorComponent.setMinSize(3,10);
         return verticalSeparatorComponent;
+    }
+
+    public Separator horizontalSeparator(){
+        Separator horizontalSeparatorComponent =new Separator();
+        horizontalSeparatorComponent.setOrientation(Orientation.HORIZONTAL);
+        horizontalSeparatorComponent.setMinSize(300,1);
+        horizontalSeparatorComponent.setMaxSize(300,1);
+        return horizontalSeparatorComponent;
+
     }
 
 
