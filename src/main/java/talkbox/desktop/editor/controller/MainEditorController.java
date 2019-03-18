@@ -214,6 +214,14 @@ public class MainEditorController implements Initializable {
         //END OF CODE THAT DRAWS BUTTON ON UI//
     }
 
+    //TODO @ Rachel finish add button functionality
+    //TODO @ Rachel finish add row functionality
+    //TODO @ Rachel create delete button functionality
+    //TODO @ Rachel Each time there is a change in the talkbuttons it updates the catalog page
+    //TODO @ Rachel fix issues that happens when too many buttons or rows are added
+    //TODO @ Rachel add functionality that refreshes view and loads a different page when a key button at the top is clicked
+
+
     public VBox addFxButton(HBox hBox, Button addClick){
         Button add = new Button("+");
         VBox addButton = new VBox();
