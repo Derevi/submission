@@ -155,6 +155,7 @@ public class MainEditorController implements Initializable {
             hbox.setSpacing(10);
             for(Button b: list){
                 hbox.getChildren().add(b);
+                hbox.getChildren().add(addFxButton(hbox,b));
             }
 
             //TODO separate in to its own method and refactor
@@ -208,10 +209,32 @@ public class MainEditorController implements Initializable {
         }
     }
 
-    public void addButton(ActionEvent event){
+    public VBox addFxButton(HBox hBox, Button addClick){
+        Separator upper = new Separator();
+        upper.setOrientation(Orientation.VERTICAL);
+        upper.setMaxSize(10,1);
+        upper.setMinSize(10,1);
 
+        Separator lower = new Separator();
+        lower.setOrientation(Orientation.VERTICAL);
+        lower.setMaxSize(10,1);
+        lower.setMinSize(10,1);
+        VBox addButton = new VBox();
 
+        Button add = new Button("+");
+        int index = hBox.getChildren().indexOf(addClick);
+        add.setOnAction(e-> {
+            Button another = new Button();
+            hBox.getChildren().add(index,another);
+            hBox.getChildren().add(index+1,addFxButton(hBox,another));
+        });
+        addButton.getChildren().add(upper);
+        addButton.getChildren().add(add);
+        addButton.getChildren().add(lower);
+        return addButton;
     }
+
+
 
     //TODO FILTER METHOD: reads entire ui and gets string and image from button stores to talkbutton,
     // stops at size-1 (since the last button is an add button)
