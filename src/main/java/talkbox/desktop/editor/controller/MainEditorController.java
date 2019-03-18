@@ -210,28 +210,29 @@ public class MainEditorController implements Initializable {
     }
 
     public VBox addFxButton(HBox hBox, Button addClick){
-        Separator upper = new Separator();
-        upper.setOrientation(Orientation.VERTICAL);
-        upper.setMaxSize(10,1);
-        upper.setMinSize(10,1);
-
-        Separator lower = new Separator();
-        lower.setOrientation(Orientation.VERTICAL);
-        lower.setMaxSize(10,1);
-        lower.setMinSize(10,1);
-        VBox addButton = new VBox();
-
         Button add = new Button("+");
+        VBox addButton = new VBox();
+        addButton.setAlignment(Pos.CENTER);
+        addButton.setSpacing(10);
+
         int index = hBox.getChildren().indexOf(addClick);
         add.setOnAction(e-> {
             Button another = new Button();
-            hBox.getChildren().add(index,another);
-            hBox.getChildren().add(index+1,addFxButton(hBox,another));
+            hBox.getChildren().add(index+2,another);
+            hBox.getChildren().add(index+3,addFxButton(hBox,another));
         });
-        addButton.getChildren().add(upper);
+        addButton.getChildren().add(verticalSeparator());
         addButton.getChildren().add(add);
-        addButton.getChildren().add(lower);
+        addButton.getChildren().add(verticalSeparator());
         return addButton;
+    }
+
+    public Separator verticalSeparator(){
+        Separator verticalSeparatorComponent = new Separator();
+        verticalSeparatorComponent.setOrientation(Orientation.VERTICAL);
+        verticalSeparatorComponent.setMaxSize(3,10);
+        verticalSeparatorComponent.setMinSize(3,10);
+        return verticalSeparatorComponent;
     }
 
 
