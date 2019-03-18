@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="rootpane" prefHeight="297.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.catalogedit.EditNewButtonPageController">
+   <children>
+      <Label layoutX="181.0" layoutY="42.0" text="Name :" />
+      <TextField fx:id="txtName" layoutX="232.0" layoutY="38.0" />
+      <Label layoutX="111.0" layoutY="83.0" text="Number of Buttons :" />
+      <Label layoutX="38.0" layoutY="129.0" text="Max number of Buttons per rows :" />
+      <Label layoutX="19.0" layoutY="171.0" text="Max number of Buttons per columns :" />
+      <TextField fx:id="txtNumBtns" layoutX="232.0" layoutY="79.0" />
+      <TextField fx:id="txtMaxRows" layoutX="232.0" layoutY="125.0" />
+      <TextField fx:id="txtMaxCol" layoutX="232.0" layoutY="167.0" />
+      <Separator prefWidth="200.0" />
+      <Button layoutX="253.0" layoutY="201.0" mnemonicParsing="false" onAction="#AddBtnPage" text="Add Button Page" />
+      <Button layoutX="286.0" layoutY="233.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   </children>
+</AnchorPane>
