@@ -18,6 +18,6 @@
       <TextField fx:id="txtMaxCol" layoutX="232.0" layoutY="167.0" />
       <Separator prefWidth="200.0" />
       <Button layoutX="253.0" layoutY="201.0" mnemonicParsing="false" onAction="#AddBtnPage" text="Add Button Page" />
-      <Button layoutX="286.0" layoutY="233.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button layoutX="286.0" layoutY="233.0" mnemonicParsing="false" onAction="#back" text="Cancel" />
    </children>
 </AnchorPane>

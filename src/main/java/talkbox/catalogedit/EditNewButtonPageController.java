@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,7 @@ public class EditNewButtonPageController implements Initializable {
 
     @FXML
     private TextField txtMaxCol;
+
 
 
     @Override

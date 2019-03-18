@@ -16,6 +16,6 @@
       <ListView id="innerList" fx:id="innerList" layoutX="516.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="569.0" layoutY="30.0" text="Buttons in this list" />
       <Label layoutX="265.0" layoutY="267.0" text="Selected :" />
-      <Label id="selPage" layoutX="319.0" layoutY="267.0" text="..." />
+      <Label fx:id="selectedBtnPage" layoutX="319.0" layoutY="267.0" text="..." />
    </children>
 </AnchorPane>
