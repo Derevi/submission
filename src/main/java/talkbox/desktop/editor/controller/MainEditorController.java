@@ -92,6 +92,9 @@ public class MainEditorController implements Initializable {
         talkButtonPage.addButtonToRow(2,"Monkey");
         talkButtonPage.addButtonToRow(2,"Ape");
         talkButtonPage.addButtonToRow(2,"gorilla");
+        talkButtonPage.addButtonToRow(2,"");
+
+
         catalog.addPage(talkButtonPage);
 
 
@@ -159,6 +162,9 @@ public class MainEditorController implements Initializable {
             hbox.setSpacing(10);
             for(Button b: list){
                 hbox.getChildren().add(b);
+                if(b.getText().isEmpty()){
+
+                }
                 hbox.getChildren().add(addFxButton(hbox,b));
             }
 
