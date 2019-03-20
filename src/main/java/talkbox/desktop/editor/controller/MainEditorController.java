@@ -92,8 +92,6 @@ public class MainEditorController implements Initializable {
         talkButtonPage.addButtonToRow(2,"Monkey");
         talkButtonPage.addButtonToRow(2,"Ape");
         talkButtonPage.addButtonToRow(2,"gorilla");
-        talkButtonPage.addButtonToRow(2,"");
-
 
         catalog.addPage(talkButtonPage);
 
