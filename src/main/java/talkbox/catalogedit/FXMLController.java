@@ -31,7 +31,7 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
        // System.out.println("ASffsa");
 
-       for( Map.Entry<Button, ArrayList<String>> entry : editCatalogController.defaultMap.entrySet() ){
+       for( Map.Entry<Button, ArrayList<Label>> entry : editCatalogController.defaultMap.entrySet() ){
               System.out.println(entry);
               crntList.getItems().add(entry.getKey());
         }

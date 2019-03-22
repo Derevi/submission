@@ -17,5 +17,6 @@
       <Label layoutX="569.0" layoutY="30.0" text="Buttons in this list" />
       <Label layoutX="265.0" layoutY="267.0" text="Selected :" />
       <Label fx:id="selectedBtnPage" layoutX="319.0" layoutY="267.0" text="..." />
+      <Button fx:id="back" layoutX="115.0" layoutY="217.0" mnemonicParsing="false" onAction="#backBtn" text="Back" />
    </children>
 </AnchorPane>
