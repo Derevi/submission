@@ -6,11 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -38,10 +39,17 @@ public class MainEditorController implements Initializable {
     @FXML
     private AnchorPane root;
 
+    @FXML
+    private GridPane imageGrid;
+
+    @FXML
+    private AnchorPane imageWindowRoot;
+
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
     private FXMLLoader fXMLLoader = new FXMLLoader();
     private LinkedHashMap<String, ArrayList<ArrayList<Button>>> catalogFxButtons;
+
 
 
 
@@ -70,7 +78,36 @@ public class MainEditorController implements Initializable {
         catalog.addPage("animals", 150);
 
         TalkButtonPage talkButtonPage = new TalkButtonPage("animals",150);
-        // Button button = new Button("test");
+         Button imageDialog = new Button("IMAGE DIALOG");
+         imageDialog.setOnAction(e->{
+                try{
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/talkbox/desktop/editor/view/imagewindow.fxml"));
+                    Parent imgWindowRoot =  fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("My New Stage Title");
+                    stage.setScene(new Scene(imgWindowRoot));
+                   /*
+                    File imageFile = new File("objects/balloon.png");
+                    Image img = new Image(imageFile.toURI().toURL().toString());
+                    HBox imgBox = new HBox();
+                    //for adding image:
+                    ImageView imgView = new ImageView(img);
+                    imgBox.getChildren().add(imgView);
+                    Button imgs = new Button("image ",imgBox);
+                    imageGrid.add(imgView,1 ,1);
+
+                    //
+                    */
+
+                    stage.show();
+                    // Hide this current window (if this is what you want)
+                    // ((Node)(event.getSource())).getScene().getWindow().hide();
+                }catch (IOException ioe){
+                    ioe.printStackTrace();
+                }
+
+         });
+         baseVBox.getChildren().add(imageDialog);
 
 
         talkButtonPage.addRow();
@@ -264,6 +301,23 @@ public class MainEditorController implements Initializable {
     @FXML
     public void saveAsCatalog(){
         //TODO allow uses to save current selected catalog as another file (ser)
+    }
+
+    public void imageAdder(ActionEvent event){
+        try {
+            FXMLLoader window = FXMLLoader.load(getClass().getClassLoader().getResource("/talkbox/desktop/editor/view/imagewindow.fxml"));
+            Parent newWindow = (Parent) window.load();
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(newWindow));
+            stage.show();
+            // Hide this current window (if this is what you want)
+           // ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
