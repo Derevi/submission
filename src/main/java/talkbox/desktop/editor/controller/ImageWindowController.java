@@ -1,8 +1,12 @@
 package talkbox.desktop.editor.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,10 +16,9 @@ import javafx.scene.layout.GridPane;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ImageWindowController implements Initializable {
 
@@ -24,12 +27,16 @@ public class ImageWindowController implements Initializable {
 
     @FXML
     ListView<String> imageCategories;
+
     @FXML
     private AnchorPane imageWindowRoot;
 
     private ArrayList<File> imageFileList;
+    private ArrayList<File> images;
+    private ArrayList<String> categories;
 
     private LinkedHashMap<String, ArrayList<ImageView>> categoryImageFileMap;
+    private LinkedHashMap<String, ArrayList<File>> categoryFileMap;
 
 
 
@@ -37,17 +44,53 @@ public class ImageWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         File imageDirectory = new File("Icon Images");
-        for(File f : imageDirectory.listFiles()){
-            System.out.println(f.getName());
-        }
-        //imageFileList = (ArrayList<File>)Arrays.asList(imageDirectory.listFiles());
+      imageFileList = new ArrayList<>(Arrays.asList(imageDirectory.listFiles()));
+       // categories = imageFileList.stream().map(File::getName).collect(Collectors.toCollection(ArrayList::new));
+
+        categoryFileMap = imageFileList.stream()
+                .collect(Collectors.toMap(
+                        File::getName,
+                        file ->{
+                            return new ArrayList<>(Arrays.asList(file.listFiles()));
+                        },
+                        (key, value) -> key,
+                        LinkedHashMap::new));
+
+        categoryImageFileMap = imageFileList.stream()
+                .collect(Collectors.toMap(
+                        File::getName,
+                        file ->{
+                            ArrayList<File> fileList = new ArrayList<>(Arrays.asList(file.listFiles()));
+                            return
+                            fileList.stream().map(f -> f.toURI().toString()).map(ImageView::new).collect(Collectors.toCollection(ArrayList::new));
+                        },
+                        (key, value) -> key,
+                        LinkedHashMap::new));
+
+
+
+        imageCategories.setItems(FXCollections.observableList(new ArrayList<>(Arrays.asList(imageDirectory.listFiles())).stream()
+                .map(File::getName)
+                .collect(Collectors.toCollection(ArrayList::new))));
+
+        imageCategories.setOnMouseClicked(e->{
+            imageGrid.getChildren().clear();
+            System.out.println(imageCategories.getSelectionModel().getSelectedItem());
+            generateImageGrid(imageCategories.getSelectionModel().getSelectedItem());
+
+        });
+
+
+
+
+        imageCategories.getItems().add("TEST");
         //ArrayList<String> filesInImageDirectory = new ArrayList<>();
         //filesInImageDirectory.stream().collect(imageDirectory.getName())
         //categoryImageFileMap.entrySet().stream().collect(File)
-
+/*
         try{
             File imageFile = new File("objects/balloon.png");
-            Image img = new Image(imageFile.toURI().toURL().toString());
+            Image img = new Image(imageFile.toURI().toString());
             ImageView imgView = new ImageView(img);
             imgView.setFitHeight(100);
             imgView.setFitWidth(100);
@@ -62,8 +105,18 @@ public class ImageWindowController implements Initializable {
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
+        */
 
     }
+
+    public void generateImageGrid(String category){
+        //categoryFileMap.get(category).stream().map(s-> new ImageView(s.toURI().toString())).filter( j->)
+        IntStream.range(0,categoryFileMap.get(category).size())
+                .forEach(i -> IntStream.range(0,5).forEach(j -> imageGrid.add(categoryImageFileMap.get(category).get(i+j),i,j)));
+
+    }
+
+
 
 
 }
