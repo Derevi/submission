@@ -89,8 +89,6 @@ public class ImageWindowController implements Initializable {
 
 
 
-
-        imageCategories.getItems().add("TEST");
         //ArrayList<String> filesInImageDirectory = new ArrayList<>();
         //filesInImageDirectory.stream().collect(imageDirectory.getName())
         //categoryImageFileMap.entrySet().stream().collect(File)
@@ -116,11 +114,24 @@ public class ImageWindowController implements Initializable {
 
     }
 
+    //TODO add scroll pane for images on gridpane
     public void generateImageGrid(String category){
         //categoryFileMap.get(category).stream().map(s-> new ImageView(s.toURI().toString())).filter( j->)
-        IntStream.range(0,categoryFileMap.get(category).size())
-                .forEach(i -> IntStream.range(0,5).forEach(j -> imageGrid.add(categoryImageFileMap.get(category).get(i+j),i,j)));
-
+        int counter =0;
+        for(int i =0; i<categoryImageFileMap.get(category).size()/5;i++){
+            for(int j = 0; j<5;j++){
+                imageGrid.add(categoryImageFileMap.get(category).get(counter),j,i);
+                counter++;
+            }
+        }
+       /* IntStream.range(0,categoryFileMap.get(category).size())
+                .forEach(i -> {
+                    IntStream.range(0,5).forEach(j -> {
+                        imageGrid.add(categoryImageFileMap.get(category).get(i+j),i,j)
+                    });
+                    i++;
+                });
+*/
     }
 
 
