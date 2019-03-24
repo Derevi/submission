@@ -61,9 +61,16 @@ public class ImageWindowController implements Initializable {
                         File::getName,
                         file ->{
                             ArrayList<File> fileList = new ArrayList<>(Arrays.asList(file.listFiles()));
-                            return
-                            fileList.stream().map(f -> f.toURI().toString()).map(ImageView::new).collect(Collectors.toCollection(ArrayList::new));
-                        },
+
+                            ArrayList<ImageView> imageViewArrayList = fileList.stream().map(f -> f.toURI().toString()).map(ImageView::new).collect(Collectors.toCollection(ArrayList::new));
+
+                            imageViewArrayList.stream().forEach(v -> {
+                                v.setFitWidth(80);
+                                v.setFitHeight(80);
+                            });
+
+                            return imageViewArrayList;
+                            },
                         (key, value) -> key,
                         LinkedHashMap::new));
 
