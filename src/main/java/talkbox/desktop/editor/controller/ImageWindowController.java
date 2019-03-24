@@ -5,9 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -62,6 +60,8 @@ public class ImageWindowController implements Initializable {
                         file ->{
                             ArrayList<File> fileList = new ArrayList<>(Arrays.asList(file.listFiles()));
 
+
+
                             ArrayList<ImageView> imageViewArrayList = fileList.stream().map(f -> f.toURI().toString()).map(ImageView::new).collect(Collectors.toCollection(ArrayList::new));
 
                             imageViewArrayList.stream().forEach(v -> {
@@ -81,9 +81,11 @@ public class ImageWindowController implements Initializable {
                 .collect(Collectors.toCollection(ArrayList::new))));
 
         imageCategories.setOnMouseClicked(e->{
+
             imageGrid.getChildren().clear();
             System.out.println(imageCategories.getSelectionModel().getSelectedItem());
             generateImageGrid(imageCategories.getSelectionModel().getSelectedItem());
+
 
         });
 

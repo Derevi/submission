@@ -80,6 +80,9 @@ public class MainEditorController implements Initializable {
         TalkButtonPage talkButtonPage = new TalkButtonPage("animals",150);
          Button imageDialog = new Button("IMAGE DIALOG");
          imageDialog.setOnAction(e->{
+
+             ProgressBar progressBar = new ProgressBar();
+             ProgressIndicator progressIndicator = new ProgressIndicator();
                 try{
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/talkbox/desktop/editor/view/imagewindow.fxml"));
                     Parent imgWindowRoot =  fxmlLoader.load();
