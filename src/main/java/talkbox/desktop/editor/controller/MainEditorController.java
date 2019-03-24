@@ -71,9 +71,9 @@ public class MainEditorController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ///START OF SETUP CODE///THIS IS SET UP CODE ONLY IT WILL BE DELETED after//
         TalkButtonCatalog catalog = new TalkButtonCatalog();
         catalog.addPage("animals", 150);
 
@@ -129,6 +129,7 @@ public class MainEditorController implements Initializable {
         talkButtonPage.addButtonToRow(2,"Monkey");
         talkButtonPage.addButtonToRow(2,"Ape");
         talkButtonPage.addButtonToRow(2,"gorilla");
+
         catalog.addPage(talkButtonPage);
 
 
@@ -156,6 +157,10 @@ public class MainEditorController implements Initializable {
         baseVBox.setAlignment(Pos.CENTER);
         baseVBox.setSpacing(10);
 
+        ///END OF SETUP CODE///THIS IS SET UP CODE ONLY IT WILL BE DELETED after//
+
+
+        //START OF CODE THAT DRAWS BUTTON ON UI ..IT is basically one big for loop//
         HBox keyBox = new HBox();
         keyBox.setAlignment(Pos.CENTER);
         keyBox.setSpacing(10);
@@ -192,6 +197,10 @@ public class MainEditorController implements Initializable {
             hbox.setSpacing(10);
             for(Button b: list){
                 hbox.getChildren().add(b);
+                if(b.getText().isEmpty()){
+
+                }
+                hbox.getChildren().add(addFxButton(hbox,b));
             }
 
             //TODO separate in to its own method and refactor
@@ -243,12 +252,53 @@ public class MainEditorController implements Initializable {
                     }
             );
         }
+        //END OF CODE THAT DRAWS BUTTON ON UI//
     }
 
-    public void addButton(ActionEvent event){
+    //TODO @ Rachel finish add button functionality
+    //TODO @ Rachel finish add row functionality
+    //TODO @ Rachel create delete button functionality
+    //TODO @ Rachel Each time there is a change in the talkbuttons it updates the catalog page
+    //TODO @ Rachel fix issues that happens when too many buttons or rows are added
+    //TODO @ Rachel add functionality that refreshes view and loads a different page when a key button at the top is clicked
 
+
+    public VBox addFxButton(HBox hBox, Button addClick){
+        Button add = new Button("+");
+        VBox addButton = new VBox();
+        addButton.setAlignment(Pos.CENTER);
+        addButton.setSpacing(10);
+
+        int index = hBox.getChildren().indexOf(addClick);
+        add.setOnAction(e-> {
+            Button another = new Button();
+            hBox.getChildren().add(index+2,another);
+            hBox.getChildren().add(index+3,addFxButton(hBox,another));
+        });
+        addButton.getChildren().add(verticalSeparator());
+        addButton.getChildren().add(add);
+        addButton.getChildren().add(verticalSeparator());
+        return addButton;
+    }
+
+    public Separator verticalSeparator(){
+        Separator verticalSeparatorComponent = new Separator();
+        verticalSeparatorComponent.setOrientation(Orientation.VERTICAL);
+        verticalSeparatorComponent.setMaxSize(3,10);
+        verticalSeparatorComponent.setMinSize(3,10);
+        return verticalSeparatorComponent;
+    }
+
+    public Separator horizontalSeparator(){
+        Separator horizontalSeparatorComponent =new Separator();
+        horizontalSeparatorComponent.setOrientation(Orientation.HORIZONTAL);
+        horizontalSeparatorComponent.setMinSize(300,1);
+        horizontalSeparatorComponent.setMaxSize(300,1);
+        return horizontalSeparatorComponent;
 
     }
+
+
 
     //TODO FILTER METHOD: reads entire ui and gets string and image from button stores to talkbutton,
     // stops at size-1 (since the last button is an add button)

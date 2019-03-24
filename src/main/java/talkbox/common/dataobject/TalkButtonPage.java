@@ -78,6 +78,9 @@ public class TalkButtonPage implements Serializable {
     }
 
     public void addButtonToRow(int row, String talkButtonName){
+        if(talkButtonName.isEmpty()){
+            throw new IllegalArgumentException();
+        }
        page.get(row).add(new TalkButton(talkButtonName,buttonSize));
     }
 
