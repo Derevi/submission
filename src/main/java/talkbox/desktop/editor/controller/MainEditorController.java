@@ -136,7 +136,7 @@ public class MainEditorController implements Initializable {
         HBox initialHBoxAboveButtons = new HBox();
         initialHBoxAboveButtons.setAlignment(Pos.CENTER);
         initialHBoxAboveButtons.setSpacing(20);
-        Button addIntialRowButton = new Button("++add row++");
+        Button addInitialRowButton = new Button("++add row++");
 
         Separator separatorL1 =new Separator();
         separatorL1.setOrientation(Orientation.HORIZONTAL);
@@ -149,7 +149,7 @@ public class MainEditorController implements Initializable {
         separatorR1.setMinSize(300,1);
         separatorR1.setMaxSize(300,1);
         initialHBoxAboveButtons.getChildren().add(separatorL1);
-        initialHBoxAboveButtons.getChildren().add(addIntialRowButton);
+        initialHBoxAboveButtons.getChildren().add(addInitialRowButton);
         initialHBoxAboveButtons.getChildren().add(separatorR1);
         baseVBox.getChildren().add(initialHBoxAboveButtons);
 
@@ -170,14 +170,15 @@ public class MainEditorController implements Initializable {
             //ADD BUTTON METHOD
             Button newb = new Button("++button++");
             newb.setOnAction(e-> {
-                Button newt = new Button("test");
                 hbox.getChildren().add(hbox.getChildren().size()-1, new Button());
+                hbox.getChildren().add(hbox.getChildren().size()-1, new Button("+"));
             });
             hbox.getChildren().add(newb);
             baseVBox.getChildren().add(hbox);
 
             //TODO separate in to its own method and refactor
             //ADD NEW ROW METHOD
+
             Button addRowButton = new Button("++add row++");
 
             HBox hBoxBelowButtons = new HBox();
@@ -206,14 +207,22 @@ public class MainEditorController implements Initializable {
             addRowButton.setOnAction(e->{
                         HBox newh = new HBox();
                         newh.setAlignment(Pos.CENTER);
-                        Button newbut= new Button("tesst");
+                        Button newbut= new Button("test");
                         newbut.setMinSize(100,100);
                         newh.getChildren().add(newbut);
                         System.out.println();
-                        baseVBox.getChildren().add(rowb,newh);
-                        baseVBox.getChildren().add(rowb+1,new Button("++add row++"));
+                        HBox newAddRowH = new HBox();
+                        newAddRowH.setAlignment(Pos.CENTER);
+                        newAddRowH.setSpacing(20);
+                        newAddRowH.getChildren().add(horizontalSeparator());
+                        newAddRowH.getChildren().add(new Button("++add row++"));
+                        newAddRowH.getChildren().add(horizontalSeparator());
+                        baseVBox.getChildren().add(rowb, newAddRowH);
+                        baseVBox.getChildren().add(rowb + 1,newh);
+
                     }
             );
+
         }
         //END OF CODE THAT DRAWS BUTTON ON UI//
     }
@@ -234,9 +243,9 @@ public class MainEditorController implements Initializable {
 
         int index = hBox.getChildren().indexOf(addClick);
         add.setOnAction(e-> {
-            Button another = new Button();
-            hBox.getChildren().add(index+2,another);
-            hBox.getChildren().add(index+3,addFxButton(hBox,another));
+            Button another = new Button("Test");
+            hBox.getChildren().add(index + 2, another);
+            hBox.getChildren().add(index + 3, addFxButton(hBox, another));
         });
         addButton.getChildren().add(verticalSeparator());
         addButton.getChildren().add(add);
@@ -282,9 +291,40 @@ public class MainEditorController implements Initializable {
     }
 
     @FXML
-    public void addRow(int row){
+    public void addRow(Button clickedButton){
         //TODO insert new row with an empty button
         //TODO Hbox with position set to right so it is in right bottom corner
+
+        Button addRowButton = new Button("++add row++");
+
+        HBox hBoxBelowButtons = new HBox();
+        hBoxBelowButtons.setAlignment(Pos.CENTER);
+        hBoxBelowButtons.setSpacing(20);
+
+        baseVBox.getChildren().add(hBoxBelowButtons);
+        int index = baseVBox.getChildren().indexOf(hBoxBelowButtons);
+        addRowButton.setOnAction(e->{
+                    HBox newButtonRow = new HBox();
+                    newButtonRow.setAlignment(Pos.CENTER);
+                    Button newBut= new Button("test");
+                    newBut.setMinSize(100,100);
+                    newButtonRow.getChildren().add(newBut);
+                    System.out.println();
+
+                    HBox newAddRowH = new HBox();
+                    newAddRowH.setAlignment(Pos.CENTER);
+                    newAddRowH.setSpacing(20);
+
+                    newAddRowH.getChildren().add(horizontalSeparator());
+                    newAddRowH.getChildren().add(addRowButton);
+                    newAddRowH.getChildren().add(horizontalSeparator());
+
+                    baseVBox.getChildren().add(index, newAddRowH);
+                    baseVBox.getChildren().add(index + 1,newBut);
+                }
+        );
+
+
     }
 
     private void refreshView(){
