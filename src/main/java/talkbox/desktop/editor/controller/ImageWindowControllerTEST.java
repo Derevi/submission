@@ -9,13 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import talkbox.common.dataobject.TalkButton;
+import talkbox.common.dataobject.TalkButtonPage;
 
 import java.io.File;
 import java.net.URL;
@@ -43,12 +42,118 @@ public class ImageWindowControllerTEST implements Initializable {
     private LinkedHashMap<String, ArrayList<ImageView>> categoryImageFileMap;
     private LinkedHashMap<String, ArrayList<File>> categoryFileMap;
 
-
+//TODO Refactor ALL METHODS for Drag and drop
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        int counter=0;
+        for(int i = 1; i<=3;i++){
+            for(int j = 1; j<=5;j++){
+                System.out.printf("Button b%d = new Button(\" NUMBER: %s\"); gridPane.add(b%d,%d,%d);buttonList.add(b%d);\n",counter,String.valueOf(counter).toUpperCase(),counter,j,i,counter);
+                counter++;
+            }
+
+         }
+        ArrayList<Button> buttonList = new ArrayList<>();
+
+        imageWindowRoot.getChildren().clear();
+        GridPane gridPane = new GridPane();
+        Button b0 = new Button(" NUMBER: 0"); gridPane.add(b0,1,1);buttonList.add(b0);
+        Button b1 = new Button(" NUMBER: 1"); gridPane.add(b1,2,1);buttonList.add(b1);
+        Button b2 = new Button(" NUMBER: 2"); gridPane.add(b2,3,1);buttonList.add(b2);
+        Button b3 = new Button(" NUMBER: 3"); gridPane.add(b3,4,1);buttonList.add(b3);
+        Button b4 = new Button(" NUMBER: 4"); gridPane.add(b4,5,1);buttonList.add(b4);
+        Button b5 = new Button(" NUMBER: 5"); gridPane.add(b5,1,2);buttonList.add(b5);
+        Button b6 = new Button(" NUMBER: 6"); gridPane.add(b6,2,2);buttonList.add(b6);
+        Button b7 = new Button(" NUMBER: 7"); gridPane.add(b7,3,2);buttonList.add(b7);
+        Button b8 = new Button(" NUMBER: 8"); gridPane.add(b8,4,2);buttonList.add(b8);
+        Button b9 = new Button(" NUMBER: 9"); gridPane.add(b9,5,2);buttonList.add(b9);
+        Button b10 = new Button(" NUMBER: 10"); gridPane.add(b10,1,3);buttonList.add(b10);
+        Button b11 = new Button(" NUMBER: 11"); gridPane.add(b11,2,3);buttonList.add(b11);
+        Button b12 = new Button(" NUMBER: 12"); gridPane.add(b12,3,3);buttonList.add(b12);
+        Button b13 = new Button(" NUMBER: 13"); gridPane.add(b13,4,3);buttonList.add(b13);
+        Button b14 = new Button(" NUMBER: 14"); gridPane.add(b14,5,3);buttonList.add(b14);
+        imageWindowRoot.getChildren().add(gridPane);
+
+        buttonList.forEach(b->{
+           // DataFormat buttonFormat = new DataFormat("talkbox.common.dataobject.TalkButtonPage");
+            TalkButtonPage talkButtonPage = new TalkButtonPage("test");
+            b.setUserData(talkButtonPage);
+            b.setOnDragDetected(e->{
+                Dragboard db = b.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+                ClipboardContent content = new ClipboardContent();
+                TalkButtonPage tp = (TalkButtonPage) b.getUserData();
+                content.putString(Integer.toString(buttonList.indexOf(b)));
+                File imageFile = new File("buttondragimage.PNG");
+                Image dragIcon = new Image(imageFile.toURI().toString(),50,50,false,false);
+                db.setDragView(dragIcon,0,0);
+
+
+                db.setContent(content);
+            });
+
+            b.setOnDragOver(e->{
+                e.acceptTransferModes(TransferMode.COPY);
+            });
+
+            b.setOnDragDropped(e->{
+                Dragboard db = e.getDragboard();
+                System.out.println(db.getString());
+                gridPane.getChildren().remove(Integer.parseInt(db.getString()));
+                System.out.println(buttonList.indexOf(b));
+
+
+            });
+
+            b.setOnMouseDragged(event -> {
+                Button clone = new Button(b.getText());
+                clone.setTranslateX(event.getSceneX());
+                clone.setTranslateY(event.getSceneY());
+                clone.setOnMouseReleased(event1 -> {
+
+                });
+            });
+
+
+        });
+
+
+        Button dragger = new Button("DRAG ME");
+
+        double initialX = dragger.getTranslateX();
+        double initialY = dragger.getTranslateY();
+
+        dragger.setOnDragDetected(e->{
+            Dragboard db =dragger.startDragAndDrop(TransferMode.COPY);
+            db.setDragView(dragger.snapshot(null, null), e.getX(), e.getY());
+        });
+
+
+
+/*
+        dragger.setOnMouseDragged(event -> {
+
+            dragger.setTranslateX(event.getSceneX());
+            dragger.setTranslateY(event.getSceneY());
+
+            dragger.setOnMouseReleased(e->{
+                System.out.println("INITIAL X AND Y IS: "+initialX +" "+initialY);
+                dragger.setTranslateX(initialX);
+                dragger.setTranslateY(initialY);
+                imageWindowRoot.setOnDragDropped(event1 -> {
+                    System.out.println("dropped");
+                });
+            });
+
+            //dragger.getTranslateX();
+            //dragger.getTranslateY();
+        });
+*/
+
+        //imageWindowRoot.getChildren().add(dragger);
         HBox buttonHbox = new HBox();
+
         buttonHbox.setMaxSize(100,100);
         buttonHbox.setMinSize(100,100);
         buttonHbox.setAlignment(Pos.CENTER);
@@ -57,7 +162,7 @@ public class ImageWindowControllerTEST implements Initializable {
         test.setAlignment(Pos.CENTER);
         test.setMinSize(130,130);
         test.setMaxSize(130,130);
-        imageWindowRoot.getChildren().add(test);
+        //imageWindowRoot.getChildren().add(test);
 
         File imageDirectory = new File("Icon Images");
       imageFileList = new ArrayList<>(Arrays.asList(imageDirectory.listFiles()));
@@ -98,6 +203,8 @@ public class ImageWindowControllerTEST implements Initializable {
                                     ClipboardContent content = new ClipboardContent();
                                     content.putString(fileList.get(imageViewArrayList.indexOf(v)).toString());
                                     content.putImage(cloneImage);
+                                    //CHANGE OFFSET HERE
+                                    db.setDragView(cloneImage,-10,-10);
                                     db.setContent(content);
                                     e.consume();
                                 });
