@@ -25,6 +25,7 @@ import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
+import talkbox.desktop.editor.model.PageFXToggles;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class MainEditorController implements Initializable {
     }
 
 
-    
+
 
     public VBox addFxButton(HBox hBox, Button addClick){
         Button add = new Button("+");
@@ -211,26 +212,17 @@ public class MainEditorController implements Initializable {
 
 
         //SETUP FOR TOGGLE GROUP OF CATEGORY BUTTONS
-        ToggleGroup toggleGroup = new ToggleGroup();
+        PageFXToggles pageFXToggles = new PageFXToggles(catalogFxButtons.keySet());
 
         HBox keyBox = new HBox();
         keyBox.setAlignment(Pos.CENTER);
         keyBox.setSpacing(10);
-        for(String s:catalogFxButtons.keySet()){
-            VBox vBox =new VBox();
-            vBox.setMaxSize(140,20);
-            TextField textField = new TextField(s);
-            vBox.getChildren().add(textField);
-            ToggleButton toggleButton = new ToggleButton(s,vBox);
-            toggleButton.setMaxSize(160,160);
-            toggleButton.setMinSize(160,160);
-
-            toggleGroup.getToggles().add(toggleButton);
-            keyBox.getChildren().add(toggleButton);
-        }
-
+        keyBox.getChildren().addAll(pageFXToggles.getToggleButtons());
         keyBox.getChildren().add(new Button("+PAGE+"));
         baseVBox.getChildren().add(1,keyBox);
+
+
+
         //END OF SETUP FOR TOGGLE GROUP OF CATEGORY BUTTONS
 
 
