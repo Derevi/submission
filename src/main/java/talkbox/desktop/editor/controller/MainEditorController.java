@@ -26,6 +26,7 @@ import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
 import talkbox.desktop.editor.model.PageFXToggles;
+import talkbox.desktop.mainapp.model.ButtonPageToggleBox;
 
 import java.io.File;
 import java.io.IOException;
@@ -85,11 +86,7 @@ public class MainEditorController implements Initializable {
             hbox.getChildren().add(newb);
             baseVBox.getChildren().add(hbox);
 
-
-
             drawAddRowElements();
-
-
         }
 
     }
@@ -213,20 +210,16 @@ public class MainEditorController implements Initializable {
 
         //SETUP FOR TOGGLE GROUP OF CATEGORY BUTTONS
         PageFXToggles pageFXToggles = new PageFXToggles(catalogFxButtons.keySet());
-
-        HBox keyBox = new HBox();
-        keyBox.setAlignment(Pos.CENTER);
-        keyBox.setSpacing(10);
-        keyBox.getChildren().addAll(pageFXToggles.getToggleButtons());
-        keyBox.getChildren().add(new Button("+PAGE+"));
-        baseVBox.getChildren().add(1,keyBox);
+        HBox keyBox = pageFXToggles.getButtonPageToggleBox();
+        baseVBox.getChildren().add(1, keyBox);
 
 
-
-        //END OF SETUP FOR TOGGLE GROUP OF CATEGORY BUTTONS
 
 
     }
+
+
+
     void init(){
         this.talkButtonCatalog = new TalkButtonCatalog();
         this.talkButtonCatalog.addPage("animals", 150);

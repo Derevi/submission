@@ -1,17 +1,15 @@
 package talkbox.desktop.editor.model;
 
-import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class PageFXToggles {
     Set<String> keySet;
@@ -29,10 +27,10 @@ public class PageFXToggles {
         keySet.stream()
                 .map(this::generateDefaultToggleButton)
                 .forEach(toggleButton -> toggleButtons.add(toggleButton));
+
         toggleButtons.stream()
                 .forEach(toggleButton -> this.toggleGroup.getToggles().add(toggleButton));
     }
-
 
     public ToggleGroup getToggleGroup(){
         return this.toggleGroup;
@@ -48,7 +46,7 @@ public class PageFXToggles {
         VBox vBox = toggleButtonInternalVBox(150,150);
         TextField textField = textFieldInternal(name,120,20);
         vBox.getChildren().add(textField);
-        ToggleButton toggleButton = new ToggleButton(name,vBox);
+        ToggleButton toggleButton = new ToggleButton(" ",vBox);
         setToggleButtonSize(toggleButton,160,160);
         return toggleButton;
     }
@@ -70,6 +68,15 @@ public class PageFXToggles {
         textField.setMinSize(width,height);
         textField.setMaxSize(width,height);
         return textField;
+    }
+
+    public HBox getButtonPageToggleBox(){
+        HBox keyBox = new HBox();
+        keyBox.setAlignment(Pos.CENTER);
+        keyBox.setSpacing(10);
+        keyBox.getChildren().addAll(this.toggleButtons);
+        keyBox.getChildren().add(new Button("+PAGE+"));
+        return keyBox;
     }
 
 
