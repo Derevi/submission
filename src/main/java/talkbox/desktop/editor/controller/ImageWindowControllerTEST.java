@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -49,8 +50,11 @@ public class ImageWindowControllerTEST implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         HBox buttonHbox = new HBox();
         buttonHbox.setMaxSize(100,100);
+        buttonHbox.setMinSize(100,100);
+        buttonHbox.setAlignment(Pos.CENTER);
 
         Button test = new Button("TESTOMG",buttonHbox);
+        test.setAlignment(Pos.CENTER);
         test.setMinSize(130,130);
         test.setMaxSize(130,130);
         imageWindowRoot.getChildren().add(test);
@@ -82,26 +86,31 @@ public class ImageWindowControllerTEST implements Initializable {
                                 //IMAGE ICONS ARE HERE SET METHODS
                                 v.setOnDragDetected(e->{
                                     Dragboard db = v.startDragAndDrop(TransferMode.ANY);
-                                    Image cloneImage = new Image(fileList.get(imageViewArrayList.indexOf(v)).toURI().toString(),50,50,false,false);
+                                    Image cloneImage = new Image(fileList.get(imageViewArrayList.indexOf(v)).toURI().toString(),70,70,false,false);
 
 
                                     System.out.println(fileList.get(imageViewArrayList.indexOf(v)));
                                    // buttonHbox.getChildren().add(clone);
 
-                                   db.setDragView(v.getImage());
+
 
 
                                     ClipboardContent content = new ClipboardContent();
+                                    content.putString(fileList.get(imageViewArrayList.indexOf(v)).toString());
                                     content.putImage(cloneImage);
                                     db.setContent(content);
                                     e.consume();
                                 });
 
-                                test.setOnDragDropped(new EventHandler<DragEvent>() {
-                                    public void handle(DragEvent event) {
+                                test.setOnDragOver(event-> {
+
                                         /* data dropped */
                                         /* if there is a string data on dragboard, read it and use it */
+
                                         Dragboard db = event.getDragboard();
+                                        System.out.println("STRING WORKED:  "+db.getString());
+                                        File imageFile = new File(db.getString());
+                                        System.out.println("FILE TRANS WORKED:  "+imageFile.getPath());
                                         boolean success = false;
                                         if (db.hasImage()) {
                                             test.setText(db.getString());
@@ -110,12 +119,24 @@ public class ImageWindowControllerTEST implements Initializable {
                                         }
                                         /* let the source know whether the string was successfully
                                          * transferred and used */
-                                        System.out.println("WORKKEEEDD");
 
-                                        event.setDropCompleted(success);
+                                        test.setOnDragDropped(e->{
+                                            buttonHbox.getChildren().clear();
+                                            ImageView imageView = new ImageView(db.getImage());
+                                            imageView.maxWidth(100);
+                                            imageView.minWidth(100);
+                                            imageView.minHeight(100);
+                                            imageView.maxHeight(100);
+
+                                            buttonHbox.getChildren().add(imageView);
+                                        });
+
+                                        event.acceptTransferModes(TransferMode.ANY);
+
+                                        System.out.println("DROPPED");
 
                                         event.consume();
-                                    }
+
                                 });
 
                             });
