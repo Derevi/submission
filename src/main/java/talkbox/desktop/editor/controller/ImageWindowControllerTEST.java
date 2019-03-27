@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -85,9 +86,10 @@ public class ImageWindowControllerTEST implements Initializable {
                 ClipboardContent content = new ClipboardContent();
                 TalkButtonPage tp = (TalkButtonPage) b.getUserData();
                 content.putString(Integer.toString(buttonList.indexOf(b)));
-                File imageFile = new File("buttondragimage.PNG");
-                Image dragIcon = new Image(imageFile.toURI().toString(),50,50,false,false);
-                db.setDragView(dragIcon,0,0);
+                //File imageFile = new File("buttondragimage.PNG");
+                //Image dragIcon= new Image(imageFile.toURI().toString(),50,50,false,false);
+
+                db.setDragView(b.snapshot(new SnapshotParameters(),null),0,0);
 
 
                 db.setContent(content);
