@@ -82,7 +82,7 @@ public class ImageWindowControllerTEST implements Initializable {
                                 //IMAGE ICONS ARE HERE SET METHODS
                                 v.setOnDragDetected(e->{
                                     Dragboard db = v.startDragAndDrop(TransferMode.ANY);
-                                    Image cloneImage = new Image(fileList.get(imageViewArrayList.indexOf(v)).toURI().toString());
+                                    Image cloneImage = new Image(fileList.get(imageViewArrayList.indexOf(v)).toURI().toString(),50,50,false,false);
 
 
                                     System.out.println(fileList.get(imageViewArrayList.indexOf(v)));
