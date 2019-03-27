@@ -45,6 +45,9 @@ public class EditorFXButton {
     public void initTalkButton(){
         vBox.getChildren().add(this.textField);
     }
+    public void setDefaultActions(Button fxButton){
+
+    }
 
     public void dragAndDrop(Event event){
 
