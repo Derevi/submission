@@ -21,13 +21,14 @@ public class ConfiguratorApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        Parent root = FXMLLoader.load(getClass().getResource("/talkbox/desktop/editor/view/maineditor.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/talkbox/desktop/editor/view/starteditor.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/talkbox/desktop/editor/view/imagewindowTEST.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/talkbox/desktop/editor/view/imagewindowTEST.fxml"));
         primaryStage.setTitle("TalkBox Button Editor");
 
         Scene scene = new Scene(root, 1366, 768);
         scene.getStylesheets().add(getClass().getResource("/talkbox/desktop/styles.css").toExternalForm());
-
+/*
         // Starting here is where I added my current drag and drop code
         final Button source = new Button("DRAG ME");
         source.setScaleX(2.0);
@@ -43,13 +44,13 @@ public class ConfiguratorApp extends Application {
 
         source.setOnDragDetected(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                /* drag was detected, start drag-and-drop gesture*/
+                // drag was detected, start drag-and-drop gesture
                 System.out.println("onDragDetected");
 
-                /* allow any transfer mode */
+                // allow any transfer mode
                 Dragboard db = source.startDragAndDrop(TransferMode.ANY);
 
-                /* put a string on dragboard */
+                // put a string on dragboard
                 ClipboardContent content = new ClipboardContent();
                 content.putString(source.getText());
                 db.setContent(content);
@@ -60,14 +61,14 @@ public class ConfiguratorApp extends Application {
 
         target.setOnDragOver(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) {
-                /* data is dragged over the target */
+                // data is dragged over the target
                 System.out.println("onDragOver");
 
-                /* accept it only if it is  not dragged from the same node
-                 * and if it has a string data */
+                // accept it only if it is  not dragged from the same node
+                 // and if it has a string data
                 if (event.getGestureSource() != target &&
                         event.getDragboard().hasString()) {
-                    /* allow for both copying and moving, whatever user chooses */
+                    // allow for both copying and moving, whatever user chooses
                     event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 }
 
@@ -77,9 +78,9 @@ public class ConfiguratorApp extends Application {
 
         target.setOnDragEntered(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) {
-                /* the drag-and-drop gesture entered the target */
+                // the drag-and-drop gesture entered the target
                 System.out.println("onDragEntered");
-                /* show to the user that it is an actual gesture target */
+                // show to the user that it is an actual gesture target
                 if (event.getGestureSource() != target &&
                         event.getDragboard().hasString()) {
                     target.setFill(Color.GREEN);
@@ -91,7 +92,7 @@ public class ConfiguratorApp extends Application {
 
         target.setOnDragExited(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) {
-                /* mouse moved away, remove the graphical cues */
+                // mouse moved away, remove the graphical cues
                 target.setFill(Color.BLACK);
 
                 event.consume();
@@ -100,17 +101,16 @@ public class ConfiguratorApp extends Application {
 
         target.setOnDragDropped(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) {
-                /* data dropped */
+               // data dropped
                 System.out.println("onDragDropped");
-                /* if there is a string data on dragboard, read it and use it */
+                // if there is a string data on dragboard, read it and use it
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {
                     target.setText(db.getString());
                     success = true;
                 }
-                /* let the source know whether the string was successfully
-                 * transferred and used */
+                // let the source know whether the string was successfully transferred and used
                 event.setDropCompleted(success);
 
                 event.consume();
@@ -119,9 +119,9 @@ public class ConfiguratorApp extends Application {
 
         source.setOnDragDone(new EventHandler <DragEvent>() {
             public void handle(DragEvent event) {
-                /* the drag-and-drop gesture ended */
+                // the drag-and-drop gesture ended
                 System.out.println("onDragDone");
-                /* if the data was successfully moved, clear it */
+                // if the data was successfully moved, clear it
                 if (event.getTransferMode() == TransferMode.MOVE) {
                     source.setText("");
                 }
@@ -131,7 +131,7 @@ public class ConfiguratorApp extends Application {
         });
 
         // This is where my code ends
-
+*/
         primaryStage.setScene(scene);
 
         primaryStage.show();

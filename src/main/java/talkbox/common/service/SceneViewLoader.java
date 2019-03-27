@@ -27,6 +27,25 @@ public class SceneViewLoader {
         this.selectedSerFileToLoad = selectedSerFileToLoad;
 
     }
+        //CONSTRUCTOR WILL BE REMOVED LATER
+    public SceneViewLoader(String pathToFXML){
+        this.pathToFXML = pathToFXML;
+        this.selectedSerFileToLoad = selectedSerFileToLoad;
+
+    }
+
+    public void createNewSceneWindow(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.pathToFXML));
+            Parent imgWindowRoot =  fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(imgWindowRoot));
+            stage.show();
+        }catch (IOException ioe){
+            ioe.printStackTrace();
+        }
+    }
 
     public void setNewScene(ActionEvent event){
         FXMLLoader loader = new FXMLLoader();
