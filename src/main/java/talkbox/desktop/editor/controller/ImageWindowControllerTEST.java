@@ -108,16 +108,6 @@ public class ImageWindowControllerTEST implements Initializable {
 
             });
 
-            b.setOnMouseDragged(event -> {
-                Button clone = new Button(b.getText());
-                clone.setTranslateX(event.getSceneX());
-                clone.setTranslateY(event.getSceneY());
-                clone.setOnMouseReleased(event1 -> {
-
-                });
-            });
-
-
         });
 
 

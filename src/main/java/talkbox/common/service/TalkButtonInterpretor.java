@@ -5,12 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class TalkButtonInterpretor {
@@ -29,6 +31,30 @@ public class TalkButtonInterpretor {
 
     }
 
+    public static LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(LinkedHashMap<String, ArrayList<ArrayList<Button>>> fxButtonCatalog){
+        return
+        fxButtonCatalog.keySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        s->{return convertToHBoxesOfButtons(fxButtonCatalog.get(s));},
+                        (key, value) -> value, LinkedHashMap::new));
+    }
+
+    private static ArrayList<HBox> convertToHBoxesOfButtons(ArrayList<ArrayList<Button>> buttonRows){
+          return buttonRows
+                .stream()
+                .map(TalkButtonInterpretor::convertToHBoxOfButtons)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+    }
+
+    private static HBox convertToHBoxOfButtons(ArrayList<Button> buttonRow){
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(buttonRow);
+        return hBox;
+    }
+
 
 
     public static  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
@@ -39,7 +65,9 @@ public class TalkButtonInterpretor {
                .entrySet()
                .stream()
                .collect(Collectors
-                       .toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new));
+                       .toMap(Map.Entry::getKey,
+                               Map.Entry::getValue,
+                               (key, value) -> value, LinkedHashMap::new));
     }
 
 
@@ -67,7 +95,6 @@ public class TalkButtonInterpretor {
 
 
     public static Button editorAppButton(TalkButton talkButton){
-
         VBox internalButtonVBox = new VBox();
         internalButtonVBox.setAlignment(Pos.CENTER);
         TextField textField = new TextField();
