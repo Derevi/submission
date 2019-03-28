@@ -29,44 +29,61 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
     }
 
     protected  LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(){
-        return EditorAppTalkButtonInterpretor.convertToMapOfHBoxArrayList(talkButtonCatalog);
+        return convertToMapOfHBoxArrayList(talkButtonCatalog);
     }
 
     //TODO IMPLEMENT THIS METHOD
     @Override
     protected Button convertToFXButton(TalkButton talkButton) {
-
-        hBox.setAlignment(Pos.CENTER);
-        fxButton = new Button(name,vBox);
-        fxButton.setMaxSize(160,160);
-        fxButton.setMinSize(160,160);
-        textField = new TextField(name);
-        return null;
+        return createEditorFXButton(talkButton);
     }
 
-    public static void initTalkButton(VBox internalButtonVBox, String name){
-        TextField textField = new TextField(name);
-        internalButtonVBox.getChildren().add(textField);
-    }
-    public void initTalkButton(VBox internalButtonVBox, TalkButton talkButton){
-        initTalkButton(internalButtonVBox, talkButton.getName());
-        Image image = new Image(talkButton.toString());
-        ImageView imageView = new ImageView(image);
-        Button button = new Button();
-        setImageInButtonSize(imageView, button);
-        internalButtonVBox.getChildren().add(imageView);
+    private Button createEditorFXButton(TalkButton talkButton){
+        Button editorFXButton= new Button(talkButton.getName(),createInternalVbox(talkButton));
+        setEditorButtonSize(editorFXButton,talkButton.getButtonSize());
+        return editorFXButton;
     }
 
-    private void setImageInButtonSize(ImageView imageInButtonSize, Button button){
-        double imageHeightScaled = button.getHeight()-30;
-        double imageWidthScaled = button.getWidth()-30;
-        imageInButtonSize.minHeight(imageHeightScaled);
-        imageInButtonSize.maxHeight(imageHeightScaled);
-        imageInButtonSize.minWidth(imageWidthScaled);
-        imageInButtonSize.maxWidth(imageWidthScaled);
-
+    private void setEditorButtonSize(Button editorFXButton, int size){
+            editorFXButton.setMaxSize(size,size);
+            editorFXButton.setMinSize(size,size);
     }
 
+
+    public VBox createInternalVbox(TalkButton talkButton){
+        VBox internalVbox = new VBox();
+        TextField internalTextField = createInternalTextField(talkButton);
+        internalVbox.getChildren().add(0,internalTextField);
+
+        ImageView internalImageView = createInternalImage(talkButton);
+        internalVbox.getChildren().add(1,internalImageView);
+
+        return internalVbox;
+    }
+
+    private ImageView createInternalImage(TalkButton talkButton){
+        ImageView imageView = new ImageView(talkButton.getImageFile().toURI().toString());
+       setImageViewSize(imageView,talkButton.getButtonSize()-30);
+       return imageView;
+    }
+
+    private void setImageViewSize(ImageView imageView, int size){
+        imageView.minHeight(size);
+        imageView.maxHeight(size);
+        imageView.minWidth(size);
+        imageView.maxWidth(size);
+    }
+
+    private TextField createInternalTextField(TalkButton talkButton){
+        TextField textField = new TextField(talkButton.getName());
+        setInternalTextFieldSize(textField, talkButton.getButtonSize()-20);
+        return textField;
+    }
+
+    private void setInternalTextFieldSize(TextField textField, int size){
+        textField.setMinSize(size,20);
+
+    }
 
 
 
