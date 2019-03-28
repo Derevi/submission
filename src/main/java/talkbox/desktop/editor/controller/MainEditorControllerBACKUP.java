@@ -21,7 +21,7 @@ import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.common.service.TalkButtonCatalogSaver;
-import talkbox.common.service.TalkButtonInterpretor;
+import TOBEREMOVED.TalkButtonInterpretor;
 
 import java.io.IOException;
 import java.net.URL;

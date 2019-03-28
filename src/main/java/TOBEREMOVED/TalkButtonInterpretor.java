@@ -1,10 +1,8 @@
-package talkbox.common.service;
+package TOBEREMOVED;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
@@ -31,13 +29,13 @@ public class TalkButtonInterpretor {
 
     }
 
-    public static LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(LinkedHashMap<String, ArrayList<ArrayList<Button>>> fxButtonCatalog){
+    public static LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(TalkButtonCatalog talkButtonCatalog ){
         return
-        fxButtonCatalog.keySet()
+                getFxButtonCatalog(talkButtonCatalog).keySet()
                 .stream()
                 .collect(Collectors.toMap(
                         Function.identity(),
-                        s->{return convertToHBoxesOfButtons(fxButtonCatalog.get(s));},
+                        s->{return convertToHBoxesOfButtons(getFxButtonCatalog(talkButtonCatalog).get(s));},
                         (key, value) -> value, LinkedHashMap::new));
     }
 
@@ -107,5 +105,23 @@ public class TalkButtonInterpretor {
         button.setMinSize(talkButton.getButtonSize(),talkButton.getButtonSize());
         button.setPrefSize(talkButton.getButtonSize(),talkButton.getButtonSize());
         return button;
+    }
+
+    public static boolean isPackageMember(Class<?> clazz, String packageName)
+    {
+        return isPackageMember(clazz.getName(), packageName);
+    }
+
+    public static boolean isPackageMember(String className, String packageName)
+    {
+        if (!className.contains("."))
+        {
+            return packageName == null || packageName.isEmpty();
+        }
+        else
+        {
+            String classPackage = className.substring(0, className.lastIndexOf('.'));
+            return packageName.equals(classPackage);
+        }
     }
 }
