@@ -18,10 +18,49 @@ import java.util.ArrayList;
 
 public class TalkButton implements Serializable {
 
+    public static class Builder{
+        private String name;
+        private File image;
+        private File audio;
+
+
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withImage(File image){
+            //TODO IF FILE IS NOT OF TYPE AUDIO THROW ERROR
+            this.image = image;
+            return this;
+        }
+
+        public Builder withAudio(File audio){
+            //TODO IF FILE IS NOT OF TYPE AUDIO THROW ERROR
+            this.audio = audio;
+            return this;
+        }
+
+        public TalkButton build(){
+            TalkButton talkButton = new TalkButton();
+            talkButton.name = this.name;
+            talkButton.image= this.image;
+            talkButton.audio=this.audio;
+            return talkButton;
+        }
+
+
+
+    }
+
+
     String name;
     AudioClip audioClip;
     String imageFilePath;
     String audioFilePath;
+    private File image;
+    private File audio;
 
     private int buttonSize;
 
