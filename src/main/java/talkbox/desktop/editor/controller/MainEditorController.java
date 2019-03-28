@@ -50,7 +50,7 @@ public class MainEditorController implements Initializable {
 
 
     //TODO send initializers all to service
-    //TODO add roww creates new row with new button, same size and style
+    //TODO add row creates new row with new button, same size and style
     //TODO add button, make '+' button be smaller than minimum so it can be filtered out
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
 
@@ -137,6 +137,7 @@ public class MainEditorController implements Initializable {
         initialHBoxAboveButtons.setAlignment(Pos.CENTER);
         initialHBoxAboveButtons.setSpacing(20);
         Button addInitialRowButton = new Button("++add row++");
+        addInitialRowButton.getStyleClass().add("blue-button");
 
         Separator separatorL1 =new Separator();
         separatorL1.setOrientation(Orientation.HORIZONTAL);
@@ -169,6 +170,7 @@ public class MainEditorController implements Initializable {
             //TODO separate in to its own method and refactor
             //ADD BUTTON METHOD
             Button newb = new Button("++button++");
+            newb.getStyleClass().add("blue-button");
             newb.setOnAction(e-> {
                 hbox.getChildren().add(hbox.getChildren().size()-1, new Button());
                 hbox.getChildren().add(hbox.getChildren().size()-1, new Button("+"));
@@ -180,18 +182,19 @@ public class MainEditorController implements Initializable {
             //ADD NEW ROW METHOD
 
             Button addRowButton = new Button("++add row++");
+            addRowButton.getStyleClass().add("blue-button");
 
             HBox hBoxBelowButtons = new HBox();
             hBoxBelowButtons.setAlignment(Pos.CENTER);
             hBoxBelowButtons.setSpacing(20);
 
-            Separator separatorL =new Separator();
+            Separator separatorL = new Separator();
             separatorL.setOrientation(Orientation.HORIZONTAL);
             separatorL.prefWidth(200);
             separatorL.setMinSize(300,1);
             separatorL.setMaxSize(300,1);
 
-            Separator separatorR =new Separator();
+            Separator separatorR = new Separator();
             separatorR.setOrientation(Orientation.HORIZONTAL);
             separatorR.setMinSize(300,1);
             separatorR.setMaxSize(300,1);
@@ -237,6 +240,7 @@ public class MainEditorController implements Initializable {
 
     public VBox addFxButton(HBox hBox, Button addClick){
         Button add = new Button("+");
+        add.getStyleClass().add("blue-button");
         VBox addButton = new VBox();
         addButton.setAlignment(Pos.CENTER);
         addButton.setSpacing(10);
@@ -262,7 +266,7 @@ public class MainEditorController implements Initializable {
     }
 
     public Separator horizontalSeparator(){
-        Separator horizontalSeparatorComponent =new Separator();
+        Separator horizontalSeparatorComponent = new Separator();
         horizontalSeparatorComponent.setOrientation(Orientation.HORIZONTAL);
         horizontalSeparatorComponent.setMinSize(300,1);
         horizontalSeparatorComponent.setMaxSize(300,1);
@@ -325,6 +329,18 @@ public class MainEditorController implements Initializable {
         );
 
 
+    }
+
+    @FXML
+    public void deleteButtons(){
+        //TODO to be called when the delete button is clicked
+        //TODO will change the event when the buttons are clicked to remove the button
+
+
+
+        for (ArrayList<Button> b: catalogFxButtons.get("animals")) {
+
+        }
     }
 
     private void refreshView(){
