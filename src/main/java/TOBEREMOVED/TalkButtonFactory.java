@@ -1,8 +1,11 @@
-package talkbox.desktop.editor.model;
+package TOBEREMOVED;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButton;
 
 public class TalkButtonFactory {
+    public static class Builder{
+
+    }
     /*
     TalkButtonCatalog talkButtonCatalog;
 

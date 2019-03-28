@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractTalkButtonInterpretor {
 
-    protected static LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(TalkButtonCatalog talkButtonCatalog ){
+    protected final LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(TalkButtonCatalog talkButtonCatalog ){
         return
                 getFxButtonCatalog(talkButtonCatalog).keySet()
                         .stream()
@@ -28,15 +28,15 @@ public abstract class AbstractTalkButtonInterpretor {
                                 (key, value) -> value, LinkedHashMap::new));
     }
 
-    private static ArrayList<HBox> convertToHBoxesOfButtons(ArrayList<ArrayList<Button>> buttonRows){
+    private final ArrayList<HBox> convertToHBoxesOfButtons(ArrayList<ArrayList<Button>> buttonRows){
         return buttonRows
                 .stream()
-                .map(AbstractTalkButtonInterpretor::convertToHBoxOfButtons)
+                .map(s-> convertToHBoxOfButtons(s))
                 .collect(Collectors.toCollection(ArrayList::new));
 
     }
 
-    private static HBox convertToHBoxOfButtons(ArrayList<Button> buttonRow){
+    private final HBox convertToHBoxOfButtons(ArrayList<Button> buttonRow){
         HBox hBox = new HBox();
         hBox.getChildren().addAll(buttonRow);
         return hBox;
@@ -44,7 +44,7 @@ public abstract class AbstractTalkButtonInterpretor {
 
 
 
-    protected static  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
+    protected final  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
         return talkButtonCatalog.getCatalog().keySet()
                 .stream()
                 .map(s -> talkButtonCatalog.getTalkButtonPage(s))
@@ -59,7 +59,7 @@ public abstract class AbstractTalkButtonInterpretor {
 
 
 
-    private static ArrayList<ArrayList<Button>> convertPage (TalkButtonPage talkButtonPage){
+    private final ArrayList<ArrayList<Button>> convertPage (TalkButtonPage talkButtonPage){
         return talkButtonPage.getPage().stream()
                 .map(s ->s.stream()
                         .map(t->mainAppButton(t))
@@ -69,7 +69,7 @@ public abstract class AbstractTalkButtonInterpretor {
     }
 
     //TODO give each button action event that allows them to play audi
-    private static Button mainAppButton(TalkButton talkButton){
+    private final Button mainAppButton(TalkButton talkButton){
         //TODO if image exist load it on to button
         VBox internalButtonVBox = new VBox();
         internalButtonVBox.setAlignment(Pos.CENTER);
@@ -81,7 +81,7 @@ public abstract class AbstractTalkButtonInterpretor {
     }
 
 
-    private static Button editorAppButton(TalkButton talkButton){
+    private final Button editorAppButton(TalkButton talkButton){
         VBox internalButtonVBox = new VBox();
         internalButtonVBox.setAlignment(Pos.CENTER);
         TextField textField = new TextField();

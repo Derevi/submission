@@ -22,16 +22,18 @@ public class TalkButton implements Serializable {
         private String name;
         private File image;
         private File audio;
+        private int buttonSize;
 
 
 
         public Builder withName(String name) {
+            //TODO SET NAME LIMIT OR THROW ERROR
             this.name = name;
             return this;
         }
 
         public Builder withImage(File image){
-            //TODO IF FILE IS NOT OF TYPE AUDIO THROW ERROR
+            //TODO IF FILE IS NOT OF TYPE IMAGE THROW ERROR
             this.image = image;
             return this;
         }
@@ -39,6 +41,12 @@ public class TalkButton implements Serializable {
         public Builder withAudio(File audio){
             //TODO IF FILE IS NOT OF TYPE AUDIO THROW ERROR
             this.audio = audio;
+            return this;
+        }
+
+        public Builder withSize(int buttonSize){
+            //TODO SET SIZE MIN AND MAX LIMITS OR THROW ERROR
+            this.buttonSize = buttonSize;
             return this;
         }
 
@@ -67,6 +75,7 @@ public class TalkButton implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
+
 
     protected TalkButton(){
         this.name = " ";
@@ -119,5 +128,9 @@ public class TalkButton implements Serializable {
 
     protected void speak(){
         AudioPlayer.talk(name);
+    }
+    public File getImageFile(){
+        //TODO precondiction check if ext is an image
+        return this.image;
     }
 }

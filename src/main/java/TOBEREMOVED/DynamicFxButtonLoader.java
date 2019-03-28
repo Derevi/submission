@@ -1,4 +1,4 @@
-package talkbox.desktop.editor.model;
+package TOBEREMOVED;
 
 public class DynamicFxButtonLoader {
 }

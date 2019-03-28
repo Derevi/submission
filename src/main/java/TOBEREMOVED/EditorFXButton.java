@@ -1,4 +1,4 @@
-package talkbox.desktop.editor.model;
+package TOBEREMOVED;
 
 import javafx.event.Event;
 import javafx.geometry.Pos;
@@ -92,8 +92,6 @@ public class EditorFXButton {
         Button addButton = new Button("+");
         setButtonSize(addButton,20,20);
         return addButton;
-
-
     }
 
     public void setButtonSize(Button button, int width, int height){
