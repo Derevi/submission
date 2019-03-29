@@ -14,6 +14,7 @@ public class DynamicFXElementsRenderer {
 
     public static final int firstRowIndex = 0;
     VBox baseVbox;
+    HBox toggleBox;
     TalkButtonCatalog talkButtonCatalog;
     EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
     PageFXToggles pageFXToggles;
@@ -21,7 +22,7 @@ public class DynamicFXElementsRenderer {
     EditorFXButtonActionSetupUtility editorFXButtonActionSetupUtility;
     LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
 
-    public DynamicFXElementsRenderer(TalkButtonCatalog talkButtonCatalog, VBox baseVbox) {
+    public DynamicFXElementsRenderer(TalkButtonCatalog talkButtonCatalog, VBox baseVbox, HBox toggleBox) {
         this.talkButtonCatalog= talkButtonCatalog;
         this.baseVbox = baseVbox;
         this.editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
@@ -29,6 +30,7 @@ public class DynamicFXElementsRenderer {
         this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
         this.pageFXToggles = new PageFXToggles(talkButtonCatalog.getCatalog().keySet());
         this.editorFXButtonActionSetupUtility = new EditorFXButtonActionSetupUtility(pageFXButtonMap);
+        this.toggleBox =toggleBox;
         setupToggleButtonFunction();
     }
 
@@ -50,12 +52,13 @@ public class DynamicFXElementsRenderer {
     private void setupEditorButtons(String selectedPage){
         baseVbox.getChildren().clear();
         ArrayList<HBox> editorTalkBoxButtons = new ArrayList<>(editorAppTalkButtonInterpretor.getMapOfHBoxArrayList().get(selectedPage));
+
         setupAllUtilityButtonsToView(editorTalkBoxButtons);
         editorTalkBoxButtons.forEach(row-> baseVbox.getChildren().add(row));
     }
 
     private  void setupButtonPageToggles(){
-        this.baseVbox.getChildren().add(firstRowIndex,this.pageFXToggles.getHbox());
+        this.toggleBox.getChildren().add(firstRowIndex,this.pageFXToggles.getHbox());
     }
 
 

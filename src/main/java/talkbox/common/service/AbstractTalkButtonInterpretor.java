@@ -16,18 +16,46 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public abstract class AbstractTalkButtonInterpretor {
+    TalkButtonCatalog talkButtonCatalog;
+    private LinkedHashMap<String, ArrayList<HBox>> mapOfHBoxArrayList;
+    private LinkedHashMap<String, ArrayList<ArrayList<Button>>> mapOfFxButtonCatalog;
 
-    protected final LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(TalkButtonCatalog talkButtonCatalog ){
+
+    public AbstractTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog) {
+        this.talkButtonCatalog = talkButtonCatalog;
+        this.mapOfFxButtonCatalog = convertFxButtonMap();
+        this.mapOfHBoxArrayList = convertToMapOfHBoxArrayList();
+
+    }
+
+
+    protected final LinkedHashMap<String, ArrayList<ArrayList<Button>>> convertFxButtonMap(){
         return
-                getFxButtonCatalog(talkButtonCatalog).keySet()
-                        .stream()
-                        .collect(Collectors.toMap(
-                                Function.identity(),
-                                s->{return convertToHBoxesOfButtons(getFxButtonCatalog(talkButtonCatalog).get(s));},
+                talkButtonCatalog.getCatalog().entrySet().stream()
+                        .collect(Collectors.toMap(Map.Entry::getKey,
+                                page-> convertPage(page.getValue()),
                                 (key, value) -> value, LinkedHashMap::new));
     }
 
+    protected final LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(){
+        return
+                mapOfFxButtonCatalog.keySet()
+                        .stream()
+                        .collect(Collectors.toMap(
+                                Function.identity(),
+                                s->{return convertToHBoxesOfButtons(mapOfFxButtonCatalog.get(s));},
+                                (key, value) -> value, LinkedHashMap::new));
+    }
+
+    public LinkedHashMap<String, ArrayList<HBox>> getMapOfHBoxArrayList() {
+        return mapOfHBoxArrayList;
+    }
+
+    public LinkedHashMap<String, ArrayList<ArrayList<Button>>> getMapOfFxButtonCatalog() {
+        return mapOfFxButtonCatalog;
+    }
     private final ArrayList<HBox> convertToHBoxesOfButtons(ArrayList<ArrayList<Button>> buttonRows){
+
         return buttonRows
                 .stream()
                 .map(s-> convertToHBoxOfButtons(s))
@@ -49,12 +77,7 @@ public abstract class AbstractTalkButtonInterpretor {
 
 
 
-    protected final  LinkedHashMap<String, ArrayList<ArrayList<Button>>> getFxButtonCatalog(TalkButtonCatalog talkButtonCatalog){
-        return talkButtonCatalog.getCatalog().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey,
-                        page-> convertPage(page.getValue()),
-                        (key, value) -> value, LinkedHashMap::new));
-    }
+
 
 
 

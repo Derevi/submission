@@ -40,6 +40,9 @@ public class MainEditorController implements Initializable {
     @FXML
     private AnchorPane imageWindowRoot;
 
+    @FXML
+    private HBox toggleBox;
+
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
     private FXMLLoader fXMLLoader = new FXMLLoader();
@@ -60,11 +63,12 @@ public class MainEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        baseVBox.prefWidthProperty().bind(root.widthProperty());
+        this.baseVBox.prefWidthProperty().bind(root.widthProperty());
+        this.toggleBox.prefWidthProperty().bind(root.widthProperty());
         this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
         this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(this.talkButtonCatalog);
 
-        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(talkButtonCatalog,baseVBox);
+        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(talkButtonCatalog,baseVBox, toggleBox);
         dynamicFXElementsRenderer.render((String)talkButtonCatalog.getCatalog().keySet().toArray()[0]);
 
     }

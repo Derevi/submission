@@ -22,16 +22,21 @@
           </Menu>
         </menus>
       </MenuBar>
-      <HBox alignment="CENTER" layoutX="273.0" layoutY="704.0" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" spacing="100.0" style="-fx-background-color: skyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="273.0" layoutY="704.0" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" spacing="100.0" style="-fx-background-color: skyblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="718.0">
          <children>
             <Button mnemonicParsing="false" styleClass="blue-button" text="Compile Audio" />
             <Button mnemonicParsing="false" styleClass="blue-button" text="Load" />
             <Button mnemonicParsing="false" styleClass="blue-button" text="Save" />
          </children>
       </HBox>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+      <ScrollPane layoutY="220.0" prefHeight="498.0" prefWidth="1366.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <content>
-            <VBox fx:id="baseVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" />
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <HBox fx:id="toggleBox" alignment="CENTER" />
+                  <VBox fx:id="baseVBox" alignment="CENTER" spacing="20.0" />
+               </children>
+            </VBox>
          </content>
       </ScrollPane>
    </children>

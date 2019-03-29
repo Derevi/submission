@@ -15,7 +15,7 @@ public class MainAppTalkButtonInterpretor extends AbstractTalkButtonInterpretor 
     TalkButtonCatalog talkButtonCatalog;
 
     MainAppTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog){
-        this.talkButtonCatalog = talkButtonCatalog;
+        super(talkButtonCatalog);
     }
 /*
     protected  LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(){
