@@ -31,7 +31,7 @@
             <Button mnemonicParsing="false" styleClass="blue-button" text="Compile Audio" />
             <Button mnemonicParsing="false" styleClass="blue-button" text="Load" />
             <Button mnemonicParsing="false" styleClass="blue-button" text="Save" />
-            <Button mnemonicParsing="false" styleClass="red-button" text="Remove Buttons" onAction="#deleteButtons" />
+            <Button fx:id="removeButton" mnemonicParsing="false" onAction="#deleteButtons" styleClass="red-button" text="Remove Buttons" />
          </children>
       </HBox>
    </children>

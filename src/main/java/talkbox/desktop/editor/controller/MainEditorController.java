@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.input.InputEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -48,6 +49,8 @@ public class MainEditorController implements Initializable {
     @FXML
     private VBox baseVBox;
 
+    @FXML
+    private Button removeButton;
 
     //TODO send initializers all to service
     //TODO add row creates new row with new button, same size and style
@@ -300,6 +303,7 @@ public class MainEditorController implements Initializable {
         //TODO Hbox with position set to right so it is in right bottom corner
 
         Button addRowButton = new Button("++add row++");
+        addRowButton.getStyleClass().add("blue-button");
 
         HBox hBoxBelowButtons = new HBox();
         hBoxBelowButtons.setAlignment(Pos.CENTER);
@@ -336,11 +340,54 @@ public class MainEditorController implements Initializable {
         //TODO to be called when the delete button is clicked
         //TODO will change the event when the buttons are clicked to remove the button
 
+        //if the removeButton reads "Cancel"
+        if (removeButton.isCancelButton())
+        {
+            // editor app will be set to the original editor configuration
 
 
-        for (ArrayList<Button> b: catalogFxButtons.get("animals")) {
+            for (ArrayList<Button> list: catalogFxButtons.get("animals"))
+            {
+                for(Button b: list)
+                {
+                    b.getStyleClass().add("button");
+                    b.setOnAction(e->
+                    {
 
+                    });
+                }
+            }
+
+
+            removeButton.setText("Remove Buttons");
+            removeButton.setCancelButton(false);
         }
+        //if the removeButton reads "Remove Buttons"
+        else
+        {
+            // when fx buttons are clicked, they will be removed
+
+
+            for (ArrayList<Button> list: catalogFxButtons.get("animals"))
+            {
+                for(Button b: list)
+                {
+                    b.getStyleClass().add("delete-button");
+                    b.setOnAction(e->
+                    {
+                        // remove button from screen
+                        // remove "+" button to the right
+                        // remove button from array of fx buttons
+                   });
+                }
+            }
+
+
+            removeButton.setText("Cancel");
+            removeButton.setCancelButton(true);
+        }
+
+
     }
 
     private void refreshView(){
