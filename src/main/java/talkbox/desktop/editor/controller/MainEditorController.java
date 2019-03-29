@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
+import talkbox.desktop.editor.model.DynamicFXElementsRenderer;
+import talkbox.desktop.editor.model.EditorAppTalkButtonInterpretor;
 import talkbox.desktop.editor.model.PageFXToggles;
 
 import java.io.IOException;
@@ -46,6 +48,9 @@ public class MainEditorController implements Initializable {
     @FXML
     private VBox baseVBox;
 
+    @FXML
+    private HBox keyBox;
+
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
         //TODO link this to start screen controller
         //this.talkButtonCatalog = talkButtonCatalog;
@@ -55,30 +60,12 @@ public class MainEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        init();
-        for(ArrayList<Button> list: catalogFxButtons.get("animals")){
-            HBox hbox  = new HBox();
-            hbox.setAlignment(Pos.CENTER);
-            hbox.setSpacing(10);
+        baseVBox.prefWidthProperty().bind(root.widthProperty());
+        this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
+        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(this.talkButtonCatalog);
 
-            for(Button b: list){
-                hbox.getChildren().add(b);
-                if(b.getText().isEmpty()){
-
-                }
-                hbox.getChildren().add(addFxButton(hbox,b));
-            }
-
-            Button newb = new Button("++button++");
-            newb.setOnAction(e-> {
-                Button newt = new Button("test");
-                hbox.getChildren().add(hbox.getChildren().size()-1, new Button());
-            });
-            hbox.getChildren().add(newb);
-            baseVBox.getChildren().add(hbox);
-
-            drawAddRowElements();
-        }
+        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(talkButtonCatalog,baseVBox);
+        dynamicFXElementsRenderer.render("pokemon");
 
     }
 
@@ -200,9 +187,9 @@ public class MainEditorController implements Initializable {
 
 
         //SETUP FOR TOGGLE GROUP OF CATEGORY BUTTONS
-        PageFXToggles pageFXToggles = new PageFXToggles(catalogFxButtons.keySet());
-        HBox keyBox = pageFXToggles.getButtonPageToggleBox();
-        baseVBox.getChildren().add(1, keyBox);
+       // PageFXToggles pageFXToggles = new PageFXToggles(catalogFxButtons.keySet());
+       // HBox keyBox = pageFXToggles.getButtonPageToggleBox();
+        //baseVBox.getChildren().add(1, keyBox);
 
 
 

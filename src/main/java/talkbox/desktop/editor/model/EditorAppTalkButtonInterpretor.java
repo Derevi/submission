@@ -40,7 +40,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
 
     public VBox createInternalVbox(TalkButton talkButton){
         VBox internalVbox = new VBox();
-        setInternalVBoxProperties(internalVbox, talkButton.getButtonSize()-10);
+        setInternalVBoxProperties(internalVbox, talkButton.getButtonSize()-20);
         internalVbox.getChildren().add(0,createInternalTextField(talkButton));
         internalVbox.getChildren().add(1,createInternalImage(talkButton));
         return internalVbox;
@@ -74,7 +74,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         internalVbox.setMaxSize(size, size);
         internalVbox.setMinSize(size, size);
         internalVbox.setSpacing(10);
-        internalVbox.setAlignment(Pos.CENTER);
+        internalVbox.setAlignment(Pos.TOP_CENTER);
     }
 
     private void setImageViewSize(ImageView imageView, int size){

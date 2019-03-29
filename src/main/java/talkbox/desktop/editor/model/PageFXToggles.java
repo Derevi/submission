@@ -15,21 +15,37 @@ public class PageFXToggles {
     Set<String> keySet;
     ArrayList<ToggleButton> toggleButtons;
     ToggleGroup toggleGroup;
+    HBox hBox;
 
-    public PageFXToggles(Set<String> keySet){
+    protected PageFXToggles(Set<String> keySet){
         this.keySet=keySet;
         toggleButtons = new ArrayList<>();
         toggleGroup = new ToggleGroup();
-        init();
+        setupToggleButtons();
+
+        this.hBox = new HBox();
+        setupHboxProperties();
     }
 
-    public void init(){
+    private void setupToggleButtons(){
         keySet.stream()
                 .map(this::generateDefaultToggleButton)
                 .forEach(toggleButton -> toggleButtons.add(toggleButton));
 
         toggleButtons.stream()
                 .forEach(toggleButton -> this.toggleGroup.getToggles().add(toggleButton));
+
+
+    }
+
+    private void setupHboxProperties(){
+        this.hBox.setAlignment(Pos.CENTER);
+        this.hBox.setSpacing(10);
+        this.hBox.getChildren().addAll(toggleButtons);
+    }
+
+    public HBox getHbox(){
+        return this.hBox;
     }
 
     public ToggleGroup getToggleGroup(){

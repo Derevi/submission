@@ -1,7 +1,7 @@
 package talkbox.desktop.editor.model;
 
 
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class DynamicFXElementsRenderer {
+    public static final int firstRowIndex = 0;
     VBox baseVbox;
     TalkButtonCatalog talkButtonCatalog;
     EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
     PageFXToggles pageFXToggles;
+    ArrayList<HBox> editorTalkBoxButtons;
 
     public DynamicFXElementsRenderer(TalkButtonCatalog talkButtonCatalog, VBox baseVbox) {
         this.talkButtonCatalog= talkButtonCatalog;
@@ -24,40 +26,48 @@ public class DynamicFXElementsRenderer {
     }
 
     public void render(String pageName){
-      //  renderEditorButtons(pageName);
-        renderButtonPageToggles();
+        setupEditorButtons(pageName);
+        setupButtonPageToggles();
 
     }
 
-    private  void renderButtonPageToggles(){
-        this.baseVbox.getChildren().add(0,this.pageFXToggles.getHbox());
+    private  void setupButtonPageToggles(){
+        this.baseVbox.getChildren().add(firstRowIndex,this.pageFXToggles.getHbox());
     }
 
-    private void renderEditorButtons(String selectedPage){
-        LinkedHashMap<String, ArrayList<HBox>> editorButtonRows = editorAppTalkButtonInterpretor.convertToMapOfHBoxArrayList();
-        renderUtilityButtonsToView(editorButtonRows.get(selectedPage)).stream()
-                .forEach(row->this.baseVbox.getChildren().addAll(row));
+    private void setupEditorButtons(String selectedPage){
+      this.editorTalkBoxButtons = editorAppTalkButtonInterpretor.convertToMapOfHBoxArrayList().get(selectedPage);
+        setupAllUtilityButtonsToView();
+        this.editorTalkBoxButtons.forEach(row-> baseVbox.getChildren().add(row));
     }
 
-    private  ArrayList<HBox> renderUtilityButtonsToView(ArrayList<HBox> editorButtonRows){
-       renderAddNewButtonUtility(editorButtonRows);
-       renderAddNewButtonRowUtility(editorButtonRows);
-        return editorButtonRows;
+    private  void setupAllUtilityButtonsToView(){
+       setupAddNewButtonUtility();
+       setupAddNewButtonRowUtility();
+
     }
 
-    private void renderAddNewButtonRowUtility(ArrayList<HBox> editorButtonRows){
-        editorButtonRows.forEach(row->{
+    private void setupAddNewButtonRowUtility(){
+
+        ArrayList<HBox> editorButtonRowsWithUtilities = new ArrayList<>();
+        for(int i =0; i<this.editorTalkBoxButtons.size();i++){
             HBox addRowUtility = new HBox();
-            baseVbox.getChildren().add(addRowUtility);
-        });
+            addRowUtility.getChildren().add(new Button("++ ADD ROW ++"));
+            addRowUtility.setAlignment(Pos.CENTER);
+            editorButtonRowsWithUtilities.add(addRowUtility);
+            editorButtonRowsWithUtilities.add(this.editorTalkBoxButtons.get(i));
+        }
+
+        this.editorTalkBoxButtons = editorButtonRowsWithUtilities;
+
     }
 
-    private void renderAddNewButtonUtility (ArrayList<HBox> editorButtonRows){
-        editorButtonRows.forEach(
+    private void setupAddNewButtonUtility(){
+        this.editorTalkBoxButtons.forEach(
                 row->{
-                    int counter = 0;
+
                     for(int i=0; i<=row.getChildren().size();i=i+2){
-                        row.getChildren().add(0,new Button("+"));
+                        row.getChildren().add(i,new Button("+"));
                     }
 
                 }
