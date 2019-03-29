@@ -65,12 +65,12 @@ public class MainEditorController implements Initializable {
         this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(this.talkButtonCatalog);
 
         DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(talkButtonCatalog,baseVBox);
-        dynamicFXElementsRenderer.render("pokemon");
+        dynamicFXElementsRenderer.render((String)talkButtonCatalog.getCatalog().keySet().toArray()[0]);
 
     }
 
 
-
+/*
 
     public VBox addFxButton(HBox hBox, Button addClick){
         Button add = new Button("+");
@@ -325,6 +325,7 @@ public class MainEditorController implements Initializable {
     //TODO send initializers all to service
     //TODO add roww creates new row with new button, same size and style
     //TODO add button, make '+' button be smaller than minimum so it can be filtered out
+    */
 
 }
 

@@ -16,15 +16,15 @@ import java.util.LinkedHashMap;
 public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpretor {
 
 
-    TalkButtonCatalog talkButtonCatalog;
+    private TalkButtonCatalog talkButtonCatalog;
 
     protected EditorAppTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog){
-        this.talkButtonCatalog = talkButtonCatalog;
+        super(talkButtonCatalog);
+
+
     }
 
-    protected  LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(){
-        return convertToMapOfHBoxArrayList(talkButtonCatalog);
-    }
+
 
     //TODO IMPLEMENT THIS METHOD
     @Override
