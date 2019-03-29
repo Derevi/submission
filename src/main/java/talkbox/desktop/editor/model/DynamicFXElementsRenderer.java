@@ -14,40 +14,45 @@ public class DynamicFXElementsRenderer {
     VBox baseVbox;
     TalkButtonCatalog talkButtonCatalog;
     EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
+    PageFXToggles pageFXToggles;
 
     public DynamicFXElementsRenderer(TalkButtonCatalog talkButtonCatalog, VBox baseVbox) {
         this.talkButtonCatalog= talkButtonCatalog;
         this.baseVbox = baseVbox;
         this.editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
+        this.pageFXToggles = new PageFXToggles(talkButtonCatalog.getCatalog().keySet());
     }
 
-    public  void renderButtonPageToggles(VBox baseVbox){
-        PageFXToggles pageFXToggles = new PageFXToggles(talkButtonCatalog.getCatalog().keySet());
-        HBox hBox = new HBox();
-        hBox.getChildren().addAll(pageFXToggles.toggleButtons);
-        baseVbox.getChildren().add(0,hBox);
+    public void render(String pageName){
+      //  renderEditorButtons(pageName);
+        renderButtonPageToggles();
+
     }
 
-    public void renderEditorButtons(VBox baseVbox,String selectedPage){
+    private  void renderButtonPageToggles(){
+        this.baseVbox.getChildren().add(0,this.pageFXToggles.getHbox());
+    }
+
+    private void renderEditorButtons(String selectedPage){
         LinkedHashMap<String, ArrayList<HBox>> editorButtonRows = editorAppTalkButtonInterpretor.convertToMapOfHBoxArrayList();
         renderUtilityButtonsToView(editorButtonRows.get(selectedPage)).stream()
-                .forEach(row->baseVbox.getChildren().addAll(row));
+                .forEach(row->this.baseVbox.getChildren().addAll(row));
     }
 
-    public  ArrayList<HBox> renderUtilityButtonsToView(ArrayList<HBox> editorButtonRows){
+    private  ArrayList<HBox> renderUtilityButtonsToView(ArrayList<HBox> editorButtonRows){
        renderAddNewButtonUtility(editorButtonRows);
        renderAddNewButtonRowUtility(editorButtonRows);
         return editorButtonRows;
     }
 
-    public void renderAddNewButtonRowUtility(ArrayList<HBox> editorButtonRows){
+    private void renderAddNewButtonRowUtility(ArrayList<HBox> editorButtonRows){
         editorButtonRows.forEach(row->{
             HBox addRowUtility = new HBox();
             baseVbox.getChildren().add(addRowUtility);
         });
     }
 
-    public void renderAddNewButtonUtility (ArrayList<HBox> editorButtonRows){
+    private void renderAddNewButtonUtility (ArrayList<HBox> editorButtonRows){
         editorButtonRows.forEach(
                 row->{
                     int counter = 0;
