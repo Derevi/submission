@@ -74,11 +74,16 @@
 }
 
 .delete-button:hover {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#5A5A64, #51525A),
+            linear-gradient(#F2F3FB 0%, #CECED2 10%, #A5A5A5 50%, #88888D 51%, #D5D5D5 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-text-fill: #1B1D20;
     -fx-background-image: url('trash-icon.png');
     -fx-background-size: 30px;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: 90%;
-    -fx-text-fill: #1B1D20;
+    -fx-background-position: 90% 90%;
 }
 
 .label {

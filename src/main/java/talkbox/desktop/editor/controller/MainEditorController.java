@@ -142,16 +142,10 @@ public class MainEditorController implements Initializable {
         Button addInitialRowButton = new Button("++add row++");
         addInitialRowButton.getStyleClass().add("blue-button");
 
-        Separator separatorL1 =new Separator();
-        separatorL1.setOrientation(Orientation.HORIZONTAL);
-        separatorL1.prefWidth(200);
-        separatorL1.setMinSize(300,1);
-        separatorL1.setMaxSize(300,1);
+        Separator separatorL1 = horizontalSeparator();
 
-        Separator separatorR1 =new Separator();
-        separatorR1.setOrientation(Orientation.HORIZONTAL);
-        separatorR1.setMinSize(300,1);
-        separatorR1.setMaxSize(300,1);
+        Separator separatorR1 = horizontalSeparator();
+
         initialHBoxAboveButtons.getChildren().add(separatorL1);
         initialHBoxAboveButtons.getChildren().add(addInitialRowButton);
         initialHBoxAboveButtons.getChildren().add(separatorR1);
@@ -162,6 +156,7 @@ public class MainEditorController implements Initializable {
             HBox hbox  = new HBox();
             hbox.setAlignment(Pos.CENTER);
             hbox.setSpacing(10);
+            hbox.setMaxWidth(1366);
             for(Button b: list){
                 hbox.getChildren().add(b);
                 if(b.getText().isEmpty()){
@@ -175,8 +170,10 @@ public class MainEditorController implements Initializable {
             Button newb = new Button("++button++");
             newb.getStyleClass().add("blue-button");
             newb.setOnAction(e-> {
-                hbox.getChildren().add(hbox.getChildren().size()-1, new Button());
-                hbox.getChildren().add(hbox.getChildren().size()-1, new Button("+"));
+                if (hbox.getWidth() != 1366) {
+                    hbox.getChildren().add(hbox.getChildren().size() - 1, new Button());
+                    hbox.getChildren().add(hbox.getChildren().size() - 1, new Button("+"));
+                }
             });
             hbox.getChildren().add(newb);
             baseVBox.getChildren().add(hbox);
@@ -191,17 +188,9 @@ public class MainEditorController implements Initializable {
             hBoxBelowButtons.setAlignment(Pos.CENTER);
             hBoxBelowButtons.setSpacing(20);
 
-            Separator separatorL = new Separator();
-            separatorL.setOrientation(Orientation.HORIZONTAL);
-            separatorL.prefWidth(200);
-            separatorL.setMinSize(300,1);
-            separatorL.setMaxSize(300,1);
+            Separator separatorL = horizontalSeparator();
 
-            Separator separatorR = new Separator();
-            separatorR.setOrientation(Orientation.HORIZONTAL);
-            separatorR.setMinSize(300,1);
-            separatorR.setMaxSize(300,1);
-
+            Separator separatorR = horizontalSeparator();
 
             hBoxBelowButtons.getChildren().add(separatorL);
             hBoxBelowButtons.getChildren().add(addRowButton);
@@ -250,9 +239,9 @@ public class MainEditorController implements Initializable {
 
         int index = hBox.getChildren().indexOf(addClick);
         add.setOnAction(e-> {
-            Button another = new Button("Test");
-            hBox.getChildren().add(index + 2, another);
-            hBox.getChildren().add(index + 3, addFxButton(hBox, another));
+                Button another = new Button("Test");
+                hBox.getChildren().add(index + 2, another);
+                hBox.getChildren().add(index + 3, addFxButton(hBox, another));
         });
         addButton.getChildren().add(verticalSeparator());
         addButton.getChildren().add(add);
@@ -353,7 +342,7 @@ public class MainEditorController implements Initializable {
                     b.getStyleClass().add("button");
                     b.setOnAction(e->
                     {
-
+                        // do we want the fx buttons to play their audio when clicked?
                     });
                 }
             }
@@ -373,11 +362,23 @@ public class MainEditorController implements Initializable {
                 for(Button b: list)
                 {
                     b.getStyleClass().add("delete-button");
+                    // the hbox is the hbox or that row of buttons
+                    // int bIndex = hbox.getChildren().indexOf(b);
                     b.setOnAction(e->
                     {
                         // remove button from screen
                         // remove "+" button to the right
                         // remove button from array of fx buttons
+
+                        // if (bIndex == hbox.getChildren().lastIndexOf())
+                        // {
+                        //      hbox.getChildren().remove(b);
+                        // }
+                        // else
+                        // {
+                        //      hbox.getChildren().remove(b);
+                        //      hbox.getChildren().remove(bIndex + 1);
+                        // }
                    });
                 }
             }
