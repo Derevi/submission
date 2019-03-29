@@ -60,10 +60,11 @@ public class PageFXToggles {
 
     public ToggleButton generateDefaultToggleButton(String name){
         VBox vBox = toggleButtonInternalVBox(150,150);
-        TextField textField = textFieldInternal(name,120,20);
+        TextField textField = textFieldInternal(name,120,30);
         vBox.getChildren().add(textField);
-        ToggleButton toggleButton = new ToggleButton(" ",vBox);
+        ToggleButton toggleButton = new ToggleButton("",vBox);
         setToggleButtonSize(toggleButton,160,160);
+        toggleButton.setUserData(name);
         return toggleButton;
     }
 
@@ -75,6 +76,7 @@ public class PageFXToggles {
     private VBox toggleButtonInternalVBox(int width, int height){
         VBox vBox =new VBox();
         vBox.setMaxSize(width,height);
+        vBox.setAlignment(Pos.CENTER);
 
         return vBox;
     }

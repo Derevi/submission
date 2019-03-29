@@ -23,19 +23,30 @@ public class DynamicFXElementsRenderer {
         this.baseVbox = baseVbox;
         this.editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
         this.pageFXToggles = new PageFXToggles(talkButtonCatalog.getCatalog().keySet());
+        setupToggleButtonFunction();
+    }
+
+    private void setupToggleButtonFunction(){
+        pageFXToggles.getToggleButtons().forEach(toggleButton -> {
+            toggleButton.setOnAction(e->{
+                 render((String)toggleButton.getUserData());
+            });
+        });
     }
 
     public void render(String pageName){
         setupEditorButtons(pageName);
         setupButtonPageToggles();
-
     }
+
+
 
     private  void setupButtonPageToggles(){
         this.baseVbox.getChildren().add(firstRowIndex,this.pageFXToggles.getHbox());
     }
 
     private void setupEditorButtons(String selectedPage){
+        baseVbox.getChildren().clear();
       this.editorTalkBoxButtons = editorAppTalkButtonInterpretor.convertToMapOfHBoxArrayList().get(selectedPage);
         setupAllUtilityButtonsToView();
         this.editorTalkBoxButtons.forEach(row-> baseVbox.getChildren().add(row));

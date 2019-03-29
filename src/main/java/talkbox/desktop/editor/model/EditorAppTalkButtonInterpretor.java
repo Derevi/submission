@@ -34,6 +34,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
 
     private Button createEditorFXButtonFromTalkButton(TalkButton talkButton){
         Button editorFXButton= new Button("",createInternalVbox(talkButton));
+        editorFXButton.setUserData(talkButton);
         setEditorButtonProperties(editorFXButton,talkButton.getButtonSize());
         return editorFXButton;
     }
