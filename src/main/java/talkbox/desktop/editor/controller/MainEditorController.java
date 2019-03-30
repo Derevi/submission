@@ -178,6 +178,13 @@ public class MainEditorController implements Initializable {
             hbox.getChildren().add(newb);
             baseVBox.getChildren().add(hbox);
 
+            HBox hBoxBelowButtons = new HBox();
+            hBoxBelowButtons.setAlignment(Pos.CENTER);
+            hBoxBelowButtons.setSpacing(20);
+
+            hBoxBelowButtons.getChildren().add(addRow(/*baseVBox.getChildren().indexOf(hbox) + 1*/));
+            baseVBox.getChildren().add(hBoxBelowButtons);
+            /*
             //TODO separate in to its own method and refactor
             //ADD NEW ROW METHOD
 
@@ -217,7 +224,7 @@ public class MainEditorController implements Initializable {
 
                     }
             );
-
+            */
         }
         //END OF CODE THAT DRAWS BUTTON ON UI//
     }
@@ -237,8 +244,8 @@ public class MainEditorController implements Initializable {
         addButton.setAlignment(Pos.CENTER);
         addButton.setSpacing(10);
 
-        int index = hBox.getChildren().indexOf(addClick);
         add.setOnAction(e-> {
+                int index = hBox.getChildren().indexOf(addClick);
                 Button another = new Button("Test");
                 hBox.getChildren().add(index + 2, another);
                 hBox.getChildren().add(index + 3, addFxButton(hBox, another));
@@ -247,6 +254,48 @@ public class MainEditorController implements Initializable {
         addButton.getChildren().add(add);
         addButton.getChildren().add(verticalSeparator());
         return addButton;
+    }
+
+
+    public HBox addRow(){
+        //TODO insert new row with an empty button
+        //TODO Hbox with position set to right so it is in right bottom corner
+
+        Button addRowButton = new Button("++add row++");
+        addRowButton.getStyleClass().add("blue-button");
+
+
+        HBox hBoxBelowButtons = new HBox();
+        hBoxBelowButtons.setAlignment(Pos.CENTER);
+        hBoxBelowButtons.setSpacing(20);
+
+        baseVBox.getChildren().add(hBoxBelowButtons);
+
+
+        addRowButton.setOnAction(e->{
+                        int index = baseVBox.getChildren().indexOf(hBoxBelowButtons);
+
+                        HBox newButtonRow = new HBox();
+                        newButtonRow.setAlignment(Pos.CENTER);
+                        Button newBut = new Button("test");
+                        newBut.setMinSize(100, 100);
+                        newButtonRow.getChildren().add(newBut);
+
+                        baseVBox.getChildren().add(index, addRow());
+                        baseVBox.getChildren().add(index + 1, newButtonRow);
+
+                }
+        );
+
+        HBox newAddRowH = new HBox();
+        newAddRowH.setAlignment(Pos.CENTER);
+        newAddRowH.setSpacing(20);
+
+        newAddRowH.getChildren().add(horizontalSeparator());
+        newAddRowH.getChildren().add(addRowButton);
+        newAddRowH.getChildren().add(horizontalSeparator());
+
+        return newAddRowH;
     }
 
     public Separator verticalSeparator(){
@@ -286,43 +335,6 @@ public class MainEditorController implements Initializable {
         //TODO update FxButton catalog and refresh view
     }
 
-    @FXML
-    public void addRow(Button clickedButton){
-        //TODO insert new row with an empty button
-        //TODO Hbox with position set to right so it is in right bottom corner
-
-        Button addRowButton = new Button("++add row++");
-        addRowButton.getStyleClass().add("blue-button");
-
-        HBox hBoxBelowButtons = new HBox();
-        hBoxBelowButtons.setAlignment(Pos.CENTER);
-        hBoxBelowButtons.setSpacing(20);
-
-        baseVBox.getChildren().add(hBoxBelowButtons);
-        int index = baseVBox.getChildren().indexOf(hBoxBelowButtons);
-        addRowButton.setOnAction(e->{
-                    HBox newButtonRow = new HBox();
-                    newButtonRow.setAlignment(Pos.CENTER);
-                    Button newBut= new Button("test");
-                    newBut.setMinSize(100,100);
-                    newButtonRow.getChildren().add(newBut);
-                    System.out.println();
-
-                    HBox newAddRowH = new HBox();
-                    newAddRowH.setAlignment(Pos.CENTER);
-                    newAddRowH.setSpacing(20);
-
-                    newAddRowH.getChildren().add(horizontalSeparator());
-                    newAddRowH.getChildren().add(addRowButton);
-                    newAddRowH.getChildren().add(horizontalSeparator());
-
-                    baseVBox.getChildren().add(index, newAddRowH);
-                    baseVBox.getChildren().add(index + 1,newBut);
-                }
-        );
-
-
-    }
 
     @FXML
     public void deleteButtons(){

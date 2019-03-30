@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="root" minHeight="768.0" minWidth="1366.0" stylesheets="@/talkbox/desktop/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.editor.controller.MainEditorController">
    <children>
-      <VBox fx:id="baseVBox" layoutX="200.0" layoutY="-65.0" prefHeight="200.0" prefWidth="100.0" spacing="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+      <VBox fx:id="baseVBox" layoutX="200.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1366.0" spacing="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
          <children>
             <Button mnemonicParsing="false" text="Button" />
          </children>
