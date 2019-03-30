@@ -66,9 +66,9 @@ public class MainEditorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         intializeUIComponents();
         renderGUI();
-        ImageWindowController imageWindowController  = new ImageWindowController();
 
         //THIS LINE HERE LOADS A NEW WINDOW
+        ImageWindowController imageWindowController  = new ImageWindowController();
         SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
     }
