@@ -139,16 +139,8 @@ public class MainEditorController implements Initializable {
         HBox initialHBoxAboveButtons = new HBox();
         initialHBoxAboveButtons.setAlignment(Pos.CENTER);
         initialHBoxAboveButtons.setSpacing(20);
-        Button addInitialRowButton = new Button("++add row++");
-        addInitialRowButton.getStyleClass().add("blue-button");
 
-        Separator separatorL1 = horizontalSeparator();
-
-        Separator separatorR1 = horizontalSeparator();
-
-        initialHBoxAboveButtons.getChildren().add(separatorL1);
-        initialHBoxAboveButtons.getChildren().add(addInitialRowButton);
-        initialHBoxAboveButtons.getChildren().add(separatorR1);
+        initialHBoxAboveButtons.getChildren().add(addRow(initialHBoxAboveButtons));
         baseVBox.getChildren().add(initialHBoxAboveButtons);
 
 
@@ -182,7 +174,7 @@ public class MainEditorController implements Initializable {
             hBoxBelowButtons.setAlignment(Pos.CENTER);
             hBoxBelowButtons.setSpacing(20);
 
-            hBoxBelowButtons.getChildren().add(addRow(/*baseVBox.getChildren().indexOf(hbox) + 1*/));
+            hBoxBelowButtons.getChildren().add(addRow(hBoxBelowButtons));
             baseVBox.getChildren().add(hBoxBelowButtons);
             /*
             //TODO separate in to its own method and refactor
@@ -257,23 +249,15 @@ public class MainEditorController implements Initializable {
     }
 
 
-    public HBox addRow(){
+    public HBox addRow(HBox addRowButtonHBox){
         //TODO insert new row with an empty button
         //TODO Hbox with position set to right so it is in right bottom corner
 
         Button addRowButton = new Button("++add row++");
         addRowButton.getStyleClass().add("blue-button");
 
-
-        HBox hBoxBelowButtons = new HBox();
-        hBoxBelowButtons.setAlignment(Pos.CENTER);
-        hBoxBelowButtons.setSpacing(20);
-
-        baseVBox.getChildren().add(hBoxBelowButtons);
-
-
         addRowButton.setOnAction(e->{
-                        int index = baseVBox.getChildren().indexOf(hBoxBelowButtons);
+                        int index = baseVBox.getChildren().indexOf(addRowButtonHBox);
 
                         HBox newButtonRow = new HBox();
                         newButtonRow.setAlignment(Pos.CENTER);
@@ -281,9 +265,8 @@ public class MainEditorController implements Initializable {
                         newBut.setMinSize(100, 100);
                         newButtonRow.getChildren().add(newBut);
 
-                        baseVBox.getChildren().add(index, addRow());
+                        baseVBox.getChildren().add(index, addRow(addRowButtonHBox));
                         baseVBox.getChildren().add(index + 1, newButtonRow);
-
                 }
         );
 
@@ -355,10 +338,10 @@ public class MainEditorController implements Initializable {
                     b.setOnAction(e->
                     {
                         // do we want the fx buttons to play their audio when clicked?
+                        // if not this remains empty
                     });
                 }
             }
-
 
             removeButton.setText("Remove Buttons");
             removeButton.setCancelButton(false);
@@ -368,13 +351,12 @@ public class MainEditorController implements Initializable {
         {
             // when fx buttons are clicked, they will be removed
 
-
             for (ArrayList<Button> list: catalogFxButtons.get("animals"))
             {
                 for(Button b: list)
                 {
                     b.getStyleClass().add("delete-button");
-                    // the hbox is the hbox or that row of buttons
+                    // the hbox is the hbox for that row of buttons
                     // int bIndex = hbox.getChildren().indexOf(b);
                     b.setOnAction(e->
                     {
@@ -394,7 +376,6 @@ public class MainEditorController implements Initializable {
                    });
                 }
             }
-
 
             removeButton.setText("Cancel");
             removeButton.setCancelButton(true);
