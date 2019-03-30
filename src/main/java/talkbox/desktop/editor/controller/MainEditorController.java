@@ -334,6 +334,7 @@ public class MainEditorController implements Initializable {
             {
                 for(Button b: list)
                 {
+                    b.getStyleClass().clear();
                     b.getStyleClass().add("button");
                     b.setOnAction(e->
                     {
