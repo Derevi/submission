@@ -18,11 +18,11 @@ import java.util.LinkedHashMap;
 public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpretor {
 
 
-    private TalkButtonCatalog talkButtonCatalog;
 
-    protected EditorAppTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog){
+
+
+    public EditorAppTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog){
         super(talkButtonCatalog);
-
 
     }
 

@@ -1,12 +1,20 @@
 package talkbox.desktop.editor.model;
 
 import javafx.event.Event;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
+import talkbox.common.dataobject.TalkButtonCatalog;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EditorUtilityFXButtons {
     TalkButton talkButton;
@@ -14,68 +22,130 @@ public class EditorUtilityFXButtons {
     VBox vBox;
     TextField textField;
     HBox hBox;
-
-    EditorUtilityFXButtons(TalkButton talkButton){
-        this.talkButton=talkButton;
-        fxButton = new Button(talkButton.getName(),vBox);
-        fxButton.setUserData(talkButton);
+    EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
+    TalkButtonCatalog talkButtonCatalog;
+    LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap;
+    EditorFXButtonActionSetupUtility editorFXButtonActionSetupUtility;
+    LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
+/*
+    EditorUtilityFXButtons(LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap){
+        this.talkButtonCatalog = talkButtonCatalog;
+        this.editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
+        this.pageFXButtonMap = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
+        this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
+        setupMapWithUtilities(this.hBoxArrayListMap);
+    }
+*/
+    public  static void setupMapWithUtilities( LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap ){
+       // hBoxArrayListMap.entrySet().stream().forEach(v->setupAddNewButtonUtility(v.getValue()));
+        hBoxArrayListMap.entrySet().stream().forEach(s-> setupAllUtilityButtonsToView(s.getValue()));
     }
 
 
-    //Constructor for tests ONLY
-    EditorUtilityFXButtons(String name,HBox hBox){
-        this.hBox = hBox;
-        hBox.setAlignment(Pos.CENTER);
-        fxButton = new Button(name,vBox);
-        fxButton.setMaxSize(160,160);
-        fxButton.setMinSize(160,160);
-        textField = new TextField(name);
-        hBox.getChildren().add(this.fxButton);
-    }
-
-    public void initPageButton(){
-        vBox.getChildren().add(this.textField);
-    }
-
-    public int getIndex(){
-        return hBox.getChildren().indexOf(this.fxButton);
+    private static void setupAllUtilityButtonsToView(ArrayList<HBox> editorTalkBoxButtons){
+        setupAddNewButtonUtility(editorTalkBoxButtons);
+        setupAddNewButtonRowUtility(editorTalkBoxButtons);
     }
 
 
-    public void setDefaultActions(Button fxButton){
-        //TODO set drag and drop action/properties
-        //TODO set Textfield edit actions
+
+
+
+    private static void  setupAddNewButtonRowUtility(ArrayList<HBox> editorTalkBoxButtons){
+
+        int initialLength = editorTalkBoxButtons.size();
+
+        for(int i =0; i<= editorTalkBoxButtons.size();i=i+2){
+            editorTalkBoxButtons.add(i,createAddRowUtility());
+        }
+
     }
 
 
-    public HBox setupAddButtonToRow(HBox hBox){
-        return hBox;
 
+
+
+
+    private static void setupAddNewButtonUtility(ArrayList<HBox> editorTalkBoxButtons){
+        editorTalkBoxButtons.forEach(
+                row->{
+                    for(int i=0; i<=row.getChildren().size();i=i+2){
+                        row.getChildren().add(i,createAddNewButtonUtility());
+                    }
+                }
+
+        );
 
     }
 
-    public Button addButton(){
+
+    private static HBox createAddRowUtility(){
+        HBox addRowUtility = new HBox();
+        addRowUtility.getChildren().addAll(horizontalSeparator(), createAddRowButton(), horizontalSeparator());
+        addRowUtility.setAlignment(Pos.CENTER);
+        return addRowUtility;
+    }
+
+    private static Button createAddRowButton(){
+        Button addRowButton = new Button("++ ADD ROW ++");
+        setupAddRowButtonAction(addRowButton);
+        return addRowButton;
+    }
+
+    private static void setupAddRowButtonAction(Button button){
+        button.setOnAction(e->{
+            createAddRowUtility(); //add this to the bottom of the current row
+            //TODO set action to create new row and also add another utility button
+        });
+
+    }
+
+
+
+    private static VBox createAddNewButtonUtility(){
         Button addButton = new Button("+");
-        setButtonSize(addButton,20,20);
-        return addButton;
-
-
+        setButtonSize(addButton,60,60);
+        setAddNewButtonAction(addButton);
+        VBox vBox = new VBox(verticalSeparator(),addButton,verticalSeparator());
+        vBox.setAlignment(Pos.CENTER);
+        return vBox;
     }
 
-    public void setButtonSize(Button button, int width, int height){
-        button.setMaxSize(width,height);
-        button.setMinSize(width,height);
-        button.setOnAction(event -> {
-            actionnn(event);
+    public static void setAddNewButtonAction(Button button){
+        button.setOnAction(e->{
+            //TODO implement tool to add new button
         });
     }
 
-    public void addNewTalkButonToUI(Button addButton){
-        hBox.getChildren().add(hBox.getChildren().get(hBox.getChildren().indexOf(addButton)+1));
+
+    public static void setButtonSize(Button button, int width, int height){
+        button.setMaxSize(width,height);
+        button.setMinSize(width,height);
     }
 
-    public void actionnn(Event event){
+
+
+    public static Separator verticalSeparator(){
+        Separator verticalSeparatorComponent = new Separator();
+        verticalSeparatorComponent.setOrientation(Orientation.VERTICAL);
+        verticalSeparatorComponent.setMaxSize(3,10);
+        verticalSeparatorComponent.setMinSize(3,10);
+        return verticalSeparatorComponent;
+    }
+
+    public static Separator horizontalSeparator(){
+        Separator horizontalSeparatorComponent =new Separator();
+        horizontalSeparatorComponent.setOrientation(Orientation.HORIZONTAL);
+        horizontalSeparatorComponent.setMinSize(300,1);
+        horizontalSeparatorComponent.setMaxSize(300,1);
+        return horizontalSeparatorComponent;
 
     }
+
+
+
+
+
+
 
 }

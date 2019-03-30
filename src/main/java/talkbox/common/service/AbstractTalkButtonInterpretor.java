@@ -16,7 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public abstract class AbstractTalkButtonInterpretor {
-    TalkButtonCatalog talkButtonCatalog;
+    private TalkButtonCatalog talkButtonCatalog;
     private LinkedHashMap<String, ArrayList<HBox>> mapOfHBoxArrayList;
     private LinkedHashMap<String, ArrayList<ArrayList<Button>>> mapOfFxButtonCatalog;
 
@@ -25,7 +25,6 @@ public abstract class AbstractTalkButtonInterpretor {
         this.talkButtonCatalog = talkButtonCatalog;
         this.mapOfFxButtonCatalog = convertFxButtonMap();
         this.mapOfHBoxArrayList = convertToMapOfHBoxArrayList();
-
     }
 
 
@@ -50,6 +49,7 @@ public abstract class AbstractTalkButtonInterpretor {
     public LinkedHashMap<String, ArrayList<HBox>> getMapOfHBoxArrayList() {
         return mapOfHBoxArrayList;
     }
+
 
     public LinkedHashMap<String, ArrayList<ArrayList<Button>>> getMapOfFxButtonCatalog() {
         return mapOfFxButtonCatalog;

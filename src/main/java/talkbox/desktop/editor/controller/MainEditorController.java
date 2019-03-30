@@ -1,6 +1,5 @@
 package talkbox.desktop.editor.controller;
 
-import TOBEREMOVED.TalkButtonInterpretor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +19,7 @@ import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
 import talkbox.desktop.editor.model.DynamicFXElementsRenderer;
 import talkbox.desktop.editor.model.EditorAppTalkButtonInterpretor;
+import talkbox.desktop.editor.model.EditorUtilityFXButtons;
 import talkbox.desktop.editor.model.PageFXToggles;
 
 import java.io.IOException;
@@ -47,6 +47,7 @@ public class MainEditorController implements Initializable {
     private TalkButtonCatalog talkButtonCatalog;
     private FXMLLoader fXMLLoader = new FXMLLoader();
     private LinkedHashMap<String, ArrayList<ArrayList<Button>>> catalogFxButtons;
+    private LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
 
     @FXML
     private VBox baseVBox;
@@ -63,14 +64,21 @@ public class MainEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        bindNodeContainerSize();
+        this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
+
+        EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
+        this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
+        this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
+        EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap);
+
+        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(this.hBoxArrayListMap, baseVBox, toggleBox);
+        dynamicFXElementsRenderer.render();
+    }
+
+    private void bindNodeContainerSize(){
         this.baseVBox.prefWidthProperty().bind(root.widthProperty());
         this.toggleBox.prefWidthProperty().bind(root.widthProperty());
-        this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
-        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(this.talkButtonCatalog);
-
-        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(talkButtonCatalog,baseVBox, toggleBox);
-        dynamicFXElementsRenderer.render((String)talkButtonCatalog.getCatalog().keySet().toArray()[0]);
-
     }
 
 
@@ -116,25 +124,6 @@ public class MainEditorController implements Initializable {
                 }
         );
     }
-
-    public Separator verticalSeparator(){
-        Separator verticalSeparatorComponent = new Separator();
-        verticalSeparatorComponent.setOrientation(Orientation.VERTICAL);
-        verticalSeparatorComponent.setMaxSize(3,10);
-        verticalSeparatorComponent.setMinSize(3,10);
-        return verticalSeparatorComponent;
-    }
-
-    public Separator horizontalSeparator(){
-        Separator horizontalSeparatorComponent =new Separator();
-        horizontalSeparatorComponent.setOrientation(Orientation.HORIZONTAL);
-        horizontalSeparatorComponent.setMinSize(300,1);
-        horizontalSeparatorComponent.setMaxSize(300,1);
-        return horizontalSeparatorComponent;
-
-    }
-
-
 
 
 

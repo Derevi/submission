@@ -3,6 +3,8 @@ package talkbox.desktop.editor.model;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButtonCatalog;
@@ -12,84 +14,77 @@ import java.util.LinkedHashMap;
 
 public class DynamicFXElementsRenderer {
 
-    public static final int firstRowIndex = 0;
     VBox baseVbox;
     HBox toggleBox;
-    TalkButtonCatalog talkButtonCatalog;
-    EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
-    PageFXToggles pageFXToggles;
     LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap;
-    EditorFXButtonActionSetupUtility editorFXButtonActionSetupUtility;
     LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
 
-    public DynamicFXElementsRenderer(TalkButtonCatalog talkButtonCatalog, VBox baseVbox, HBox toggleBox) {
-        this.talkButtonCatalog= talkButtonCatalog;
+    EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
+    PageFXToggles pageFXToggles;
+   // EditorFXButtonActionSetupUtility editorFXButtonActionSetupUtility;
+
+
+    public DynamicFXElementsRenderer(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox) {
         this.baseVbox = baseVbox;
-        this.editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
-        this.pageFXButtonMap = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
-        this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
-        this.pageFXToggles = new PageFXToggles(talkButtonCatalog.getCatalog().keySet());
-        this.editorFXButtonActionSetupUtility = new EditorFXButtonActionSetupUtility(pageFXButtonMap);
         this.toggleBox =toggleBox;
-        setupToggleButtonFunction();
+        this.hBoxArrayListMap = hBoxArrayListMap;
+        this.pageFXToggles = new PageFXToggles(hBoxArrayListMap.keySet());
+
+        initialSetupViewBox();
     }
 
-    private void setupToggleButtonFunction(){
-        pageFXToggles.getToggleButtons().forEach(toggleButton -> {
+    private void initialSetupViewBox(){
+        baseVbox.setAlignment(Pos.CENTER);
+        baseVbox.setSpacing(10);
+        toggleBox.setAlignment(Pos.CENTER);
+        toggleBox.setSpacing(10);
+
+
+    }
+
+    public void render(){
+        clearUIView();
+        renderPageToggles();
+        initialBaseVBoxStartupRender();
+    }
+
+    private void clearUIView(){
+        baseVbox.getChildren().clear();
+        toggleBox.getChildren().clear();
+    }
+
+    private void initialBaseVBoxStartupRender(){
+        baseVbox.getChildren().clear();
+        baseVbox.getChildren().addAll(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[0]));
+    }
+
+    public void renderPageToggles(){
+        setupRenderPageViewAction();
+        toggleBox.getChildren().addAll(this.pageFXToggles.getToggleButtons());
+    }
+
+    private void setupRenderPageViewAction(){
+        this.pageFXToggles.getToggleButtons().forEach(toggleButton -> {
             toggleButton.setOnAction(e->{
-                 render((String)toggleButton.getUserData());
+                renderTalkButtons((String)toggleButton.getUserData());
             });
         });
     }
 
-    public void render(String pageName){
-        setupEditorButtons(pageName);
-        setupButtonPageToggles();
-
-    }
 
 
-    private void setupEditorButtons(String selectedPage){
+    private void renderTalkButtons(String pageName){
         baseVbox.getChildren().clear();
-        ArrayList<HBox> editorTalkBoxButtons = new ArrayList<>(editorAppTalkButtonInterpretor.getMapOfHBoxArrayList().get(selectedPage));
-
-        setupAllUtilityButtonsToView(editorTalkBoxButtons);
-        editorTalkBoxButtons.forEach(row-> baseVbox.getChildren().add(row));
-    }
-
-    private  void setupButtonPageToggles(){
-        this.toggleBox.getChildren().add(firstRowIndex,this.pageFXToggles.getHbox());
+        baseVbox.getChildren().addAll(hBoxArrayListMap.get(pageName));
     }
 
 
 
-    private  void setupAllUtilityButtonsToView(ArrayList<HBox> editorTalkBoxButtons){
-       setupAddNewButtonUtility(editorTalkBoxButtons);
-       setupAddNewButtonRowUtility(editorTalkBoxButtons);
-    }
 
-    private void setupAddNewButtonRowUtility(ArrayList<HBox> editorTalkBoxButtons){
 
-        ArrayList<HBox> editorButtonRowsWithUtilities = new ArrayList<>();
-        for(int i =0; i<editorTalkBoxButtons.size();i++){
-            HBox addRowUtility = new HBox();
-            addRowUtility.getChildren().add(new Button("++ ADD ROW ++"));
-            addRowUtility.setAlignment(Pos.CENTER);
-            editorButtonRowsWithUtilities.add(addRowUtility);
-            editorButtonRowsWithUtilities.add(editorTalkBoxButtons.get(i));
-        }
-        editorTalkBoxButtons = editorButtonRowsWithUtilities;
 
-    }
 
-    private void setupAddNewButtonUtility(ArrayList<HBox> editorTalkBoxButtons){
-        editorTalkBoxButtons.forEach(
-                row->{
-                    for(int i=0; i<=row.getChildren().size();i=i+2){
-                        row.getChildren().add(i,new Button("+"));
-                    }
 
-                }
-        );
-    }
+
+
 }
