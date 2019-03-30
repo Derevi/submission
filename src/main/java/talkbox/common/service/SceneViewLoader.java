@@ -22,6 +22,24 @@ public class SceneViewLoader {
     private String pathToFXML;
     private File selectedSerFileToLoad;
 
+
+    public static void loadNewWindow(Object controller, String pathToFXML){
+        try {
+            FXMLLoader window = FXMLLoader.load(controller.getClass().getClassLoader().getResource("/talkbox/desktop/editor/view/imagewindow.fxml"));
+            Parent newWindow = (Parent) window.load();
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(newWindow));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            // ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public SceneViewLoader(String pathToFXML, File selectedSerFileToLoad){
         this.pathToFXML = pathToFXML;
         this.selectedSerFileToLoad = selectedSerFileToLoad;

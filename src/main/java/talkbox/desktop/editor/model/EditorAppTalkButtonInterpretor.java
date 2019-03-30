@@ -1,13 +1,18 @@
 package talkbox.desktop.editor.model;
 
 import javafx.geometry.Pos;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.AbstractTalkButtonInterpretor;
 
 import java.util.ArrayList;
@@ -38,10 +43,19 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         Button editorFXButton= new Button("",createInternalVbox(talkButton));
         editorFXButton.setUserData(talkButton);
         setEditorButtonProperties(editorFXButton,talkButton.getButtonSize());
+
+        editorFXButton.setOnAction(e->{
+            System.out.println("TEST WORKED");
+        });
+
+
+
+
+        //TODO ALL actions must be set HERE
         return editorFXButton;
     }
 
-    public VBox createInternalVbox(TalkButton talkButton){
+    private VBox createInternalVbox(TalkButton talkButton){
         VBox internalVbox = new VBox();
         setInternalVBoxProperties(internalVbox, talkButton.getButtonSize()-20);
         internalVbox.getChildren().add(0,createInternalTextField(talkButton));

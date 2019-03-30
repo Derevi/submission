@@ -79,7 +79,7 @@ public class EditorUtilityFXButtons {
     }
 
 
-    private static HBox createAddRowUtility(){
+    public static HBox createAddRowUtility(){
         HBox addRowUtility = new HBox();
         addRowUtility.getChildren().addAll(horizontalSeparator(), createAddRowButton(), horizontalSeparator());
         addRowUtility.setAlignment(Pos.CENTER);
@@ -102,7 +102,7 @@ public class EditorUtilityFXButtons {
 
 
 
-    private static VBox createAddNewButtonUtility(){
+    public static VBox createAddNewButtonUtility(){
         Button addButton = new Button("+");
         setButtonSize(addButton,60,60);
         setAddNewButtonAction(addButton);
