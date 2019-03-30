@@ -90,8 +90,7 @@ public class MainEditorController implements Initializable {
     }
 
     public void renderGUI(){
-        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(this.hBoxArrayListMap, baseVBox, toggleBox);
-        dynamicFXElementsRenderer.render();
+        DynamicFXElementsRenderer.render(hBoxArrayListMap,baseVBox,toggleBox);
     }
 
 

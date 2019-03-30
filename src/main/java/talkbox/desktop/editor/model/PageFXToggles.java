@@ -9,43 +9,43 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 public class PageFXToggles {
-    Set<String> keySet;
     ArrayList<ToggleButton> toggleButtons;
     ToggleGroup toggleGroup;
-    HBox hBox;
+    HBox toggleBox;
+    VBox baseVBox;
+    LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
 
-    protected PageFXToggles(Set<String> keySet){
-        this.keySet=keySet;
+    protected PageFXToggles(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVBox){
+        this.hBoxArrayListMap = hBoxArrayListMap;
         toggleButtons = new ArrayList<>();
         toggleGroup = new ToggleGroup();
+        this.baseVBox = baseVBox;
         setupToggleButtons();
-
-        this.hBox = new HBox();
-        setupHboxProperties();
+        this.toggleBox = new HBox();
+        setupToggleBoxProperties();
     }
 
     private void setupToggleButtons(){
-        keySet.stream()
+        this.hBoxArrayListMap.keySet().stream()
                 .map(this::generateDefaultToggleButton)
                 .forEach(toggleButton -> toggleButtons.add(toggleButton));
 
         toggleButtons.stream()
                 .forEach(toggleButton -> this.toggleGroup.getToggles().add(toggleButton));
-
-
     }
 
-    private void setupHboxProperties(){
-        this.hBox.setAlignment(Pos.CENTER);
-        this.hBox.setSpacing(10);
-        this.hBox.getChildren().addAll(toggleButtons);
+    private void setupToggleBoxProperties(){
+        this.toggleBox.setAlignment(Pos.CENTER);
+        this.toggleBox.setSpacing(10);
+        this.toggleBox.getChildren().addAll(toggleButtons);
     }
 
-    public HBox getHbox(){
-        return this.hBox;
+    public HBox getToggleBox(){
+        return this.toggleBox;
     }
 
     public ToggleGroup getToggleGroup(){
@@ -65,6 +65,7 @@ public class PageFXToggles {
         ToggleButton toggleButton = new ToggleButton("",vBox);
         setToggleButtonSize(toggleButton,160,160);
         toggleButton.setUserData(name);
+        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(toggleButton,hBoxArrayListMap,baseVBox);
         return toggleButton;
     }
 
@@ -77,7 +78,6 @@ public class PageFXToggles {
         VBox vBox =new VBox();
         vBox.setMaxSize(width,height);
         vBox.setAlignment(Pos.CENTER);
-
         return vBox;
     }
 
@@ -96,6 +96,10 @@ public class PageFXToggles {
         keyBox.getChildren().add(new Button("+PAGE+"));
         return keyBox;
     }
+
+    //TODO @DHRUV add a button which adds a new list add the button to the end of toggleBox
+    //TODO @DHRUV IF you are creating a new button you can call metod and pass in string to: generateDefaultToggleButton(String name)
+    //TODO @DHRUV **Make sure that new Added buttons are ToggleButtons and that they are added before the add button
 
 
 

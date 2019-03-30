@@ -113,7 +113,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         this.fxButton.setOnDragDropped(e->{
             Dragboard db = e.getDragboard();
             System.out.println(db.getString());
-            hBox.getChildren().remove(Integer.parseInt(db.getString()));
+            toggleBox.getChildren().remove(Integer.parseInt(db.getString()));
 
 
 

@@ -3,88 +3,64 @@ package talkbox.desktop.editor.model;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import talkbox.common.dataobject.TalkButtonCatalog;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+///IMPORTANT NOTE, The Renderer should NOT mutate any data elements, it can only update the toggleBox and baseVBox THUS METHODS SHOULD ALL BE STATIC
+
+
 public class DynamicFXElementsRenderer {
 
-    VBox baseVbox;
-    HBox toggleBox;
-    LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap;
-    LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
-
-    EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor;
-    PageFXToggles pageFXToggles;
-   // EditorFXButtonActionSetupUtility editorFXButtonActionSetupUtility;
 
 
-    public DynamicFXElementsRenderer(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox) {
-        this.baseVbox = baseVbox;
-        this.toggleBox =toggleBox;
-        this.hBoxArrayListMap = hBoxArrayListMap;
-        this.pageFXToggles = new PageFXToggles(hBoxArrayListMap.keySet());
-
-        initialSetupViewBox();
+    public static void render(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox) {
+        if(isViewEmpty(baseVbox, toggleBox) && hasUtilityButtons(hBoxArrayListMap)){
+            initialRender(hBoxArrayListMap, baseVbox,toggleBox);
+        }
+        setBoxProperties(baseVbox, toggleBox);
     }
 
-    private void initialSetupViewBox(){
+
+
+    private static void initialRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox){
+        renderPageToggleButton(hBoxArrayListMap,baseVbox,toggleBox);
+        initialTalkButtonStartupRender(hBoxArrayListMap, baseVbox);
+    }
+
+    private static void renderPageToggleButton(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap,VBox baseVBox, HBox toggleBox){
+        PageFXToggles pageFXToggles = new PageFXToggles(hBoxArrayListMap,baseVBox);
+        toggleBox.getChildren().addAll(pageFXToggles.getToggleButtons());
+    }
+
+    private static void initialTalkButtonStartupRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox){
+        baseVbox.getChildren().clear();
+        renderTalkButonsToView(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[0]),baseVbox);
+    }
+
+    public static void renderTalkButonsToView(ArrayList<HBox> hBoxArrayList, VBox baseVbox){
+        baseVbox.getChildren().clear();
+        baseVbox.getChildren().addAll(hBoxArrayList);
+    }
+
+    private static boolean isViewEmpty(VBox baseVbox, HBox toggleBox){
+        return baseVbox.getChildren().isEmpty()&&toggleBox.getChildren().isEmpty()?true:false;
+    }
+
+    private static boolean hasUtilityButtons(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap){
+        HBox firstRow = (HBox) hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[0]).get(0);
+        Button addRowButton = (Button) firstRow.getChildren().get(1);
+        return addRowButton.getText().contains("++")?true:false;
+    }
+
+    private static void setBoxProperties(VBox baseVbox, HBox toggleBox){
         baseVbox.setAlignment(Pos.CENTER);
         baseVbox.setSpacing(10);
         toggleBox.setAlignment(Pos.CENTER);
         toggleBox.setSpacing(10);
-
-
     }
-
-    public void render(){
-        clearUIView();
-        renderPageToggles();
-        initialBaseVBoxStartupRender();
-    }
-
-    private void clearUIView(){
-        baseVbox.getChildren().clear();
-        toggleBox.getChildren().clear();
-    }
-
-    private void initialBaseVBoxStartupRender(){
-        baseVbox.getChildren().clear();
-        baseVbox.getChildren().addAll(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[0]));
-    }
-
-    public void renderPageToggles(){
-        setupRenderPageViewAction();
-        toggleBox.getChildren().addAll(this.pageFXToggles.getToggleButtons());
-    }
-
-    private void setupRenderPageViewAction(){
-        this.pageFXToggles.getToggleButtons().forEach(toggleButton -> {
-            toggleButton.setOnAction(e->{
-                renderTalkButtons((String)toggleButton.getUserData());
-            });
-        });
-    }
-
-
-
-    private void renderTalkButtons(String pageName){
-        baseVbox.getChildren().clear();
-        baseVbox.getChildren().addAll(hBoxArrayListMap.get(pageName));
-    }
-
-
-
-
-
-
-
-
 
 
 }
