@@ -69,7 +69,7 @@ public class MainEditorController implements Initializable {
         ImageWindowController imageWindowController  = new ImageWindowController();
 
         //THIS LINE HERE LOADS A NEW WINDOW
-        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml" );
+        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
     }
 

@@ -1,13 +1,19 @@
 package talkbox.desktop.editor.model;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -19,7 +25,7 @@ public class PageFXToggles {
     VBox baseVBox;
     LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
 
-    protected PageFXToggles(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVBox){
+    public PageFXToggles(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVBox){
         this.hBoxArrayListMap = hBoxArrayListMap;
         toggleButtons = new ArrayList<>();
         toggleGroup = new ToggleGroup();
@@ -100,9 +106,12 @@ public class PageFXToggles {
 
 
 
+
     //TODO @DHRUV add a button which adds a new list add the button to the end of toggleBox
     //TODO @DHRUV IF you are creating a new button you can call metod and pass in string to: generateDefaultToggleButton(String name)
     //TODO @DHRUV **Make sure that new Added buttons are ToggleButtons and that they are added before the add button
+
+
 
 
 
