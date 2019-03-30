@@ -64,21 +64,34 @@ public class MainEditorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        intializeUIComponents();
+        renderGUI();
+    }
+
+    private void intializeUIComponents(){
         bindNodeContainerSize();
-        this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
-
-        EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
-        this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
-        this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
-        EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap);
-
-        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(this.hBoxArrayListMap, baseVBox, toggleBox);
-        dynamicFXElementsRenderer.render();
+        loadCatalog();
+        initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
     }
 
     private void bindNodeContainerSize(){
         this.baseVBox.prefWidthProperty().bind(root.widthProperty());
         this.toggleBox.prefWidthProperty().bind(root.widthProperty());
+    }
+
+    private void loadCatalog(){
+        this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
+    }
+
+    private void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
+        this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
+        this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
+        EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap);
+    }
+
+    public void renderGUI(){
+        DynamicFXElementsRenderer dynamicFXElementsRenderer = new DynamicFXElementsRenderer(this.hBoxArrayListMap, baseVBox, toggleBox);
+        dynamicFXElementsRenderer.render();
     }
 
 
@@ -190,71 +203,6 @@ public class MainEditorController implements Initializable {
     }
 
 
-
-    void init(){
-        this.talkButtonCatalog = new TalkButtonCatalog();
-        this.talkButtonCatalog.addPage("animals", 150);
-        TalkButtonPage talkButtonPageAnimals = new TalkButtonPage("animals",150);
-        talkButtonPageAnimals.addRow();
-        talkButtonPageAnimals.addRow();
-        talkButtonPageAnimals.addRow();
-        System.out.println(talkButtonPageAnimals.getPage().size());
-
-
-        talkButtonPageAnimals.addButtonToRow(0,"dog");
-        talkButtonPageAnimals.addButtonToRow(0,"cat");
-        talkButtonPageAnimals.addButtonToRow(0,"bird");
-        talkButtonPageAnimals.addButtonToRow(0,"cat");
-
-        talkButtonPageAnimals.addButtonToRow(1,"Fish");
-        talkButtonPageAnimals.addButtonToRow(1,"Whale");
-        talkButtonPageAnimals.addButtonToRow(1,"Dolphin");
-        talkButtonPageAnimals.addButtonToRow(1,"Crab");
-
-        talkButtonPageAnimals.addButtonToRow(2,"Monkey");
-        talkButtonPageAnimals.addButtonToRow(2,"Ape");
-        talkButtonPageAnimals.addButtonToRow(2,"gorilla");
-
-        talkButtonCatalog.addPage(talkButtonPageAnimals);
-
-        TalkButtonPage talkButtonPagePokemon =  new TalkButtonPage("pokemon",150);
-        talkButtonPagePokemon.addRow();
-        talkButtonPagePokemon.addRow();
-        talkButtonPagePokemon.addRow();
-
-        talkButtonPagePokemon.addButtonToRow(0,"pikachu");
-        talkButtonPagePokemon.addButtonToRow(0,"bulbasaur");
-        talkButtonPagePokemon.addButtonToRow(0,"charmander");
-        talkButtonPagePokemon.addButtonToRow(0,"squirtle");
-
-        talkButtonPagePokemon.addButtonToRow(1,"dragonite");
-        talkButtonPagePokemon.addButtonToRow(1,"gyrados");
-        talkButtonPagePokemon.addButtonToRow(1,"lapras");
-        talkButtonPagePokemon.addButtonToRow(1,"staryu");
-
-        talkButtonPagePokemon.addButtonToRow(2,"nidoking");
-        talkButtonPagePokemon.addButtonToRow(2,"scyther");
-        talkButtonPagePokemon.addButtonToRow(2,"butterfree");
-
-        talkButtonCatalog.addPage(talkButtonPagePokemon);
-
-        baseVBox.setAlignment(Pos.CENTER);
-        baseVBox.setSpacing(10);
-
-        TalkButtonCatalogSaver.save(this.talkButtonCatalog);
-        printCatalogElementTest();
-
-
-        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(TalkButtonCatalogLoader.load("test"));
-        drawButtons();
-
-        drawAddRowElements();
-
-
-
-
-
-    }
     @FXML
     public void addNewPage(){
         //TODO @ Dhruv
