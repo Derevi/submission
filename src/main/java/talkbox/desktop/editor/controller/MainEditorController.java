@@ -68,7 +68,7 @@ public class MainEditorController implements Initializable {
         renderGUI();
 
         //THIS LINE HERE LOADS A NEW WINDOW
-        ImageWindowController imageWindowController  = new ImageWindowController();
+        ImageWindowController imageWindowController = new ImageWindowController();
         SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
     }
@@ -93,11 +93,11 @@ public class MainEditorController implements Initializable {
     private void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
         this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
         this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
-        EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap);
+        EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap, baseVBox);
     }
 
-    public void renderGUI(){
-        DynamicFXElementsRenderer.render(hBoxArrayListMap,baseVBox,toggleBox);
+    private void renderGUI() {
+        DynamicFXElementsRenderer.render(hBoxArrayListMap, baseVBox, toggleBox);
     }
 
 

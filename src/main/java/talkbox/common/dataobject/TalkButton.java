@@ -63,9 +63,9 @@ public class TalkButton implements Serializable {
     }
 
 
-    String name;
+    private String name;
     AudioClip audioClip;
-    String imageFilePath;
+    private String imageFilePath;
     String audioFilePath;
     private File image;
     private File audio;
@@ -77,7 +77,7 @@ public class TalkButton implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
-    protected TalkButton(){
+    public TalkButton(){
         this.name = " ";
         this.buttonSize = 150;
     }
@@ -90,7 +90,7 @@ public class TalkButton implements Serializable {
 
     protected TalkButton(TalkButton talkButton){
         this.name = talkButton.getName();
-        this.buttonSize=talkButton.getButtonSize();
+        this.buttonSize = talkButton.getButtonSize();
     }
 
 
@@ -109,9 +109,8 @@ public class TalkButton implements Serializable {
     }
 
 
-    public String getName(){
-        String clone = new String(this.name);
-        return clone;
+    public String getName() {
+        return this.name;
     }
 
     protected void setButtonSize(int buttonSize){
