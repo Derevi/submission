@@ -48,6 +48,7 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
 
     private static PageFXToggles pagetoggles;
     private static String pageName;
+    private static LinkedHashMap<String,Integer> subList;
 
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
@@ -112,8 +113,10 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         DynamicFXElementsRenderer.render(hBoxArrayListMap,baseVBox,toggleBox);
     }
 
-    public static void setPage(String name){
-        pageName = name;
+    public static void setElements(String pagename, LinkedHashMap<String,Integer> sublist){
+        pageName = pagename;
+        subList = sublist;
+
     }
 
     public static void setPageFXToggles(PageFXToggles pg){
@@ -132,25 +135,27 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         ToggleButton newToggleBtn = pagetoggles.generateDefaultToggleButton(pageName);
 
         toggleBox.getChildren().add(newToggleBtn);
-       // EditorUtilityFXButtons.setupAllUtilityButtonsToView(hBoxArrayListMap.get("Hello"));
 
         TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog();
         talkButtonCatalog.addPage(pageName,150);
         TalkButtonPage talkButtonPage = new TalkButtonPage(pageName, 150);
-        talkButtonPage.addRow();
-        talkButtonPage.addRow();
-        talkButtonPage.addButtonToRow(0, "Hello");
-        this.talkButtonCatalog.addPage(talkButtonPage);
-        initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
-        System.out.println("//////////////////////");
-        DynamicFXElementsRenderer.renderTalkButonsToView(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[1]),baseVBox);
-        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(newToggleBtn,hBoxArrayListMap,baseVBox);
-        for(Map.Entry<String,ArrayList<HBox>> entry : hBoxArrayListMap.entrySet()) {
-            System.out.println("Name: " + entry.getKey());
-            for(int i=0;i<entry.getValue().size();i++) {
-                System.out.println("HBOX SIZE: " + entry.getValue().get(i).getChildren().size());
+
+
+        //System.out.println("SIZE OF SUBLIST: " + subList.size());
+        for(int i=0; i<subList.size();i++){
+            talkButtonPage.addRow();
+            for(int j=0;j<subList.get(subList.keySet().toArray()[i]);j++) {
+
+                talkButtonPage.addButtonToRow(i,"EMPTY");
             }
         }
+        
+        this.talkButtonCatalog.addPage(talkButtonPage);
+        initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
+
+        DynamicFXElementsRenderer.renderTalkButonsToView(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[1]),baseVBox);
+        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(newToggleBtn,hBoxArrayListMap,baseVBox);
+
     }
 
 

@@ -86,8 +86,14 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
 
     @FXML
     public void addBtnPage(ActionEvent actionEvent) {
-        //System.out.println("BHOSNAME: " + txtPageName.getText());
-         MainEditorController.setPage(txtPageName.getText());
+
+         LinkedHashMap<String, Integer> subList = new LinkedHashMap<>();
+
+         for(Map.Entry<Button,ArrayList<Label>> entry : defaultMap.entrySet()){
+             subList.put(entry.getKey().getText(), entry.getValue().size());
+         }
+         MainEditorController.setElements(txtPageName.getText(),subList);
+
          this.stage.close();
     }
 
