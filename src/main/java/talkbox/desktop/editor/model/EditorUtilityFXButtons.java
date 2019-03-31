@@ -4,10 +4,18 @@ import javafx.event.Event;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 
@@ -70,7 +78,7 @@ public class EditorUtilityFXButtons {
         editorTalkBoxButtons.forEach(
                 row->{
                     for(int i=0; i<=row.getChildren().size();i=i+2){
-                        row.getChildren().add(i,createAddNewButtonUtility());
+                        row.getChildren().add(i,createAddNewButtonUtility(row));
                     }
                 }
 
@@ -102,20 +110,19 @@ public class EditorUtilityFXButtons {
 
 
 
-    public static VBox createAddNewButtonUtility(){
+    public static VBox createAddNewButtonUtility(HBox row){
         Button addButton = new Button("+");
         setButtonSize(addButton,60,60);
-        setAddNewButtonAction(addButton);
-        VBox vBox = new VBox(verticalSeparator(),addButton,verticalSeparator());
-        vBox.setAlignment(Pos.CENTER);
-        return vBox;
+        Text pointer = new Text();
+        VBox container = new VBox(pointer,verticalSeparator(),addButton,verticalSeparator());
+        container.setAlignment(Pos.CENTER);
+        EditorFXButtonActionSetupUtility.setAddNewButtonAction(addButton,pointer,row,container);
+
+
+        return container;
     }
 
-    public static void setAddNewButtonAction(Button button){
-        button.setOnAction(e->{
-            //TODO implement tool to add new button
-        });
-    }
+
 
 
     public static void setButtonSize(Button button, int width, int height){

@@ -4,17 +4,21 @@ import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Scale;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.AbstractTalkButtonInterpretor;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -48,6 +52,31 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
             System.out.println("TEST WORKED");
         });
 
+        editorFXButton.setOnDragDetected(e->{
+            Dragboard db = editorFXButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+            ClipboardContent content = new ClipboardContent();
+            //TalkButtonPage tp = (TalkButtonPage) b.getUserData();
+           // content.putString(Integer.toString(buttonList.indexOf(b)));
+            content.putString("test");
+           File imageFile = new File("buttondragimage.PNG");
+          // Image dragIcon= new Image(editorFXButton.snapshot(new SnapshotParameters(),null).getUrl(),50,50,false,false);
+
+           SnapshotParameters snapshotParameters = new SnapshotParameters();
+           snapshotParameters.setTransform(new Scale(0.6,0.6));
+
+
+
+            db.setDragView(editorFXButton.snapshot(snapshotParameters,null),0,0);
+
+
+            db.setContent(content);
+
+        });
+/*
+        editorFXButton.setOnDragOver(e->{
+            e.acceptTransferModes(TransferMode.COPY);
+        });
+*/
 
 
 
