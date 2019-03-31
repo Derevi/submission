@@ -42,7 +42,7 @@ public class EditorUtilityFXButtons {
     }
 
 
-    private static void setupAllUtilityButtonsToView(ArrayList<HBox> editorTalkBoxButtons){
+    public static void setupAllUtilityButtonsToView(ArrayList<HBox> editorTalkBoxButtons){
         setupAddNewButtonUtility(editorTalkBoxButtons);
         setupAddNewButtonRowUtility(editorTalkBoxButtons);
     }

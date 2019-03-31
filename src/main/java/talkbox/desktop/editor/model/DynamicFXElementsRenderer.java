@@ -37,13 +37,14 @@ public class DynamicFXElementsRenderer {
         System.out.println("Render Size: " + toggleBox.getChildren().size());
     }
 
-    private static void initialTalkButtonStartupRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox){
+    public static void initialTalkButtonStartupRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox){
         baseVbox.getChildren().clear();
         renderTalkButonsToView(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[0]),baseVbox);
     }
 
     public static void renderTalkButonsToView(ArrayList<HBox> hBoxArrayList, VBox baseVbox){
         baseVbox.getChildren().clear();
+        System.out.println("HBOXINDYNAMICSIZE: " + hBoxArrayList.size());
         baseVbox.getChildren().addAll(hBoxArrayList);
     }
 

@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
@@ -129,9 +130,27 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         NewPageController page = new NewPageController();
         SceneViewLoader.loadNewWindow(page, "/talkbox/desktop/editor/view/newpageeditor.fxml", title);
         ToggleButton newToggleBtn = pagetoggles.generateDefaultToggleButton(pageName);
-        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(newToggleBtn,hBoxArrayListMap,baseVBox);
-        toggleBox.getChildren().add(newToggleBtn);
 
+        toggleBox.getChildren().add(newToggleBtn);
+       // EditorUtilityFXButtons.setupAllUtilityButtonsToView(hBoxArrayListMap.get("Hello"));
+
+        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog();
+        talkButtonCatalog.addPage(pageName,150);
+        TalkButtonPage talkButtonPage = new TalkButtonPage(pageName, 150);
+        talkButtonPage.addRow();
+        talkButtonPage.addRow();
+        talkButtonPage.addButtonToRow(0, "Hello");
+        this.talkButtonCatalog.addPage(talkButtonPage);
+        initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
+        System.out.println("//////////////////////");
+        DynamicFXElementsRenderer.renderTalkButonsToView(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[1]),baseVBox);
+        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(newToggleBtn,hBoxArrayListMap,baseVBox);
+        for(Map.Entry<String,ArrayList<HBox>> entry : hBoxArrayListMap.entrySet()) {
+            System.out.println("Name: " + entry.getKey());
+            for(int i=0;i<entry.getValue().size();i++) {
+                System.out.println("HBOX SIZE: " + entry.getValue().get(i).getChildren().size());
+            }
+        }
     }
 
 
