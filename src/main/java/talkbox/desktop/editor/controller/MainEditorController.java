@@ -75,12 +75,7 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         renderGUI();
 
         newPage.setOnAction(this);
-        for(Map.Entry<String,ArrayList<HBox>> entry : hBoxArrayListMap.entrySet()) {
-            System.out.println("Name: " + entry.getKey());
-            for(int i=0;i<entry.getValue().size();i++) {
-                System.out.println("HBOX SIZE: " + entry.getValue().get(i).getChildren().size());
-            }
-        }
+
         //THIS LINE HERE LOADS A NEW WINDOW
         //ImageWindowController imageWindowController  = new ImageWindowController();
         //SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
@@ -140,8 +135,6 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         talkButtonCatalog.addPage(pageName,150);
         TalkButtonPage talkButtonPage = new TalkButtonPage(pageName, 150);
 
-
-        //System.out.println("SIZE OF SUBLIST: " + subList.size());
         for(int i=0; i<subList.size();i++){
             talkButtonPage.addRow();
             for(int j=0;j<subList.get(subList.keySet().toArray()[i]);j++) {
@@ -149,7 +142,7 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
                 talkButtonPage.addButtonToRow(i,"EMPTY");
             }
         }
-        
+
         this.talkButtonCatalog.addPage(talkButtonPage);
         initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
 

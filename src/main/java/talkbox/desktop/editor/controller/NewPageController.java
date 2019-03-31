@@ -86,15 +86,21 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
 
     @FXML
     public void addBtnPage(ActionEvent actionEvent) {
+    if(defaultMap.size()!=0 && !txtPageName.getText().isEmpty()) {
+        LinkedHashMap<String, Integer> subList = new LinkedHashMap<>();
 
-         LinkedHashMap<String, Integer> subList = new LinkedHashMap<>();
+        for (Map.Entry<Button, ArrayList<Label>> entry : defaultMap.entrySet()) {
+            subList.put(entry.getKey().getText(), entry.getValue().size());
+        }
+        MainEditorController.setElements(txtPageName.getText(), subList);
 
-         for(Map.Entry<Button,ArrayList<Label>> entry : defaultMap.entrySet()){
-             subList.put(entry.getKey().getText(), entry.getValue().size());
-         }
-         MainEditorController.setElements(txtPageName.getText(),subList);
-
-         this.stage.close();
+        this.stage.close();
+    }else{
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("ERROR!");
+        a.setHeaderText("Must create a new catalog or must enter the name of the catalog");
+        a.show();
+    }
     }
 
     @FXML
@@ -111,44 +117,41 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
         dialogVbox.add(new Text("Number of Buttons: "), 2, 4);
         dialogVbox.add(txtNumBtns, 3, 4);
 
-        dialogVbox.add(new Text("Max number of Buttons per Rows: "), 2, 5);
-        dialogVbox.add(txtMaxRows, 3, 5);
-
-        dialogVbox.add(new Text("Max number of Buttons per Columns: "), 2, 6);
-        dialogVbox.add(txtMaxCols, 3, 6);
         btnAddPage.setText("Add Button Page");
         btnCancel.setText("Cancel");
         dialogVbox.add(btnAddPage, 2, 7);
         dialogVbox.add(btnCancel, 3, 7);
 
-        btnAddPage.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                dialog.close();
-                Button tempBtn = new Button(txtName.getText());
-                tempBtn.setOnAction(NewPageController.this::handle);
-                //    System.out.println("Button:" + tempBtn.getText());
-                defaultMap.put(tempBtn, new ArrayList<Label>());
-                catalogList.getItems().clear();
+        btnAddPage.setOnAction(e-> {
+                if(!txtName.getText().isEmpty() && !txtNumBtns.getText().isEmpty()) {
+                    dialog.close();
+                    Button tempBtn = new Button(txtName.getText());
+                    tempBtn.setOnAction(NewPageController.this::handle);
+                    //    System.out.println("Button:" + tempBtn.getText());
+                    defaultMap.put(tempBtn, new ArrayList<Label>());
+                    catalogList.getItems().clear();
 
-                for (Map.Entry<Button, ArrayList<Label>> entry : defaultMap.entrySet()) {
-                    catalogList.getItems().add(entry.getKey());
-                    //defaultMap.get(entry.getKey()).add(new Label("EMPTY");
-                    //catalogList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                    for (Map.Entry<Button, ArrayList<Label>> entry : defaultMap.entrySet()) {
+                        catalogList.getItems().add(entry.getKey());
+                        //defaultMap.get(entry.getKey()).add(new Label("EMPTY");
+                        //catalogList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+                    }
+                    numOfItemsToAdd(Integer.parseInt(txtNumBtns.getText()), tempBtn);
+                    catalogList.getSelectionModel().select(tempBtn);
+                    refresh(defaultMap.get(catalogList.getSelectionModel().getSelectedItem()));
+                }else{
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setTitle("ERROR!");
+                    a.setHeaderText("Must enter something in the text field above!");
+                    a.show();
                 }
-                numOfItemsToAdd(Integer.parseInt(txtNumBtns.getText()), tempBtn);
-                catalogList.getSelectionModel().select(tempBtn);
-                refresh(defaultMap.get(catalogList.getSelectionModel().getSelectedItem()));
-            }
         });
 
 
-        btnCancel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
+        btnCancel.setOnAction(e -> {
                 dialog.close();
-            }
+
         });
 
         Scene dialogScene = new Scene(dialogVbox, 400, 200);
