@@ -88,6 +88,7 @@ public class EditorUtilityFXButtons {
 
     private static Button createAddRowButton(){
         Button addRowButton = new Button("++ ADD ROW ++");
+        addRowButton.getStyleClass().add("blue-button");
         setupAddRowButtonAction(addRowButton);
         return addRowButton;
     }
@@ -104,9 +105,9 @@ public class EditorUtilityFXButtons {
 
     public static VBox createAddNewButtonUtility(){
         Button addButton = new Button("+");
-        setButtonSize(addButton,60,60);
+        addButton.getStyleClass().add("blue-button");
         setAddNewButtonAction(addButton);
-        VBox vBox = new VBox(verticalSeparator(),addButton,verticalSeparator());
+        VBox vBox = new VBox(verticalSeparator(), addButton, verticalSeparator());
         vBox.setAlignment(Pos.CENTER);
         return vBox;
     }
