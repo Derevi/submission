@@ -1,11 +1,14 @@
 package talkbox.desktop.editor.model;
 
+import com.sun.speech.freetts.en.us.FeatureProcessors;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.service.SceneViewLoader;
+import talkbox.desktop.editor.controller.NewPageController;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -42,4 +45,8 @@ public class EditorFXButtonActionSetupUtility {
             });
 
     }
+
+
+
+
 }

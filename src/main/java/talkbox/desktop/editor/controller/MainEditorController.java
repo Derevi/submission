@@ -1,6 +1,7 @@
 package talkbox.desktop.editor.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,10 +18,7 @@ import javafx.stage.Stage;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
-import talkbox.desktop.editor.model.DynamicFXElementsRenderer;
-import talkbox.desktop.editor.model.EditorAppTalkButtonInterpretor;
-import talkbox.desktop.editor.model.EditorUtilityFXButtons;
-import talkbox.desktop.editor.model.PageFXToggles;
+import talkbox.desktop.editor.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +26,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
 
-public class MainEditorController implements Initializable {
+public class MainEditorController implements Initializable, EventHandler<ActionEvent> {
 
 
     @FXML
@@ -42,6 +40,12 @@ public class MainEditorController implements Initializable {
 
     @FXML
     private HBox toggleBox;
+
+    @FXML
+    private Button newPage;
+
+    private static PageFXToggles pagetoggles;
+    private static String pageName;
 
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
@@ -66,10 +70,16 @@ public class MainEditorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         intializeUIComponents();
         renderGUI();
+        newPage.setOnAction(this);
+
+
+
+        //NewPageController page = new NewPageController();
+        //SceneViewLoader.loadNewWindow(page, "/talkbox/desktop/editor/view/newpageeditor.fxml");
 
         //THIS LINE HERE LOADS A NEW WINDOW
-        ImageWindowController imageWindowController  = new ImageWindowController();
-        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
+        //ImageWindowController imageWindowController  = new ImageWindowController();
+        //SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
     }
 
@@ -97,8 +107,36 @@ public class MainEditorController implements Initializable {
     }
 
     public void renderGUI(){
-        DynamicFXElementsRenderer.render(hBoxArrayListMap,baseVBox,toggleBox);
+        DynamicFXElementsRenderer.render(hBoxArrayListMap,baseVBox,toggleBox, newPage);
     }
+
+    public static void setPage(String name){
+        pageName = name;
+    }
+
+    public static void setPageFXToggles(PageFXToggles pg){
+        pagetoggles = pg;
+    }
+
+    public void addNewPage(){
+        newPage.setOnAction(e ->{
+
+        });
+
+
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+        String title = "New Page Editor";
+        NewPageController page = new NewPageController();
+        SceneViewLoader.loadNewWindow(page, "/talkbox/desktop/editor/view/newpageeditor.fxml", title);
+        ToggleButton newToggleBtn = pagetoggles.generateDefaultToggleButton(pageName);
+        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(newToggleBtn,hBoxArrayListMap,baseVBox);
+        toggleBox.getChildren().add(newToggleBtn);
+
+    }
+
 
 
 /*

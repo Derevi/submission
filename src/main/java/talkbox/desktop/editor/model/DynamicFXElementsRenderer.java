@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -16,23 +17,24 @@ public class DynamicFXElementsRenderer {
 
 
 
-    public static void render(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox) {
+    public static void render(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox, Button newPage) {
         if(isViewEmpty(baseVbox, toggleBox) && hasUtilityButtons(hBoxArrayListMap)){
-            initialRender(hBoxArrayListMap, baseVbox,toggleBox);
+            initialRender(hBoxArrayListMap, baseVbox,toggleBox, newPage);
         }
         setBoxProperties(baseVbox, toggleBox);
     }
 
 
 
-    private static void initialRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox){
-        renderPageToggleButton(hBoxArrayListMap,baseVbox,toggleBox);
+    private static void initialRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox, Button newPage){
+        renderPageToggleButton(hBoxArrayListMap,baseVbox,toggleBox, newPage);
         initialTalkButtonStartupRender(hBoxArrayListMap, baseVbox);
     }
 
-    private static void renderPageToggleButton(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap,VBox baseVBox, HBox toggleBox){
-        PageFXToggles pageFXToggles = new PageFXToggles(hBoxArrayListMap,baseVBox);
+    private static void renderPageToggleButton(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap,VBox baseVBox, HBox toggleBox, Button newPage){
+        PageFXToggles pageFXToggles = new PageFXToggles(hBoxArrayListMap,baseVBox, newPage);
         toggleBox.getChildren().addAll(pageFXToggles.getToggleButtons());
+        System.out.println("Render Size: " + toggleBox.getChildren().size());
     }
 
     private static void initialTalkButtonStartupRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox){

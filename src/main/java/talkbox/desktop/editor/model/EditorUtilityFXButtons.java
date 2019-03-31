@@ -51,6 +51,7 @@ public class EditorUtilityFXButtons {
 
 
 
+
     private static void  setupAddNewButtonRowUtility(ArrayList<HBox> editorTalkBoxButtons){
 
         int initialLength = editorTalkBoxButtons.size();
@@ -110,7 +111,6 @@ public class EditorUtilityFXButtons {
         vBox.setAlignment(Pos.CENTER);
         return vBox;
     }
-
     public static void setAddNewButtonAction(Button button){
         button.setOnAction(e->{
             //TODO implement tool to add new button
