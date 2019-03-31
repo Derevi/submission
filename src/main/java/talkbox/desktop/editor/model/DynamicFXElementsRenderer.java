@@ -17,22 +17,22 @@ public class DynamicFXElementsRenderer {
 
 
 
-    public static void render(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox, Button newPage) {
+    public static void render(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox) {
         if(isViewEmpty(baseVbox, toggleBox) && hasUtilityButtons(hBoxArrayListMap)){
-            initialRender(hBoxArrayListMap, baseVbox,toggleBox, newPage);
+            initialRender(hBoxArrayListMap, baseVbox,toggleBox);
         }
         setBoxProperties(baseVbox, toggleBox);
     }
 
 
 
-    private static void initialRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox, Button newPage){
-        renderPageToggleButton(hBoxArrayListMap,baseVbox,toggleBox, newPage);
+    private static void initialRender(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVbox, HBox toggleBox){
+        renderPageToggleButton(hBoxArrayListMap,baseVbox,toggleBox);
         initialTalkButtonStartupRender(hBoxArrayListMap, baseVbox);
     }
 
-    private static void renderPageToggleButton(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap,VBox baseVBox, HBox toggleBox, Button newPage){
-        PageFXToggles pageFXToggles = new PageFXToggles(hBoxArrayListMap,baseVBox, newPage);
+    private static void renderPageToggleButton(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap,VBox baseVBox, HBox toggleBox){
+        PageFXToggles pageFXToggles = new PageFXToggles(hBoxArrayListMap,baseVBox);
         toggleBox.getChildren().addAll(pageFXToggles.getToggleButtons());
         System.out.println("Render Size: " + toggleBox.getChildren().size());
     }

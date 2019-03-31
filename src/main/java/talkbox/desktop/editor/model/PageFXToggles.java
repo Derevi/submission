@@ -28,9 +28,9 @@ public class PageFXToggles {
     VBox baseVBox;
    // Button newPage;
     LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
-    static String pageName;
+    //static String pageName;
 
-    public PageFXToggles(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVBox, Button newPage) {
+    public PageFXToggles(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox baseVBox) {
         this.hBoxArrayListMap = hBoxArrayListMap;
         toggleButtons = new ArrayList<>();
         toggleGroup = new ToggleGroup();
