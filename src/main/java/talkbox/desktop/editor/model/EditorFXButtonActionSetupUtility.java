@@ -52,36 +52,57 @@ public class EditorFXButtonActionSetupUtility {
     }
 
     public static void setAddNewButtonAction(Button addButton, Text pointer, HBox row, VBox container){
-        addButton.setOnDragOver(e->{
+        container.setOnDragDetected(e->{
+
+
+            System.out.println(row.getChildren().indexOf(container));
+            Dragboard db = container.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(String.valueOf(row.getChildren().indexOf(container)));
+           db.setContent(content);
+
+
+        });
+
+        container.setOnDragEntered(e->{
             pointer.setText("\u25BC");
             pointer.setFont(Font.font("Arial", FontWeight.BOLD, 20));
             pointer.setFill(Color.BLUE);
-            System.out.println(row.getChildren().indexOf(container));
-            Dragboard db = addButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
-            ClipboardContent content = new ClipboardContent();
-           content.putString(String.valueOf(row.getChildren().indexOf(container)));
 
 
-            //label.setFont(Font.font ("Arial", 20), Color.BLUE);
-            //label.setFill(Color.RED);
             String cssLayout = "-fx-border-color: skyblue;\n" +
                     "-fx-border-insets: 2;\n" +
                     "-fx-border-width: 2;\n" +
                     "-fx-border-style: dashed;\n";
 
             container.setStyle(cssLayout);
-           db.setContent(content);
 
-
+            System.out.println(row.getChildren().indexOf(container));
         });
 
-        addButton.setOnDragExited(e->{
 
+
+        container.setOnDragExited(e->{
             pointer.setText("");
             container.setStyle("-fx-border-color: transparent;");
 
         });
+        container.setOnDragOver(e->{
+            e.acceptTransferModes(TransferMode.COPY);
+        });
 
+
+
+        container.setOnDragDropped(e->{
+            Dragboard db = e.getDragboard();
+            System.out.println("dropeed"+db.getString());
+           // row.getChildren().remove(Integer.parseInt(db.getString()));
+
+
+
+        });
+
+/*
         container.setOnDragDetected(e->{
           // Dragboard db = e.getDragboard();
 
@@ -94,7 +115,7 @@ public class EditorFXButtonActionSetupUtility {
             });
         });
 
-
+*/
 
     }
 

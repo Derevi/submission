@@ -37,6 +37,8 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
 
 
 
+
+
     //TODO IMPLEMENT THIS METHOD
     @Override
     protected Button convertToFXButton(TalkButton talkButton) {
@@ -44,19 +46,18 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
     }
 
     private Button createEditorFXButtonFromTalkButton(TalkButton talkButton){
+
         Button editorFXButton= new Button("",createInternalVbox(talkButton));
         editorFXButton.setUserData(talkButton);
         setEditorButtonProperties(editorFXButton,talkButton.getButtonSize());
 
-        editorFXButton.setOnAction(e->{
-            System.out.println("TEST WORKED");
-        });
 
         editorFXButton.setOnDragDetected(e->{
             Dragboard db = editorFXButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
             ClipboardContent content = new ClipboardContent();
             //TalkButtonPage tp = (TalkButtonPage) b.getUserData();
            // content.putString(Integer.toString(buttonList.indexOf(b)));
+
             content.putString("test");
            File imageFile = new File("buttondragimage.PNG");
           // Image dragIcon= new Image(editorFXButton.snapshot(new SnapshotParameters(),null).getUrl(),50,50,false,false);
