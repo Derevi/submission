@@ -36,9 +36,6 @@ public class SceneViewLoader {
             }catch (IOException ioe){
                 ioe.printStackTrace();
             }
-
-
-
     }
 
     public SceneViewLoader(String pathToFXML, File selectedSerFileToLoad){

@@ -2,6 +2,9 @@ package talkbox.desktop.editor.model;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -54,6 +57,9 @@ public class EditorFXButtonActionSetupUtility {
             pointer.setFont(Font.font("Arial", FontWeight.BOLD, 20));
             pointer.setFill(Color.BLUE);
             System.out.println(row.getChildren().indexOf(container));
+            Dragboard db = addButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+            ClipboardContent content = new ClipboardContent();
+           content.putString(String.valueOf(row.getChildren().indexOf(container)));
 
 
             //label.setFont(Font.font ("Arial", 20), Color.BLUE);
@@ -64,6 +70,7 @@ public class EditorFXButtonActionSetupUtility {
                     "-fx-border-style: dashed;\n";
 
             container.setStyle(cssLayout);
+           db.setContent(content);
 
 
         });
@@ -74,6 +81,21 @@ public class EditorFXButtonActionSetupUtility {
             container.setStyle("-fx-border-color: transparent;");
 
         });
+
+        container.setOnDragDetected(e->{
+          // Dragboard db = e.getDragboard();
+
+            container.setOnDragDropped(e2->{
+                //System.out.println(db.getString());
+               // row.getChildren().remove(Integer.parseInt(db.getString()));
+                //System.out.println(buttonList.indexOf(b));
+
+
+            });
+        });
+
+
+
     }
 
 

@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -89,8 +92,39 @@ public class EditorUtilityFXButtons {
 
     public static HBox createAddRowUtility(){
         HBox addRowUtility = new HBox();
-        addRowUtility.getChildren().addAll(horizontalSeparator(), createAddRowButton(), horizontalSeparator());
+        Text pointer = new Text();
+        addRowUtility.getChildren().addAll(horizontalSeparator(), createAddRowButton(), horizontalSeparator(),pointer);
         addRowUtility.setAlignment(Pos.CENTER);
+        addRowUtility.setOnDragOver(e->{
+
+            pointer.setText("\u25BC");
+            pointer.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+            pointer.setFill(Color.BLACK);
+            //System.out.println(.getChildren().indexOf(container));
+           // Dragboard db = addButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+            //ClipboardContent content = new ClipboardContent();
+           // content.putString(String.valueOf(row.getChildren().indexOf(container)));
+
+
+            //label.setFont(Font.font ("Arial", 20), Color.BLUE);
+            //label.setFill(Color.RED);
+            String cssLayout = "-fx-border-color: skyblue;\n" +
+                    "-fx-border-insets: 2;\n" +
+                    "-fx-border-width: 2;\n" +
+                    "-fx-border-style: dashed;\n";
+
+            addRowUtility.setStyle(cssLayout);
+           // db.setContent(content);
+
+
+        });
+
+        addRowUtility.setOnDragExited(e->{
+
+            pointer.setText("");
+            addRowUtility.setStyle("-fx-border-color: transparent;");
+
+        });
         return addRowUtility;
     }
 

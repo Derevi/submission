@@ -46,7 +46,7 @@ public class DynamicFXElementsRenderer {
     }
 
     private static boolean isViewEmpty(VBox baseVbox, HBox toggleBox){
-        return baseVbox.getChildren().isEmpty()&&toggleBox.getChildren().isEmpty()?true:false;
+        return baseVbox.getChildren().isEmpty() && toggleBox.getChildren().isEmpty()?true:false;
     }
 
     private static boolean hasUtilityButtons(LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap){

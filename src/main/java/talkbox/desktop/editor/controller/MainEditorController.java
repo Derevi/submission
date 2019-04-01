@@ -70,6 +70,8 @@ public class MainEditorController implements Initializable {
         //THIS LINE HERE LOADS A NEW WINDOW
         ImageWindowController imageWindowController  = new ImageWindowController();
         SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
+        toggleBox.getChildren().add(new Button("TEST"));
+
 
     }
 
