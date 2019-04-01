@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import talkbox.desktop.editor.model.EditorFXButtonActionSetupUtility;
 import talkbox.desktop.editor.model.PageFXToggles;
 
 import javax.swing.*;
@@ -92,7 +93,7 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
         for (Map.Entry<Button, ArrayList<Label>> entry : defaultMap.entrySet()) {
             subList.put(entry.getKey().getText(), entry.getValue().size());
         }
-        MainEditorController.setElements(txtPageName.getText(), subList);
+        EditorFXButtonActionSetupUtility.setElements(txtPageName.getText(), subList);
 
         this.stage.close();
     }else{
@@ -128,14 +129,12 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
                     dialog.close();
                     Button tempBtn = new Button(txtName.getText());
                     tempBtn.setOnAction(NewPageController.this::handle);
-                    //    System.out.println("Button:" + tempBtn.getText());
                     defaultMap.put(tempBtn, new ArrayList<Label>());
                     catalogList.getItems().clear();
 
                     for (Map.Entry<Button, ArrayList<Label>> entry : defaultMap.entrySet()) {
                         catalogList.getItems().add(entry.getKey());
-                        //defaultMap.get(entry.getKey()).add(new Label("EMPTY");
-                        //catalogList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
                     }
                     numOfItemsToAdd(Integer.parseInt(txtNumBtns.getText()), tempBtn);
                     catalogList.getSelectionModel().select(tempBtn);

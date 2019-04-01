@@ -38,7 +38,7 @@ public class PageFXToggles {
         setupToggleButtons();
         this.toggleBox = new HBox();
         setupToggleBoxProperties();
-        MainEditorController.setPageFXToggles(this);
+        EditorFXButtonActionSetupUtility.setPageFXToggles(this);
     }
 
     private void setupToggleButtons() {

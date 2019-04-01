@@ -28,7 +28,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class MainEditorController implements Initializable, EventHandler<ActionEvent> {
+public class MainEditorController implements Initializable {
 
 
     @FXML
@@ -46,9 +46,9 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
     @FXML
     private Button newPage;
 
-    private static PageFXToggles pagetoggles;
-    private static String pageName;
-    private static LinkedHashMap<String,Integer> subList;
+
+
+
 
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
@@ -74,7 +74,7 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         intializeUIComponents();
         renderGUI();
 
-        newPage.setOnAction(this);
+        //newPage.setOnAction(this);
 
         //THIS LINE HERE LOADS A NEW WINDOW
         //ImageWindowController imageWindowController  = new ImageWindowController();
@@ -82,12 +82,27 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
     }
 
 
+    //getters and setters for to use in EditorFXButtonActionSetupUtility
+    public LinkedHashMap<String, ArrayList<HBox>> gethBoxArrayListMap(){
+        return this.hBoxArrayListMap;
+    }
+
+    public VBox getBaseVBox(){
+        return this.baseVBox;
+    }
+
+    public HBox getToggleBox(){
+        return this.toggleBox;
+    }
 
     private void intializeUIComponents(){
         bindNodeContainerSize();
         loadCatalog();
         initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
+        EditorFXButtonActionSetupUtility.setupAddBtnPage(newPage, this.talkButtonCatalog, this);
     }
+
+
 
     private void bindNodeContainerSize(){
         this.baseVBox.prefWidthProperty().bind(root.widthProperty());
@@ -98,58 +113,21 @@ public class MainEditorController implements Initializable, EventHandler<ActionE
         this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
     }
 
-    private void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
+    public void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
         this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
         this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
         EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap);
     }
 
-    public void renderGUI(){
+    //if errors occurs then change it to public
+    private void renderGUI(){
         DynamicFXElementsRenderer.render(hBoxArrayListMap,baseVBox,toggleBox);
     }
 
-    public static void setElements(String pagename, LinkedHashMap<String,Integer> sublist){
-        pageName = pagename;
-        subList = sublist;
-
-    }
-
-    public static void setPageFXToggles(PageFXToggles pg){
-        pagetoggles = pg;
-    }
-
-
-    @Override
-    public void handle(ActionEvent event) {
 
 
 
-        String title = "New Page Editor";
-        NewPageController page = new NewPageController();
-        SceneViewLoader.loadNewWindow(page, "/talkbox/desktop/editor/view/newpageeditor.fxml", title);
-        ToggleButton newToggleBtn = pagetoggles.generateDefaultToggleButton(pageName);
 
-        toggleBox.getChildren().add(newToggleBtn);
-
-        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog();
-        talkButtonCatalog.addPage(pageName,150);
-        TalkButtonPage talkButtonPage = new TalkButtonPage(pageName, 150);
-
-        for(int i=0; i<subList.size();i++){
-            talkButtonPage.addRow();
-            for(int j=0;j<subList.get(subList.keySet().toArray()[i]);j++) {
-
-                talkButtonPage.addButtonToRow(i,"EMPTY");
-            }
-        }
-
-        this.talkButtonCatalog.addPage(talkButtonPage);
-        initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
-
-        DynamicFXElementsRenderer.renderTalkButonsToView(hBoxArrayListMap.get(hBoxArrayListMap.keySet().toArray()[1]),baseVBox);
-        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(newToggleBtn,hBoxArrayListMap,baseVBox);
-
-    }
 
 
 
