@@ -17,10 +17,7 @@ import javafx.stage.Stage;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
-import talkbox.desktop.editor.model.DynamicFXElementsRenderer;
-import talkbox.desktop.editor.model.EditorAppTalkButtonInterpretor;
-import talkbox.desktop.editor.model.EditorUtilityFXButtons;
-import talkbox.desktop.editor.model.PageFXToggles;
+import talkbox.desktop.editor.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +39,9 @@ public class MainEditorController implements Initializable {
 
     @FXML
     private HBox toggleBox;
+
+    @FXML
+    private Button newPage;
 
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
@@ -68,9 +68,22 @@ public class MainEditorController implements Initializable {
         renderGUI();
 
         //THIS LINE HERE LOADS A NEW WINDOW
-        ImageWindowController imageWindowController = new ImageWindowController();
-        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
+        //ImageWindowController imageWindowController = new ImageWindowController();
+        //SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
+    }
+
+    //getters and setters for to use in EditorFXButtonActionSetupUtility
+    public LinkedHashMap<String, ArrayList<HBox>> gethBoxArrayListMap(){
+        return this.hBoxArrayListMap;
+    }
+
+    public VBox getBaseVBox(){
+        return this.baseVBox;
+    }
+
+    public HBox getToggleBox(){
+        return this.toggleBox;
     }
 
 
@@ -79,6 +92,7 @@ public class MainEditorController implements Initializable {
         bindNodeContainerSize();
         loadCatalog();
         initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
+        EditorFXButtonActionSetupUtility.setupAddBtnPage(newPage, this.talkButtonCatalog, this);
     }
 
     private void bindNodeContainerSize(){
@@ -90,7 +104,7 @@ public class MainEditorController implements Initializable {
         this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
     }
 
-    private void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
+    public void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
         this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
         this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
         EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap, baseVBox);

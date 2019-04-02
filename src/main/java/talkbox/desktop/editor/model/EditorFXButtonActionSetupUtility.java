@@ -6,6 +6,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.common.dataobject.TalkButtonPage;
+import talkbox.common.service.SceneViewLoader;
+import talkbox.desktop.editor.controller.MainEditorController;
+import talkbox.desktop.editor.controller.NewPageController;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -15,7 +19,9 @@ import java.util.Map;
 
 public class EditorFXButtonActionSetupUtility {
 
-
+    private static String pageName;
+    private static LinkedHashMap<String,Integer> subList;
+    private static PageFXToggles pagetoggles;
 
     public static void setupDrapAction(LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap){
         pageFXButtonMap.entrySet().stream()
@@ -40,6 +46,56 @@ public class EditorFXButtonActionSetupUtility {
                 String pageName = (String)toggleButton.getUserData();
                 DynamicFXElementsRenderer.renderTalkButonsToView(hBoxArrayListMap.get(pageName),baseVbox);
             });
+
+    }
+
+    public static void setPageFXToggles(PageFXToggles pg){
+        pagetoggles = pg;
+
+
+    }
+
+    public static void setElements(String pagename, LinkedHashMap<String,Integer> sublist){
+        pageName = pagename;
+        subList = sublist;
+
+    }
+
+    public static void setupAddBtnPage(Button addPage, TalkButtonCatalog talkButtonCatalog, MainEditorController mc){
+
+        addPage.setOnAction(e->{
+
+            String title = "New Page Editor";
+            NewPageController page = new NewPageController();
+            SceneViewLoader.loadNewWindow(page, "/talkbox/desktop/editor/view/newpageeditor.fxml", title);
+            ToggleButton newToggleBtn = pagetoggles.generateDefaultToggleButton(pageName);
+
+            mc.getToggleBox().getChildren().add(newToggleBtn);
+
+            //TalkButtonCatalog catalog = new TalkButtonCatalog();
+
+            //catalog.addPage(pageName,150);
+            TalkButtonPage talkButtonPage = new TalkButtonPage(pageName, 150);
+
+            for(int i=0; i<subList.size();i++){
+                talkButtonPage.addRow();
+
+                for(int j=0;j<subList.get(subList.keySet().toArray()[i]);j++) {
+
+                    talkButtonPage.addButtonToRow(i,"EMPTY");
+
+                }
+
+            }
+            talkButtonCatalog.addPage(talkButtonPage);
+            mc.initializeMaps(new EditorAppTalkButtonInterpretor(talkButtonCatalog));
+            DynamicFXElementsRenderer.renderTalkButonsToView(mc.gethBoxArrayListMap().get(mc.gethBoxArrayListMap().keySet().toArray()[mc.gethBoxArrayListMap().size()-1]),mc.getBaseVBox());
+            setupRenderPageViewAction(newToggleBtn,mc.gethBoxArrayListMap(),mc.getBaseVBox());
+
+
+
+
+        });
 
     }
 }
