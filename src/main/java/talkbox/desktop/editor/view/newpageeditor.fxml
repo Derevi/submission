@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="rootpane" prefHeight="335.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="talkbox.desktop.editor.controller.NewPageController">
+    <children>
+        <Button layoutX="56.0" layoutY="60.0" mnemonicParsing="false" text="Load Existing Button Catalog" />
+        <Button fx:id="btnPage" layoutX="56.0" layoutY="144.0" mnemonicParsing="false" onAction="#handlebtnPage" text="Create new Button Page" />
+        <Label layoutX="56.0" layoutY="108.0" text="Selected Catalog :" />
+        <Label id="selCat" layoutX="158.0" layoutY="108.0" text="..." />
+        <Button fx:id="addBtnPage" layoutX="412.0" layoutY="26.0" mnemonicParsing="false" onAction="#addBtnPage" text="Add Button Page" />
+        <ListView id="catalogList" fx:id="catalogList" layoutX="265.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" />
+        <ListView id="innerList" fx:id="innerList" layoutX="516.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" />
+        <Label layoutX="569.0" layoutY="30.0" text="Buttons in this list" />
+        <Label layoutX="265.0" layoutY="267.0" text="Selected :" />
+        <Label fx:id="selectedBtnPage" layoutX="319.0" layoutY="267.0" text="..." />
+        <Button fx:id="back" layoutX="115.0" layoutY="217.0" mnemonicParsing="false" onAction="#backBtn" text="Back" />
+        <Label layoutX="263.0" layoutY="30.0" text="Name : " />
+        <TextField fx:id="txtPageName" layoutX="304.0" layoutY="26.0" prefHeight="25.0" prefWidth="95.0" promptText="*REQUIRED" />
+    </children>
+</AnchorPane>
