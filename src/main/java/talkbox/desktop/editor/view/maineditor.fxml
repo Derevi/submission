@@ -27,6 +27,7 @@
             <Button mnemonicParsing="false" styleClass="blue-button" text="Compile Audio" />
             <Button mnemonicParsing="false" styleClass="blue-button" text="Load" />
             <Button mnemonicParsing="false" styleClass="blue-button" text="Save" />
+            <Button fx:id="removeButton" mnemonicParsing="false" styleClass="red-button" onAction="#removeButtons" text="Remove Buttons" />
          </children>
       </HBox>
       <ScrollPane layoutY="220.0" prefHeight="498.0" prefWidth="1366.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">

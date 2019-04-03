@@ -1,15 +1,16 @@
 package talkbox.desktop.editor.model;
 
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
@@ -40,7 +41,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
     }
 
     private Button createEditorFXButtonFromTalkButton(TalkButton talkButton){
-        Button editorFXButton= new Button("",createInternalVbox(talkButton));
+        Button editorFXButton= new Button("", createInternalVbox(talkButton));
         editorFXButton.setUserData(talkButton);
         setEditorButtonProperties(editorFXButton,talkButton.getButtonSize());
 
@@ -60,7 +61,27 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         setInternalVBoxProperties(internalVbox, talkButton.getButtonSize()-20);
         internalVbox.getChildren().add(0,createInternalTextField(talkButton));
         internalVbox.getChildren().add(1,createInternalImage(talkButton));
+        internalVbox.getChildren().add(2, trashButton(talkButton));
         return internalVbox;
+    }
+
+    private HBox trashButton(TalkButton buttonToDelete) {
+        HBox trashHBox = new HBox();
+        Button trash = new Button();
+        trash.setOnAction(e->{
+            System.out.println("Trash button pressed");
+        });
+
+        trash.setPrefSize(20, 20);
+        trash.setMaxSize(20, 20);
+        trash.setAlignment(Pos.BOTTOM_RIGHT);
+        trash.setOpacity(0);
+
+        trashHBox.getChildren().add(trash);
+        trashHBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+        //trashHBox.setBackground(new Background(new BackgroundImage(new Image("</../../../resources/trash-icon.png>"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        return trashHBox;
     }
 
     private TextField createInternalTextField(TalkButton talkButton){

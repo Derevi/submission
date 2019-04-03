@@ -17,10 +17,7 @@ import javafx.stage.Stage;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.*;
-import talkbox.desktop.editor.model.DynamicFXElementsRenderer;
-import talkbox.desktop.editor.model.EditorAppTalkButtonInterpretor;
-import talkbox.desktop.editor.model.EditorUtilityFXButtons;
-import talkbox.desktop.editor.model.PageFXToggles;
+import talkbox.desktop.editor.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,6 +50,9 @@ public class MainEditorController implements Initializable {
     private VBox baseVBox;
 
     @FXML
+    private Button removeButton;
+
+    @FXML
     private HBox keyBox;
 
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
@@ -73,6 +73,10 @@ public class MainEditorController implements Initializable {
 
     }
 
+    @FXML
+    public void removeButtons(){
+        EditorFXButtonActionSetupUtility.deleteButtons(removeButton, hBoxArrayListMap);
+    }
 
 
     private void intializeUIComponents(){
