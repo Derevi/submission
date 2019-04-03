@@ -70,17 +70,17 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         Button trash = new Button();
         trash.setOnAction(e->{
             System.out.println("Trash button pressed");
+
         });
 
-        trash.setPrefSize(20, 20);
-        trash.setMaxSize(20, 20);
+        trash.setPrefSize(40, 40);
+        trash.setMaxSize(40, 40);
         trash.setAlignment(Pos.BOTTOM_RIGHT);
-        trash.setOpacity(0);
+        trash.getStyleClass().add("delete-button");
 
         trashHBox.getChildren().add(trash);
         trashHBox.setAlignment(Pos.BOTTOM_RIGHT);
 
-        //trashHBox.setBackground(new Background(new BackgroundImage(new Image("</../../../resources/trash-icon.png>"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         return trashHBox;
     }
 
