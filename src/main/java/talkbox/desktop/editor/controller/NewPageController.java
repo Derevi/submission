@@ -33,7 +33,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-//import javafx.scene.control.Button;
 
 public class NewPageController implements Initializable, EventHandler<ActionEvent> {
 
@@ -47,7 +46,6 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
     private ListView<Label> innerList = new ListView<>();
     @FXML
     AnchorPane rootpane;
-    //FXMLController controller;
 
 
     @FXML
@@ -63,10 +61,7 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
     private Button btnAddPage = new Button(), btnCancel = new Button();
 
     public String innerListAddName;
-/*
-    private MenuItem add = new MenuItem("Add");
-    private MenuItem add2 = new MenuItem("Add");
-    private MenuItem remove = new MenuItem("Remove");*/
+
 
     public static void setStage(Stage oldstage){
         stage = oldstage;
@@ -109,7 +104,6 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
 
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
-        //dialog.initOwner(primaryStage);
         GridPane dialogVbox = new GridPane();
         dialogVbox.add(new Text("Create a new Button Page"), 2, 1);
         dialogVbox.add(new Text("Name: "), 2, 3);
@@ -158,8 +152,6 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
         dialog.show();
 
 
-        //  AnchorPane pane = FXMLLoader.load(getClass().getResource("NewButtonPage.fxml"));
-        //   rootpane.getChildren().setAll(pane);
     }
 
     public void numOfItemsToAdd(int n, Button btnKey){
@@ -175,48 +167,11 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
 
         backBtn = new Button();
 
-        //selectedBtnPage = new Label();
         for (Map.Entry<Button, ArrayList<Label>> entry : defaultMap.entrySet()) {
             catalogList.getItems().add(entry.getKey());
             entry.getKey().setOnAction(this);
             AnchorPane pane = this.rootpane;
 
-            /*innerList.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    if (mouseEvent.isSecondaryButtonDown()) {
-                        ContextMenu contextMenu = new ContextMenu();
-                        ContextMenu contextMenu2 = new ContextMenu();
-                        contextMenu2.getItems().add(add2);
-                        contextMenu.getItems().addAll(add, remove);
-                        if (innerList.getItems().isEmpty()) {
-                            System.out.println("empty");
-                            contextMenu2.show(innerList, mouseEvent.getScreenX(), mouseEvent.getScreenY());
-                        } else {
-                            contextMenu.show(innerList.getSelectionModel().getSelectedItem(), mouseEvent.getScreenX(), mouseEvent.getScreenY());
-                        }
-                        add2.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent actionEvent) {
-                                addMenuBtns();
-                            }
-                        });
-                        add.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent actionEvent) {
-                                addMenuBtns();
-                            }
-                        });
-                        remove.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent actionEvent) {
-                                defaultMap.get(catalogList.getSelectionModel().getSelectedItem()).remove(innerList.getSelectionModel().getSelectedItem());
-                                refresh(defaultMap.get(catalogList.getSelectionModel().getSelectedItem()));
-                            }
-                        });
-                    }
-                }
-            });*/
 
 
             catalogList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -226,35 +181,9 @@ public class NewPageController implements Initializable, EventHandler<ActionEven
 
     }
 
-/*    public void addMenuBtns() {
-        final Stage stage = new Stage();
-        VBox vbox = new VBox();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        Label name = new Label("Enter name: ");
-        vbox.getChildren().add(name);
-        TextField nameTxt = new TextField();
-        vbox.getChildren().add(nameTxt);
-        Button okay = new Button("Okay");
-        vbox.getChildren().add(okay);
-        Scene dialogScene = new Scene(vbox, 200, 200);
-        stage.setScene(dialogScene);
-        stage.show();
-        okay.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                stage.close();
-                innerListAddName = nameTxt.getText();
-                defaultMap.get(catalogList.getSelectionModel().getSelectedItem()).add(new Label(innerListAddName));
-                System.out.println("The Entry added to the array: " + defaultMap.get(catalogList.getSelectionModel().getSelectedItem()).toString());
-                System.out.print("Before sending the ArrayList is" + defaultMap.get(catalogList.getSelectionModel().getSelectedItem()).toString());
-                refresh(defaultMap.get(catalogList.getSelectionModel().getSelectedItem()));
-            }
-        });
-    }*/
 
     public void refresh(ArrayList<Label> lbl) {
         innerList.getItems().clear();
-        // System.out.println("The ArrayList after recieveing " +lbl.toString());
         if (!lbl.isEmpty()) {
             lbl.forEach(name -> innerList.getItems().add(name));
         }

@@ -19,7 +19,6 @@ import talkbox.common.service.AbstractTalkButtonInterpretor;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-//TODO ESSENTIAL KN SETUP INTERPRETOR TO ADD PROPER UTILITY BUTTONS TO ArrayList<HBox>
 
 public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpretor {
 

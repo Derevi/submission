@@ -108,13 +108,5 @@ public class PageFXToggles {
 
 
 
-    //TODO @DHRUV add a button which adds a new list add the button to the end of toggleBox
-    //TODO @DHRUV IF you are creating a new button you can call metod and pass in string to: generateDefaultToggleButton(String name)
-    //TODO @DHRUV **Make sure that new Added buttons are ToggleButtons and that they are added before the add button
-
-
-
-
-
 
 }

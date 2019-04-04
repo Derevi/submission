@@ -12,7 +12,7 @@ import talkbox.common.service.AudioPlayer;
 import talkbox.common.service.StringToAudioGenerator;
 import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.common.service.TalkButtonCatalogSaver;
-import TOBEREMOVED.TalkButtonInterpretor;
+import talkbox.desktop.mainapp.model.MainAppTalkButtonInterpretor;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,14 +37,11 @@ public class TalkBoxController implements Initializable {
     public Button talkButton;
 
 
-    //TODO delete this mVar after as it was only for testing
     @FXML
     private String line;
 
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
-        /*
 
-*/
     }
 
     public LinkedHashMap<String, ArrayList<ArrayList<Button>>> convertTalkButtonCatalogToFxButtons(){
@@ -58,12 +55,10 @@ public class TalkBoxController implements Initializable {
     public void setprint(String line){
         this.line = line;
         System.out.println(line);
-        //System.out.println(fileName.getPath());
-        //System.out.println(selectedFile.getName());
+
     }
 
     public void talk() {
-        //make this pull from list
         String userInput = "hello";
         AudioPlayer.talk(userInput);
 
@@ -74,7 +69,9 @@ public class TalkBoxController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(TalkButtonCatalogLoader.load("test"));
+        MainAppTalkButtonInterpretor mainAppTalkButtonInterpretor = new MainAppTalkButtonInterpretor(TalkButtonCatalogLoader.load("test"));
+        this.catalogFxButtons = mainAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
+
         compileAudio();
 
         baseVBox.setAlignment(Pos.CENTER);

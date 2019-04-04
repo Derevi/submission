@@ -29,7 +29,6 @@ public class TalkButtonPage implements Serializable {
 
     public String getPageName(){
         if(pageName.isEmpty()){
-            //TODO throw error for null
         }
         String clone = new String(this.pageName);
         return clone;
@@ -37,15 +36,14 @@ public class TalkButtonPage implements Serializable {
 
     public void setPageName(String pageName){
         if(pageName.isEmpty()){
-            //TODO throw error for null
+
         }
         this.pageName = pageName;
     }
 
     public void setButtonSizeForPage(int buttonSize){
         if(buttonSize>150 || buttonSize<10){
-            //TODO throw error for above max size
-            //TODO throw error for min size
+
         }
         this.buttonSize = buttonSize;
         for( ArrayList<TalkButton> talkButtonRow : page){
@@ -90,11 +88,9 @@ public class TalkButtonPage implements Serializable {
 
 
     public void setPageImageRootDirectory(File imageDirectory){
-        //TODO set directory from where images are pulled
     }
 
     public void setPageAudioFileRootDirectory(File audioFileDirectory){
-        //TODO set directory from where audio are pulled
     }
 
 

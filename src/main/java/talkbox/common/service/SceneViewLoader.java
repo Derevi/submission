@@ -75,7 +75,6 @@ public class SceneViewLoader {
     }
 
 
-    //TODO automate explicit casting so you dont have to keep adding to if statements
     public void callInitializerBasedOnControllerName(FXMLLoader loader){
         if(pathToFXML.contains("editor")){ initializeControllerVariable((MainEditorController) loader.getController(),selectedSerFileToLoad);}
         else{initializeControllerVariable((TalkBoxController) loader.getController(),selectedSerFileToLoad);}
@@ -91,12 +90,10 @@ public class SceneViewLoader {
     }
 
     private void initializeControllerVariable(MainEditorController mainEditorController, File file){
-        //TODO load and convert catalog and pass through here. Below is just example method to show that variables are being carried over to new FXML
         mainEditorController.setTalkButtonCatalog(loadTalkButtonCatalog());
     }
 
     private void initializeControllerVariable(TalkBoxController talkBoxController, File file){
-        //TODO load and convert catalog and pass through here. Below is just example method to show that variables are being carried over to new FXML
         talkBoxController.setTalkButtonCatalog(loadTalkButtonCatalog());
     }
 
@@ -112,40 +109,3 @@ public class SceneViewLoader {
         newWindow.show();
     }
 }
-/*  //THIS IS THE CODE IN A SINGLE BLOCK
-        FXMLLoader loader = new FXMLLoader();
-        try{
-            loader.setLocation(getClass().getResource(pathToFXML));
-            loader.load();
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        TalkBoxController talkBoxController = loader.getController();
-
-        TalkButtonCatalog loaded = TalkButtonCatalogLoader.load("/test.ser");
-        talkBoxController.setTalkButtonCatalog(loaded);
-
-        Parent parent = loader.getRoot();
-        Stage newWindow=(Stage)((Node)event.getSource()).getScene().getWindow();
-        newWindow.setScene(new Scene(parent));
-        newWindow.show();
-
-
-            private void initializeEditorControllerVariable(MainEditorController mainEditorController, File file){
-        TalkButtonCatalog loaded = TalkButtonCatalogLoader.load("/test.ser");
-        mainEditorController.setTalkButtonCatalog(loaded);
-
-      //  TalkButtonCatalog catalog = TalkButtonCatalogLoader.load(file.getPath());
-      //  mainEditorController.setTalkButtonCatalog(catalog);
-    }
-
-    private void initializeMainAppControllerVariable(TalkBoxController talkBoxController, File file){
-        TalkButtonCatalog loaded = TalkButtonCatalogLoader.load("/test.ser");
-        talkBoxController.setTalkButtonCatalog(loaded);
-
-        //TalkButtonCatalog catalog = TalkButtonCatalogLoader.load(file.getPath());
-        //talkBoxController.setTalkButtonCatalog(catalog);
-        //talkBoxController.setprint(file.getName());
-    }
-
- */

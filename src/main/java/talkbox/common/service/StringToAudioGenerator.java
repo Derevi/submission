@@ -15,7 +15,6 @@ public class StringToAudioGenerator {
         Voice voice;
         voice = VoiceManager.getInstance().getVoice("kevin16");
         voice.allocate();
-        //TODO allow for user to set directory
         AudioPlayer audioPlayer = new SingleFileAudioPlayer("audio"+ File.separator+word, AudioFileFormat.Type.WAVE);
         voice.setAudioPlayer(audioPlayer);
         voice.speak(word);

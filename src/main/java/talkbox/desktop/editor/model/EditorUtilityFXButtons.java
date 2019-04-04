@@ -29,17 +29,8 @@ public class EditorUtilityFXButtons {
     LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap;
     EditorFXButtonActionSetupUtility editorFXButtonActionSetupUtility;
     LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap;
-/*
-    EditorUtilityFXButtons(LinkedHashMap<String, ArrayList<ArrayList<Button>>> pageFXButtonMap){
-        this.talkButtonCatalog = talkButtonCatalog;
-        this.editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(this.talkButtonCatalog);
-        this.pageFXButtonMap = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
-        this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
-        setupMapWithUtilities(this.hBoxArrayListMap);
-    }
-*/
+
     public static void setupMapWithUtilities( LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox useBaseVBoxHere){
-       // hBoxArrayListMap.entrySet().stream().forEach(v->setupAddNewButtonUtility(v.getValue()));
         hBoxArrayListMap.entrySet().stream().forEach(s-> setupAllUtilityButtonsToView(s.getValue(), useBaseVBoxHere));
     }
 

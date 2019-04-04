@@ -43,7 +43,6 @@ public class ImageWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         File imageDirectory = new File("Icon Images");
       imageFileList = new ArrayList<>(Arrays.asList(imageDirectory.listFiles()));
-       // categories = imageFileList.stream().map(File::getName).collect(Collectors.toCollection(ArrayList::new));
 
         categoryFileMap = imageFileList.stream()
                 .collect(Collectors.toMap(
@@ -60,8 +59,6 @@ public class ImageWindowController implements Initializable {
                         file ->{
                             ArrayList<File> fileList = new ArrayList<>(Arrays.asList(file.listFiles()));
 
-
-
                             ArrayList<ImageView> imageViewArrayList = fileList.stream().map(f -> f.toURI().toString()).map(ImageView::new).collect(Collectors.toCollection(ArrayList::new));
 
                             imageViewArrayList.stream().forEach(v -> {
@@ -73,8 +70,6 @@ public class ImageWindowController implements Initializable {
                             },
                         (key, value) -> key,
                         LinkedHashMap::new));
-
-
 
         imageCategories.setItems(FXCollections.observableList(new ArrayList<>(Arrays.asList(imageDirectory.listFiles())).stream()
                 .map(File::getName)
@@ -89,36 +84,9 @@ public class ImageWindowController implements Initializable {
 
         });
 
-
-
-        //ArrayList<String> filesInImageDirectory = new ArrayList<>();
-        //filesInImageDirectory.stream().collect(imageDirectory.getName())
-        //categoryImageFileMap.entrySet().stream().collect(File)
-/*
-        try{
-            File imageFile = new File("objects/balloon.png");
-            Image img = new Image(imageFile.toURI().toString());
-            ImageView imgView = new ImageView(img);
-            imgView.setFitHeight(100);
-            imgView.setFitWidth(100);
-            Button imgButton = new Button("test", imgView);
-            imgView.setOnMouseClicked(event -> {
-                System.out.println("CLICKED THE IMAGE");
-
-            });
-
-            imageGrid.add(imgView,0 ,0);
-          //  imageGrid.add(imgButton,1 ,1);
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        */
-
     }
 
-    //TODO add scroll pane for images on gridpane
     public void generateImageGrid(String category){
-        //categoryFileMap.get(category).stream().map(s-> new ImageView(s.toURI().toString())).filter( j->)
         int counter =0;
         for(int i =0; i<categoryImageFileMap.get(category).size()/5;i++){
             for(int j = 0; j<5;j++){
@@ -126,14 +94,7 @@ public class ImageWindowController implements Initializable {
                 counter++;
             }
         }
-       /* IntStream.range(0,categoryFileMap.get(category).size())
-                .forEach(i -> {
-                    IntStream.range(0,5).forEach(j -> {
-                        imageGrid.add(categoryImageFileMap.get(category).get(i+j),i,j)
-                    });
-                    i++;
-                });
-*/
+
     }
 
 

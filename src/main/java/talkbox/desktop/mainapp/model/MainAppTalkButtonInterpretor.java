@@ -14,17 +14,16 @@ public class MainAppTalkButtonInterpretor extends AbstractTalkButtonInterpretor 
 
     TalkButtonCatalog talkButtonCatalog;
 
-    MainAppTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog){
+    public MainAppTalkButtonInterpretor(TalkButtonCatalog talkButtonCatalog){
         super(talkButtonCatalog);
     }
-/*
-    protected  LinkedHashMap<String, ArrayList<HBox>> convertToMapOfHBoxArrayList(){
-        return MainAppTalkButtonInterpretor.convertToMapOfHBoxArrayList(talkButtonCatalog);
-    }
-*/
+
     //TODO IMPLEMENT THIS METHOD
     @Override
     protected Button convertToFXButton(TalkButton talkButton) {
-        return null;
+        Button button = new Button(talkButton.getName());
+        button.setMaxSize(160,160);
+        button.setMinSize(160,160);
+        return button;
     }
 }

@@ -27,25 +27,21 @@ public class TalkButton implements Serializable {
 
 
         public Builder withName(String name) {
-            //TODO SET NAME LIMIT OR THROW ERROR
             this.name = name;
             return this;
         }
 
         public Builder withImage(File image){
-            //TODO IF FILE IS NOT OF TYPE IMAGE THROW ERROR
             this.image = image;
             return this;
         }
 
         public Builder withAudio(File audio){
-            //TODO IF FILE IS NOT OF TYPE AUDIO THROW ERROR
             this.audio = audio;
             return this;
         }
 
         public Builder withSize(int buttonSize){
-            //TODO SET SIZE MIN AND MAX LIMITS OR THROW ERROR
             this.buttonSize = buttonSize;
             return this;
         }
