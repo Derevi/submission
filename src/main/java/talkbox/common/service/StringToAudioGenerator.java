@@ -10,7 +10,7 @@ import java.io.File;
 
 public class StringToAudioGenerator {
 
-    static void generateAudio(String word){
+    public static void generateAudio(String word){
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         Voice voice;
         voice = VoiceManager.getInstance().getVoice("kevin16");

@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.common.service.AudioPlayer;
+import talkbox.common.service.StringToAudioGenerator;
 import talkbox.common.service.TalkButtonCatalogLoader;
 import talkbox.common.service.TalkButtonCatalogSaver;
 import TOBEREMOVED.TalkButtonInterpretor;
@@ -30,6 +31,8 @@ public class TalkBoxController implements Initializable {
 
     @FXML
     private VBox baseVBox;
+    @FXML
+    private HBox toggleBox;
 
     public Button talkButton;
 
@@ -93,79 +96,61 @@ public class TalkBoxController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TalkButtonCatalog catalog = new TalkButtonCatalog();
-        catalog.addPage("animals", 150);
-
-        TalkButtonPage talkButtonPage = new TalkButtonPage("animals",150);
-        // Button button = new Button("test");
-
-
-        talkButtonPage.addRow();
-        talkButtonPage.addRow();
-        talkButtonPage.addRow();
-        System.out.println(talkButtonPage.getPage().size());
-
-
-        talkButtonPage.addButtonToRow(0,"dog");
-        talkButtonPage.addButtonToRow(0,"cat");
-        talkButtonPage.addButtonToRow(0,"bird");
-        talkButtonPage.addButtonToRow(0,"cat");
-
-        talkButtonPage.addButtonToRow(1,"Fish");
-        talkButtonPage.addButtonToRow(1,"Whale");
-        talkButtonPage.addButtonToRow(1,"Dolphin");
-        talkButtonPage.addButtonToRow(1,"Crab");
-
-        talkButtonPage.addButtonToRow(2,"Monkey");
-        talkButtonPage.addButtonToRow(2,"Ape");
-        talkButtonPage.addButtonToRow(2,"gorilla");
-        catalog.addPage(talkButtonPage);
-
-
-        talkButtonPage.getPage()
-                .stream()
-                .flatMap(t -> t.stream())
-                .map(t-> t.getName())
-                .forEach(System.out::println);
-        System.out.println();
-
-        catalog.getTalkButtonPage("animals")
-                .getPage()
-                .stream()
-                .flatMap(t -> t.stream())
-                .map(t-> t.getName())
-                .forEach(System.out::println);
-
-        System.out.println();
-
-        TalkButtonCatalogSaver.save(catalog);
 
 
         this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(TalkButtonCatalogLoader.load("test"));
+        compileAudio();
 
         baseVBox.setAlignment(Pos.CENTER);
         baseVBox.setSpacing(10);
+        toggleBox.setSpacing(10);
+        this.baseVBox.prefWidthProperty().bind(root.widthProperty());
+        this.toggleBox.prefWidthProperty().bind(root.widthProperty());
 
         HBox keyBox = new HBox();
         keyBox.setAlignment(Pos.CENTER);
         keyBox.setSpacing(10);
         for(String s:catalogFxButtons.keySet()){
-            keyBox.getChildren().add(new Button(s));
+            Button button = new Button(s);
+            button.setMaxSize(160,160);
+            button.setMinSize(160,160);
+            button.setOnAction(e->{
+                render(button.getText());
+            });
+            toggleBox.getChildren().add(button);
         }
-        baseVBox.getChildren().add(1,keyBox);
 
 
 
-        for(ArrayList<Button> list: catalogFxButtons.get("animals")){
+
+    }
+
+    private void render(String pageName){
+        baseVBox.getChildren().clear();
+        for(ArrayList<Button> list: catalogFxButtons.get(pageName)){
             HBox hbox  = new HBox();
             hbox.setAlignment(Pos.CENTER);
             hbox.setSpacing(10);
             for(Button b: list){
                 hbox.getChildren().add(b);
+                b.setOnAction(e->{
+                    AudioPlayer.talk(b.getText());
+                });
             }
             baseVBox.getChildren().add(hbox);
 
         }
+    }
+
+    private void compileAudio(){
+        catalogFxButtons.entrySet()
+                .stream()
+                .map(b ->b.getValue())
+                .flatMap(m->m.stream())
+                .flatMap(d->d.stream())
+                .forEach(button ->{
+                    StringToAudioGenerator.generateAudio(button.getText());
+                });
     }
 
 
