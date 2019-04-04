@@ -11,6 +11,7 @@ import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
 import talkbox.common.dataobject.TalkButtonPage;
 import talkbox.desktop.editor.controller.MainEditorController;
+import talkbox.desktop.editor.controller.NewPageController;
 import talkbox.desktop.mainapp.controller.TalkBoxController;
 
 import java.io.File;
@@ -23,16 +24,16 @@ public class SceneViewLoader {
     private File selectedSerFileToLoad;
 
 
-    public static  void loadNewWindow(Object controller,String pathToFXML){
+    public static  void loadNewWindow(Object controller,String pathToFXML, String title){
 
             try{
-                FXMLLoader fxmlLoader = new FXMLLoader(controller.getClass().getResource("/talkbox/desktop/editor/view/imagewindow.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(controller.getClass().getResource(pathToFXML));
                 Parent imgWindowRoot =  fxmlLoader.load();
                 Stage stage = new Stage();
-                stage.setTitle("My New Stage Title");
+                stage.setTitle(title);
                 stage.setScene(new Scene(imgWindowRoot));
-
-                stage.show();
+                NewPageController.setStage(stage);
+                stage.showAndWait();
             }catch (IOException ioe){
                 ioe.printStackTrace();
             }

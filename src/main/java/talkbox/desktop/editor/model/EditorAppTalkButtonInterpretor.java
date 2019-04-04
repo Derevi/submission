@@ -68,15 +68,16 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
     private HBox trashButton(TalkButton buttonToDelete) {
         HBox trashHBox = new HBox();
         Button trash = new Button();
-        trash.setOnAction(e->{
-            System.out.println("Trash button pressed");
-
-        });
 
         trash.setPrefSize(40, 40);
         trash.setMaxSize(40, 40);
         trash.setAlignment(Pos.BOTTOM_RIGHT);
         trash.getStyleClass().add("delete-button");
+
+        trash.setOnAction(e->{
+            System.out.println("Trash button pressed");
+            trash.getParent().getParent().getParent().getParent();
+        });
 
         trashHBox.getChildren().add(trash);
         trashHBox.setAlignment(Pos.BOTTOM_RIGHT);

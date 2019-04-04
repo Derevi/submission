@@ -40,6 +40,9 @@ public class MainEditorController implements Initializable {
     @FXML
     private HBox toggleBox;
 
+    @FXML
+    private Button newPage;
+
     private VBox box;
     private TalkButtonCatalog talkButtonCatalog;
     private FXMLLoader fXMLLoader = new FXMLLoader();
@@ -68,21 +71,30 @@ public class MainEditorController implements Initializable {
         renderGUI();
 
         //THIS LINE HERE LOADS A NEW WINDOW
-        ImageWindowController imageWindowController = new ImageWindowController();
-        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
+        //ImageWindowController imageWindowController = new ImageWindowController();
+        //SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
     }
 
-    @FXML
-    public void removeButtons(){
-        EditorFXButtonActionSetupUtility.deleteButtons(removeButton, hBoxArrayListMap);
+    //getters and setters for to use in EditorFXButtonActionSetupUtility
+    public LinkedHashMap<String, ArrayList<HBox>> gethBoxArrayListMap(){
+        return this.hBoxArrayListMap;
     }
 
+    public VBox getBaseVBox(){
+        return this.baseVBox;
+    }
+
+    public HBox getToggleBox(){
+        return this.toggleBox;
+    }
 
     private void intializeUIComponents(){
         bindNodeContainerSize();
         loadCatalog();
         initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
+        EditorFXButtonActionSetupUtility.setupAddBtnPage(newPage, this.talkButtonCatalog, this);
+        //EditorFXButtonActionSetupUtility.deleteButtons(removeButton, hBoxArrayListMap);
     }
 
     private void bindNodeContainerSize(){
@@ -94,7 +106,7 @@ public class MainEditorController implements Initializable {
         this.talkButtonCatalog = TalkButtonCatalogLoader.load("test");
     }
 
-    private void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
+    public void initializeMaps(EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor){
         this.catalogFxButtons = editorAppTalkButtonInterpretor.getMapOfFxButtonCatalog();
         this.hBoxArrayListMap = editorAppTalkButtonInterpretor.getMapOfHBoxArrayList();
         EditorUtilityFXButtons.setupMapWithUtilities(this.hBoxArrayListMap, baseVBox);

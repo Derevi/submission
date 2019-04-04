@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import talkbox.common.dataobject.TalkButton;
 import talkbox.common.dataobject.TalkButtonCatalog;
+import talkbox.desktop.editor.controller.MainEditorController;
 import talkbox.desktop.editor.model.EditorAppTalkButtonInterpretor;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class EditorUtilityFXButtons {
         setupMapWithUtilities(this.hBoxArrayListMap);
     }
 */
-    public  static void setupMapWithUtilities( LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox useBaseVBoxHere){
+    public static void setupMapWithUtilities( LinkedHashMap<String, ArrayList<HBox>> hBoxArrayListMap, VBox useBaseVBoxHere){
        // hBoxArrayListMap.entrySet().stream().forEach(v->setupAddNewButtonUtility(v.getValue()));
         hBoxArrayListMap.entrySet().stream().forEach(s-> setupAllUtilityButtonsToView(s.getValue(), useBaseVBoxHere));
     }
@@ -49,9 +50,6 @@ public class EditorUtilityFXButtons {
     }
 
 
-
-
-
     private static void  setupAddNewButtonRowUtility(ArrayList<HBox> editorTalkBoxButtons, VBox useBaseVBoxHere){
 
         int initialLength = editorTalkBoxButtons.size();
@@ -60,10 +58,6 @@ public class EditorUtilityFXButtons {
             editorTalkBoxButtons.add(i, createAddRowUtility(useBaseVBoxHere));
         }
     }
-
-
-
-
 
 
     private static void setupAddNewButtonUtility(ArrayList<HBox> editorTalkBoxButtons){
@@ -115,7 +109,6 @@ public class EditorUtilityFXButtons {
     }
 
 
-
     private static VBox createAddNewButtonUtility(HBox currentHBox){
         Button addButton = new Button("+");
         addButton.getStyleClass().add("blue-button");
@@ -143,7 +136,6 @@ public class EditorUtilityFXButtons {
         button.setMaxSize(width, height);
         button.setMinSize(width, height);
     }
-
 
 
     private static Separator verticalSeparator(){

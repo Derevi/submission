@@ -77,6 +77,32 @@
     -fx-alignment: CENTER;
 }
 
+.delete-large-button {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#5A5A64, #51525A),
+            linear-gradient(#FEFEFE 0%, #CBCBCB 10%, #C1C1C1 50%, #AAAAAB 51%, #F2F2F3 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 30;
+    -fx-padding: 5 20 5 20;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 16px;
+}
+
+.delete-large-button:hover {
+    -fx-background-color:
+            rgba(0,0,0,0.08),
+            linear-gradient(#5A5A64, #51525A),
+            linear-gradient(#F2F3FB 0%, #CECED2 10%, #A5A5A5 50%, #88888D 51%, #D5D5D5 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-text-fill: #1B1D20;
+    -fx-background-image: url('../../resources/trash-icon.png');
+    -fx-background-size: 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90% 90%;
+    -fx-alignment: CENTER;
+}
+
 .label {
     -fx-font-size: 16px;
 }

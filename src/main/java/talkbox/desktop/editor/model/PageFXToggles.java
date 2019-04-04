@@ -33,6 +33,7 @@ public class PageFXToggles {
         setupToggleButtons();
         this.toggleBox = new HBox();
         setupToggleBoxProperties();
+        EditorFXButtonActionSetupUtility.setPageFXToggles(this);
     }
 
     private void setupToggleButtons(){
@@ -68,10 +69,10 @@ public class PageFXToggles {
         VBox vBox = toggleButtonInternalVBox(150,150);
         TextField textField = textFieldInternal(name,120,30);
         vBox.getChildren().add(textField);
-        ToggleButton toggleButton = new ToggleButton("",vBox);
+        ToggleButton toggleButton = new ToggleButton("", vBox);
         setToggleButtonSize(toggleButton,160,160);
         toggleButton.setUserData(name);
-        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(toggleButton,hBoxArrayListMap,baseVBox);
+        EditorFXButtonActionSetupUtility.setupRenderPageViewAction(toggleButton, hBoxArrayListMap, baseVBox);
         return toggleButton;
     }
 
@@ -81,7 +82,7 @@ public class PageFXToggles {
     }
 
     private VBox toggleButtonInternalVBox(int width, int height){
-        VBox vBox =new VBox();
+        VBox vBox = new VBox();
         vBox.setMaxSize(width,height);
         vBox.setAlignment(Pos.CENTER);
         return vBox;
