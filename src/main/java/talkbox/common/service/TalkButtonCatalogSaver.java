@@ -14,7 +14,7 @@ public class TalkButtonCatalogSaver {
 
     public static void save( TalkButtonCatalog catalog) {
         try (
-                FileOutputStream fos = new FileOutputStream("test.ser");
+                FileOutputStream fos = new FileOutputStream("test2.ser");
                 ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
             oos.writeObject(catalog);
