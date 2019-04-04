@@ -62,7 +62,7 @@ task(runEditorApp, type: JavaExec) {
     //args 'put-argument-here'
 }
 
-defaultTasks 'runTalkBoxApp'
+
 
 //Specifies another package as the source for resources such as .fxml and .css
 sourceSets.main {
