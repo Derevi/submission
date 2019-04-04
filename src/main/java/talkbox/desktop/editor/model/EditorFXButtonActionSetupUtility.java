@@ -72,9 +72,7 @@ public class EditorFXButtonActionSetupUtility {
 
             mc.getToggleBox().getChildren().add(newToggleBtn);
 
-            //TalkButtonCatalog catalog = new TalkButtonCatalog();
 
-            //catalog.addPage(pageName,150);
             TalkButtonPage talkButtonPage = new TalkButtonPage(pageName, 150);
 
             for(int i=0; i<subList.size();i++){

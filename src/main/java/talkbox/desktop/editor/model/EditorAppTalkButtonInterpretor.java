@@ -43,6 +43,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         Button editorFXButton= new Button("",createInternalVbox(talkButton));
         editorFXButton.setUserData(talkButton);
         setEditorButtonProperties(editorFXButton,talkButton.getButtonSize());
+        enableDragAndDropAction(editorFXButton);
 
         editorFXButton.setOnAction(e->{
             System.out.println("TEST WORKED");
@@ -110,28 +111,26 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
     }
 
 
-    public void enableDragAndDropAction(Button sourcefxButton, HBox hBox){
-/*
-        this.fxButton.setOnDragDetected(e->{
-            Dragboard db = this.fxButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+    public void enableDragAndDropAction(Button sourcefxButton){
+
+        sourcefxButton.setOnDragDetected(e->{
+            Dragboard db = sourcefxButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
             ClipboardContent content = new ClipboardContent();
-            TalkButtonPage tp = (TalkButtonPage) this.fxButton.getUserData();
-            db.setDragView(this.fxButton.snapshot(new SnapshotParameters(),null),0,0);
+            db.setDragView(sourcefxButton.snapshot(new SnapshotParameters(),null),0,0);
             db.setContent(content);
         });
 
-        this.fxButton.setOnDragOver(e->{
+        sourcefxButton.setOnDragOver(e->{
             e.acceptTransferModes(TransferMode.COPY);
         });
 
-        this.fxButton.setOnDragDropped(e->{
+       sourcefxButton.setOnDragDropped(e->{
             Dragboard db = e.getDragboard();
             System.out.println(db.getString());
-            toggleBox.getChildren().remove(Integer.parseInt(db.getString()));
 
 
 
         });
-        */
+
     }
 }
