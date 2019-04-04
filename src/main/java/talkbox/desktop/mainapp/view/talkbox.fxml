@@ -28,9 +28,9 @@
       </MenuBar>
       <HBox alignment="CENTER" layoutX="273.0" layoutY="704.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" text="Compile Audio" />
-            <Button mnemonicParsing="false" text="Load" />
-            <Button mnemonicParsing="false" text="Save" />
+            <Button mnemonicParsing="false" styleClass="blue-button" text="Compile Audio" />
+            <Button mnemonicParsing="false" styleClass="blue-button" text="Load" />
+            <Button mnemonicParsing="false" styleClass="blue-button" text="Save" />
          </children>
       </HBox>
    </children>
