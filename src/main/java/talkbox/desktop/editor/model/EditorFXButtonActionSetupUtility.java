@@ -81,7 +81,7 @@ public class EditorFXButtonActionSetupUtility {
 
                 for(int j=0;j<subList.get(subList.keySet().toArray()[i]);j++) {
 
-                    talkButtonPage.addButtonToRow(i,"EMPTY");
+                    talkButtonPage.addButtonToRow(i,"enter name");
 
                 }
 
