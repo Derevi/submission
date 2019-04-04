@@ -101,8 +101,10 @@ public class EditorUtilityFXButtons {
             newButtonRow.setAlignment(Pos.CENTER);
             newButtonRow.setSpacing(10);
 
-            //TODO @ Kevin replace this button with FX button
-            Button newFXButton = new Button("Test");
+            TalkButton talkButton = new TalkButton.Builder()
+                    .withName("enter name")
+                    .build();
+            Button newFXButton = convertTalkButton(talkButton);
 
             newButtonRow.getChildren().add(createAddNewButtonUtility(newButtonRow));
             newButtonRow.getChildren().add(newFXButton);
@@ -127,15 +129,24 @@ public class EditorUtilityFXButtons {
     }
 
     private static void setAddNewButtonAction(Button button, HBox currentHBox){
+
         button.setOnAction(e->{
             int index = currentHBox.getChildren().indexOf(button.getParent());
 
             //TODO @ Kevin replace this button with FX button
-            Button newFXButton = new Button("Test");
+            TalkButton talkButton = new TalkButton.Builder().withName("enter name").build();
+
+            Button newFXButton = convertTalkButton(talkButton);
 
             currentHBox.getChildren().add(index + 1, newFXButton);
             currentHBox.getChildren().add(index + 2, createAddNewButtonUtility(currentHBox));
         });
+    }
+
+    private static Button convertTalkButton(TalkButton talkButton){
+        TalkButtonCatalog talkButtonCatalog = new TalkButtonCatalog();
+        EditorAppTalkButtonInterpretor editorAppTalkButtonInterpretor = new EditorAppTalkButtonInterpretor(talkButtonCatalog);
+        return editorAppTalkButtonInterpretor.convertToFXButton(talkButton);
     }
 
 
