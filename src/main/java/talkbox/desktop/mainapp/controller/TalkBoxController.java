@@ -43,31 +43,7 @@ public class TalkBoxController implements Initializable {
 
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
         /*
-        //TODO link this to start screen controller
-        this.talkButtonCatalog = talkButtonCatalog;
-        this.catalogFxButtons = TalkButtonInterpretor.getFxButtonCatalog(talkButtonCatalog);
-        baseVBox.setAlignment(Pos.CENTER);
-        baseVBox.setSpacing(10);
 
-        HBox keyBox = new HBox();
-        keyBox.setAlignment(Pos.CENTER);
-        keyBox.setSpacing(10);
-        for(String s:catalogFxButtons.keySet()){
-            keyBox.getChildren().add(new Button(s));
-        }
-        keyBox.getChildren().add(new Button("+PAGE+"));
-        baseVBox.getChildren().add(1,keyBox);
-
-        for(ArrayList<Button> list: catalogFxButtons.get("animals")){
-            HBox hbox  = new HBox();
-            hbox.setAlignment(Pos.CENTER);
-            hbox.setSpacing(10);
-            for(Button b: list){
-                hbox.getChildren().add(b);
-            }
-            hbox.getChildren().add(new Button("++button++"));
-            baseVBox.getChildren().add(hbox);
-        }
 */
     }
 

@@ -67,10 +67,13 @@ public class MainEditorController implements Initializable {
         intializeUIComponents();
         renderGUI();
 
-        //THIS LINE HERE LOADS A NEW WINDOW
-        //ImageWindowController imageWindowController = new ImageWindowController();
-        //SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
+
+    }
+
+    public void imageWindow(){
+        ImageWindowController imageWindowController = new ImageWindowController();
+        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml", "Image Window");
     }
 
     //getters and setters for to use in EditorFXButtonActionSetupUtility
