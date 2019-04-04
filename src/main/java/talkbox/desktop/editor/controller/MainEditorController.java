@@ -53,9 +53,6 @@ public class MainEditorController implements Initializable {
     private VBox baseVBox;
 
     @FXML
-    private Button removeButton;
-
-    @FXML
     private HBox keyBox;
 
     public void setTalkButtonCatalog(TalkButtonCatalog talkButtonCatalog) {
@@ -70,10 +67,13 @@ public class MainEditorController implements Initializable {
         intializeUIComponents();
         renderGUI();
 
-        //THIS LINE HERE LOADS A NEW WINDOW
-        //ImageWindowController imageWindowController = new ImageWindowController();
-        //SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml");
 
+
+    }
+
+    public void imageWindow(){
+        ImageWindowController imageWindowController = new ImageWindowController();
+        SceneViewLoader.loadNewWindow(imageWindowController,"/talkbox/desktop/editor/view/imagewindow.fxml", "Image Window");
     }
 
     //getters and setters for to use in EditorFXButtonActionSetupUtility
@@ -94,7 +94,6 @@ public class MainEditorController implements Initializable {
         loadCatalog();
         initializeMaps(new EditorAppTalkButtonInterpretor(this.talkButtonCatalog));
         EditorFXButtonActionSetupUtility.setupAddBtnPage(newPage, this.talkButtonCatalog, this);
-        //EditorFXButtonActionSetupUtility.deleteButtons(removeButton, hBoxArrayListMap);
     }
 
     private void bindNodeContainerSize(){
@@ -114,6 +113,14 @@ public class MainEditorController implements Initializable {
 
     private void renderGUI() {
         DynamicFXElementsRenderer.render(hBoxArrayListMap, baseVBox, toggleBox);
+    }
+
+    private static void filterFX(){
+
+    }
+
+    private void save(){
+        TalkButtonCatalogSaver.save(talkButtonCatalog);
     }
 
 

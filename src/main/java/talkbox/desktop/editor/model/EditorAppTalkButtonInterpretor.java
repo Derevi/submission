@@ -44,6 +44,7 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         Button editorFXButton= new Button("", createInternalVbox(talkButton));
         editorFXButton.setUserData(talkButton);
         setEditorButtonProperties(editorFXButton,talkButton.getButtonSize());
+        enableDragAndDropAction(editorFXButton);
 
         editorFXButton.setOnAction(e->{
             System.out.println("TEST WORKED");
@@ -61,29 +62,9 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
         setInternalVBoxProperties(internalVbox, talkButton.getButtonSize()-20);
         internalVbox.getChildren().add(0,createInternalTextField(talkButton));
         internalVbox.getChildren().add(1,createInternalImage(talkButton));
-        internalVbox.getChildren().add(2, trashButton(talkButton));
         return internalVbox;
     }
 
-    private HBox trashButton(TalkButton buttonToDelete) {
-        HBox trashHBox = new HBox();
-        Button trash = new Button();
-
-        trash.setPrefSize(40, 40);
-        trash.setMaxSize(40, 40);
-        trash.setAlignment(Pos.BOTTOM_RIGHT);
-        trash.getStyleClass().add("delete-button");
-
-        trash.setOnAction(e->{
-            System.out.println("Trash button pressed");
-            trash.getParent().getParent().getParent().getParent();
-        });
-
-        trashHBox.getChildren().add(trash);
-        trashHBox.setAlignment(Pos.BOTTOM_RIGHT);
-
-        return trashHBox;
-    }
 
     private TextField createInternalTextField(TalkButton talkButton){
         TextField textField = new TextField(talkButton.getName());
@@ -132,28 +113,26 @@ public class EditorAppTalkButtonInterpretor extends AbstractTalkButtonInterpreto
     }
 
 
-    public void enableDragAndDropAction(Button sourcefxButton, HBox hBox){
-/*
-        this.fxButton.setOnDragDetected(e->{
-            Dragboard db = this.fxButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+    private void enableDragAndDropAction(Button sourcefxButton){
+
+        sourcefxButton.setOnDragDetected(e->{
+            Dragboard db = sourcefxButton.startDragAndDrop(TransferMode.COPY_OR_MOVE);
             ClipboardContent content = new ClipboardContent();
-            TalkButtonPage tp = (TalkButtonPage) this.fxButton.getUserData();
-            db.setDragView(this.fxButton.snapshot(new SnapshotParameters(),null),0,0);
+            db.setDragView(sourcefxButton.snapshot(new SnapshotParameters(),null),0,0);
             db.setContent(content);
         });
 
-        this.fxButton.setOnDragOver(e->{
+        sourcefxButton.setOnDragOver(e->{
             e.acceptTransferModes(TransferMode.COPY);
         });
 
-        this.fxButton.setOnDragDropped(e->{
+       sourcefxButton.setOnDragDropped(e->{
             Dragboard db = e.getDragboard();
             System.out.println(db.getString());
-            toggleBox.getChildren().remove(Integer.parseInt(db.getString()));
 
 
 
         });
-        */
+
     }
 }

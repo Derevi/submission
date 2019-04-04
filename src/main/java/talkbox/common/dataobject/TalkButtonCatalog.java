@@ -1,12 +1,15 @@
 package talkbox.common.dataobject;
+import talkbox.common.service.TalkBoxConfiguration;
+
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 
-public class TalkButtonCatalog implements Serializable {
+public class TalkButtonCatalog implements Serializable, TalkBoxConfiguration {
 
-   LinkedHashMap<String, TalkButtonPage> catalog;
+    private LinkedHashMap<String, TalkButtonPage> catalog;
     private static final long serialVersionUID = 1L;
 
     public TalkButtonCatalog() {
@@ -62,63 +65,38 @@ public class TalkButtonCatalog implements Serializable {
         //TODO set directory from where audio are pulled
     }
 
+    @Override
+    public int getNumberOfAudioButtons() {
+        int count = 0;
+        for(String s: getCatalog().keySet()){
+           count = count + getCatalog().entrySet().size();
+        }
+
+        return count;
+
+    }
+
+    @Override
+    public int getNumberOfAudioSets() {
+        return getNumberOfAudioButtons() + getCatalog().keySet().size();
+    }
+
+    @Override
+    public int getTotalNumberOfButtons() {
+        return 0;
+    }
+
+    @Override
+    public Path getRelativePathToAudioFiles() {
+        return Paths.get("audio");
+    }
+
+    @Override
+    public String[][] getAudioFileNames() {
+        File audioFileParent = new File("audio");
+        String audioFiles[][] = new String[0][audioFileParent.list().length];
+        audioFiles[0] = audioFileParent.list();
+        return audioFiles;
+    }
 }
 
-/*
-    LinkedHashMap<String, ArrayList<String>> catalogLabels;
-    LinkedHashMap<String, ArrayList<TalkButton>> catalog;
-    private Button button;
-    private TextField textField;
-    private final int texFieldHeight = 30;
-    private final int textFieldWidth = 130;
-    private final int buttonSize = 150;
-    private static final long serialVersionUID = 1L;
-    String name;
-
-    public TalkButtonCatalog() {
-        this.catalogLabels = new LinkedHashMap<>();
-
-    }
-
-    public TalkButtonCatalog(LinkedHashMap<String, ArrayList<String>> catalogLabels) {
-        this.catalogLabels = catalogLabels;
-    }
-
-
-    public LinkedHashMap<String, ArrayList<String>> getCatalogLabels(){
-        return catalogLabels;
-    }
-
-    public ArrayList<TalkButton> getTalkButtonInventory(String listKeyName){
-        ArrayList<TalkButton> talkButtons = new ArrayList<>();
-
-        for(String name:catalogLabels.get(listKeyName)){
-            talkButtons.add(new TalkButton(name));
-        }
-        return talkButtons;
-    }
-
-    public void replace(String key, String newName, TalkButton talkButton){
-        int index = catalog.get(key).indexOf(talkButton);
-        catalog.get(key).set(index,new TalkButton(newName));
-    }
-
-    public void delete(String key, TalkButton talkButton){
-        catalog.get(key).remove(talkButton);
-    }
-
-    public void add(String key, String name){
-        catalog.get(key).add(new TalkButton(name));
-    }
-
-
-
-    public ArrayList<TalkButton> getKeySetButtons(){
-        ArrayList<TalkButton> talkButtons = new ArrayList<>();
-        for(String name:catalogLabels.keySet()){
-            talkButtons.add(new TalkButton(name));
-        }
-        return talkButtons;
-    }
-
-*/
