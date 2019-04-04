@@ -117,6 +117,14 @@ public class MainEditorController implements Initializable {
         DynamicFXElementsRenderer.render(hBoxArrayListMap, baseVBox, toggleBox);
     }
 
+    private static void filterFX(){
+
+    }
+
+    private void save(){
+        TalkButtonCatalogSaver.save(talkButtonCatalog);
+    }
+
 
 /*
 
